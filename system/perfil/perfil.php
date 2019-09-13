@@ -84,6 +84,7 @@ $comentarios = Encrypt::Decrypt($r["comentarios"],$_SESSION['secret_key']);
  
 
 <div class="mt-3" id="dui-msj">
+  <div class="text-center">Documentos de Identidad</div>
   <?php 
         if($perfil->CompruebaDoc($_SESSION["username"], 1) == TRUE){
           Alerts::Mensajex("Existe Documento adjuntado","success",null,'<a class="btn btn-info btn-rounded btn-sm my-4" id="dui-ver"><i class="fas fa-user mr-1"></i> Agregar </a>');
