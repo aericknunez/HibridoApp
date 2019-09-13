@@ -196,5 +196,25 @@ EsconderNit();
 
 
 
+//// insertar redes sociales
+    $('#btn-redes').click(function(e){ /// agregar datos
+    e.preventDefault();
+    $.ajax({
+            url: "application/src/routes.php?op=17",
+            method: "POST",
+            data: $("#form-redes").serialize(),
+            beforeSend: function () {
+                $('#btn-redes').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+            },
+            success: function(data){
+                $('#btn-redes').html('Guardar').removeClass('disabled');         
+                $("#form-redes").trigger("reset");
+                $("#msj").html(data);
+            }
+        })
+    });
+
+
+
 
 }); // termina query

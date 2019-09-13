@@ -210,6 +210,11 @@ include_once '../../system/perfil/Perfiles.php';
 	$perfil->VerDepartamentos($_POST["id"]);
 }
 
+if($_REQUEST["op"]=="17"){  // Insertar Redes Sociales
+include_once '../../system/perfil/Perfiles.php';
+	$perfil = new Perfiles;
+	$perfil->InsertarRed($_POST);
+}
 
 
 

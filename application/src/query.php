@@ -32,15 +32,10 @@ echo '
 	if($_GET["modal"] == "avatar"){
 	echo '<script type="text/javascript" src="assets/js/query/user.js?v='.$numero.'"></script>';
 	}
-	if($_GET["modal"] == "conf_config"){
-	echo '<script type="text/javascript" src="assets/js/query/conf_config.js?v='.$numero.'"></script>';
+	if($_GET["modal"] == "redes"){
+	echo '<script type="text/javascript" src="assets/js/query/perfil.js?v='.$numero.'"></script>';
 	}
-	if($_GET["modal"] == "conf_root"){
-	echo '<script type="text/javascript" src="assets/js/query/conf_config.js?v='.$numero.'"></script>';
-	}
-	if($_GET["modal"] == "img_negocio"){
-	echo '<script type="text/javascript" src="assets/js/query/img_negocio.js?v='.$numero.'"></script>';
-	}
+
 
 
 

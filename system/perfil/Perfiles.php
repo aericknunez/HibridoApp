@@ -64,7 +64,7 @@ class Perfiles{
 	}
 
 
-	public function ActualizarNombre($nombre){
+	public function ActualizarNombre($nombre){ // aactualiza nombre de user data
 		$db = new dbConn();
 		    $cambio = array();
 		    $cambio["nombre"] = $nombre;
@@ -166,32 +166,47 @@ class Perfiles{
 	    } unset($r);  
 
 
-   	echo '<section class="card profile-card mb-4 text-center">
-              <div class="avatar z-depth-1-half">
-                <img src="assets/img/avatar/'.$foto.'" alt="" class="img-fluid">
-              </div>
-              <!-- Card content -->
-              <div class="card-body">
-                <!-- Title -->
-                <h4 class="card-title"><strong>'.$nombre.'</strong></h4>
-                <h5>'.$documento.'</h5>
-                <p class="dark-grey-text">'.$email.'</p>
+echo '<section class="card profile-card mb-4 text-center">
+  <div class="avatar z-depth-1-half">
+    <img src="assets/img/avatar/'.$foto.'" alt="" class="img-fluid">
+  </div>
+  <!-- Card content -->
+  <div class="card-body">
+    <!-- Title -->
+    <h4 class="card-title"><strong>'.$nombre.'</strong></h4>
+    <h5>'.$documento.'</h5>
+    <p class="dark-grey-text">'.$email.'</p>';
 
-                <!-- Social -->
-                <a type="button" class="btn-floating btn-small"><i class="fab fa-facebook-f grey-text"></i></a>
-                <a type="button" class="btn-floating btn-small"><i class="fab fa-twitter grey-text"></i></a>
-                <a type="button" class="btn-floating btn-small"><i class="fab fa-linkedin-in grey-text"></i></a>
+if($this->CRedes($_SESSION["username"]) == TRUE){
+	if($this->CRed($_SESSION["username"], "facebook") != NULL){
+	  $facebook = $this->CRed($_SESSION["username"], "facebook");
+	 echo '<a href="." class="btn-floating btn-small"><i class="fab fa-facebook-f grey-text"></i></a>';
+	}
+	if($this->CRed($_SESSION["username"], "instagram") != NULL){
+	  $instagram = $this->CRed($_SESSION["username"], "instagram");
+	 echo '<a href="." class="btn-floating btn-small"><i class="fab fa-instagram grey-text"></i></a>';
+	}
+	if($this->CRed($_SESSION["username"], "twitter") != NULL){
+	  $twitter = $this->CRed($_SESSION["username"], "twitter");
+	 echo '<a href="." class="btn-floating btn-small"><i class="fab fa-twitter grey-text"></i></a>';
+	}
+	if($this->CRed($_SESSION["username"], "whatsapp") != NULL){
+	  $whatsapp = $this->CRed($_SESSION["username"], "whatsapp");
+	 echo '<a href="." class="btn-floating btn-small"><i class="fab fa-whatsapp grey-text"></i></a>';
+	}
 
-                <!-- Text -->
-                <p class="card-text mt-3">Some quick example text to build on the card title and make up the bulk of
-                  the cards content.
-                </p>
+} else {
+	Alerts::Mensajex("No ha registrado redes sociales","danger",NULL,'<a href="?modal=redes" class="btn btn-success btn-rounded btn-sm">Agregar</a>');
+}
+ //    <!-- Social -->
+ //    <a type="button" class="btn-floating btn-small"><i class="fab fa-facebook-f grey-text"></i></a>
+ //    <a type="button" class="btn-floating btn-small"><i class="fab fa-twitter grey-text"></i></a>
+ //    <a type="button" class="btn-floating btn-small"><i class="fab fa-linkedin-in grey-text"></i></a>
+	// <!-- Social -->
 
-                <button type="button" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalContactUser">Contact<i
-                    class="fas fa-paper-plane ml-2"></i></button>
-              </div>
+  echo '</div>
 
-            </section>';
+</section>';
 
    }
 
@@ -256,6 +271,56 @@ class Perfiles{
     } $a->close();
     echo '</select>';
 }
+
+
+
+
+
+/////////////////////////redes sociales////
+   public function CRed($username, $red){ // comprueba si hay redes sociales
+   $db = new dbConn();
+
+   		if ($r = $db->select($red, "perfil_redes", "WHERE username = '".$username."'")) 
+   			{ return $r[$red]; } unset($r);
+   	}
+
+   public function CRedes($username){ // comprueba si hay redes sociales
+   $db = new dbConn();
+
+   		$a = $db->query("SELECT * FROM perfil_redes WHERE username = '".$username."'");
+		if($a->num_rows > 0){ return TRUE; } else { return FALSE; }
+   	}
+
+
+	public function InsertarRed($data){
+		$db = new dbConn();
+
+		$a = $db->query("SELECT * FROM perfil_redes WHERE username = '".$_SESSION["username"]."'");
+		if($a->num_rows > 0){ // actualizar
+			$datos = array();
+		    $datos["facebook"] = $data["facebook"];
+		    $datos["instagram"] = $data["instagram"];
+		    $datos["twitter"] = $data["twitter"];
+		    $datos["whatsapp"] = $data["whatsapp"];
+		    if ($db->update("perfil_redes", $datos, "WHERE username='".$_SESSION["username"]."'")) {
+		        Alerts::Alerta("success","Actualizado!","Actualizado correctamente!");
+		    } 
+		    echo "actualizar";
+		} else { // insertar
+			echo "insertar";
+			$datos = array();
+		    $datos["username"] = $_SESSION['username'];
+		    $datos["facebook"] = $data["facebook"];
+		    $datos["instagram"] = $data["instagram"];
+		    $datos["twitter"] = $data["twitter"];
+		    $datos["whatsapp"] = $data["whatsapp"];
+			    if ($db->insert("perfil_redes", $datos)) {
+			        Alerts::Alerta("success","Agregado!","Datos Agregados!");
+			    } 
+		}
+		$a->close();
+		    
+	}
 
 
 
