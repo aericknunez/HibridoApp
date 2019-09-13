@@ -38,7 +38,7 @@
     <li>
         <form class="search-form" role="search" method="post" action="?search">
             <div class="form-group md-form mt-0 pt-1 waves-light">
-                <input type="text" class="form-control" placeholder="Buscar Factura" id="search" name="search">
+                <input type="text" class="form-control" placeholder="Buscar..." id="search" name="search">
             </div>
         </form>
     </li>

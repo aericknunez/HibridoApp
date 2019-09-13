@@ -2,7 +2,7 @@
 /**
  * class para daah
  */
-class Dash
+class Dashboard
 {
 	
 	public function __construct()
@@ -11,8 +11,10 @@ class Dash
 	}
 
 	
-	public function CompruebaPerfil($username){
+	public function EmpresasAgregadas($username){
+		$db = new dbConn();
 
+		
 	}
 
 
