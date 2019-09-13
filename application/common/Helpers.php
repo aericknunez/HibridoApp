@@ -10,7 +10,9 @@ class Helpers{
           if($_SERVER["SERVER_NAME"] == "pizto.com" 
           or $_SERVER["SERVER_NAME"] == "www.pizto.com"
           or $_SERVER["SERVER_NAME"] == "superpollo.net"
-          or $_SERVER["SERVER_NAME"] == "www.superpollo.net"){
+          or $_SERVER["SERVER_NAME"] == "www.superpollo.net"
+          or $_SERVER["SERVER_NAME"] == "hibridosv.net"
+          or $_SERVER["SERVER_NAME"] == "www.hibridosv.net"){
             return TRUE;
           } else {
             return FALSE;
