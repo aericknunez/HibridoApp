@@ -83,7 +83,7 @@ $comentarios = Encrypt::Decrypt($r["comentarios"],$_SESSION['secret_key']);
 
                     </div>
                     <div class="col-md-6 my-6 md-form text-right">
-                     <a class="btn btn-success btn-rounded btn-sm my-4" href="?perfil"><i class="fas fa-user mr-1"></i> Modificar Infomación </a>
+                     <a class="btn btn-success btn-rounded btn-sm my-4" href="?perfil"><i class="fas fa-user mr-1"></i> Modificar Información </a>
 
                     </div>
                   </div>

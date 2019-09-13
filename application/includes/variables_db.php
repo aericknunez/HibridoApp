@@ -6,7 +6,7 @@ if(Helpers::ServerDomain() == TRUE){
 define("HOST", "localhost"); 			//35.225.56.157 The host you want to connect to. 
 define("USER", "superpol_erick"); 			// The database username. 
 define("PASSWORD", "caca007125-"); 	// The database password.
-define("DATABASE", "superpol_hibrido");
+define("DATABASE", "superpol_hibridoapp");
   
 
 } else {
@@ -14,7 +14,7 @@ define("DATABASE", "superpol_hibrido");
 define("HOST", "localhost"); 			//35.225.56.157 The host you want to connect to. 
 define("USER", "root"); 			// The database username. 
 define("PASSWORD", "erick"); 	// The database password. 
-define("DATABASE", "hibrido"); 
+define("DATABASE", "hibridoapp"); 
 
 }
 
