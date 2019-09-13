@@ -93,7 +93,7 @@ public function AllEmpresas($npagina, $orden, $dir){
   $limit = 12;
   $adjacents = 2;
   if($npagina == NULL) $npagina = 1;
-  $a = $db->query("SELECT * FROM empresa WHERE edo = 1");
+  $a = $db->query("SELECT * FROM empresa");
   $total_rows = $a->num_rows;
   $a->close();
 
@@ -111,18 +111,17 @@ if($dir == "desc") $dir2 = "asc";
 if($dir == "asc") $dir2 = "desc";
 $op = 35; // opcion a donde se redirige la pginacion
 
- $a = $db->query("SELECT * FROM empresa WHERE edo = 1 order by ".$orden." ".$dir." limit $offset, $limit");
+ $a = $db->query("SELECT * FROM empresa order by ".$orden." ".$dir." limit $offset, $limit");
       
       if($a->num_rows > 0){
-          echo '<table class="table table-sm table-striped">
+          echo '<div class="table-responsive"><table class="table table-sm table-striped">
         <thead>
           <tr>
             <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="nombre" dir="'.$dir2.'">Nombre</a></th>
             <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="encargado" dir="'.$dir2.'">Encargado</a></th>
-            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="pais" dir="'.$dir2.'">Pais</a></th>
-            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="departamento" dir="'.$dir2.'">Departamento</a></th>
-            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="municipio" dir="'.$dir2.'">Municipo</a></th>
+            <th class="th-sm d-none d-md-block">Lugar</th>
             <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="telefono" dir="'.$dir2.'">Telefono</a></th>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="edo" dir="'.$dir2.'">Estado</a></th>
             <th class="th-sm">Ver</th>
           </tr>
         </thead>
@@ -131,15 +130,14 @@ $op = 35; // opcion a donde se redirige la pginacion
           echo '<tr>
                       <td>'.$b["nombre"].'</td>
                       <td>'.$b["encargado"].'</td>
-                      <td>'.$b["pais"].'</td>
-                      <td>'.$b["departamento"].'</td>
-                      <td>'.$b["municipio"].'</td>
+                      <td class="d-none d-md-block">'.$b["municipio"].', '.Helpers::Departamento($b["departamento"]).', '.Helpers::Pais($b["pais"]).'</td>
                       <td>'.$b["telefono"].'</td>
+                      <td>'.Helpers::EdoEmpresa($b["edo"]).'</td>
                       <td><a id="xver" op="36" key="'. $b["id"] .'"><i class="fas fa-search fa-lg green-text"></i></a></td>
                     </tr>';
         }
         echo '</tbody>
-        </table>';
+        </table></div>';
       }
         $a->close();
 
@@ -198,8 +196,41 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 
 public function ModalEmpresa($empresa){
       $this->VerEmpresa($empresa);
+      $this->VerUsuarioEmpresa($empresa);
+      $this->VerEmpAsig($empresa);
 
   }
+
+
+
+   public function VerUsuarioEmpresa($empresa){ // Usuario que agrego la empresa
+   $db = new dbConn();
+
+    $a = $db->query("SELECT perfil.nombre, perfil.email, perfil.municipio FROM perfil, empresa WHERE perfil.username=empresa.username and empresa.id='$empresa'");
+    if($a->num_rows){
+      echo '<h3>Usuario Responsable</h3>
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Lugar</th>
+            </tr>
+        </thead>
+        <tbody>';
+        foreach ($a as $b) {
+        echo '<td>'. Encrypt::Decrypt($b["nombre"], $_SESSION["secret_key"]) .'</td>
+            <td>'. Encrypt::Decrypt($b["email"], $_SESSION["secret_key"]) .'</td>
+            <td>'. Encrypt::Decrypt($b["municipio"], $_SESSION["secret_key"]) .'</td>';   
+      echo '</tr>';
+      } echo '</tbody>
+        </table>';
+  } else {
+    Alerts::Mensajex("No se han asinado Usuarios a este producto","danger");
+  }
+    $a->close();
+ }
+
 
 
 public function VerEmpresa($empresa, $btn = NULL){
@@ -219,6 +250,7 @@ $telefono2 = $r["telefono2"];
 $whatsapp = $r["whatsapp"];
 $email = $r["email"];
 $comentarios = $r["comentarios"];
+$edo = $r["edo"];
 
   }  unset($r);
 echo '<blockquote class="blockquote bq-danger">
@@ -235,6 +267,7 @@ echo '<blockquote class="blockquote bq-danger">
       <li class="list-group-item d-flex justify-content-between align-items-center"><span> E-mail: </span> <span class="pro-detail">'.$email.'</span></li>
       <li class="list-group-item d-flex justify-content-between align-items-center"><span> Teléfonos: </span> <span class="pro-detail">'.$telefono. ", " . $telefono2 .'</span></li>
       <li class="list-group-item d-flex justify-content-between align-items-center"><span> WhatsApp: </span> <span class="pro-detail">'.$whatsapp.'</span></li>
+      <li class="list-group-item d-flex justify-content-between align-items-center"><span> Estado: </span> <span class="pro-detail">'.Helpers::EdoEmpresa($edo).'</span></li>
 
     </ul>
 
@@ -284,65 +317,107 @@ echo '<blockquote class="blockquote bq-danger">
 		    		if($data["opx"] == 1){ //insertar
 		    			$datos = array();
 					    $datos["producto"] = $data["producto"];
-					    $datos["username"] = $data["username"];
+					    $datos["empresa"] = $data["empresa"];
 					    $datos["fecha"] = date("d-m-Y");
 					    $datos["hora"] = date("H:i:s");
 					    $datos["edo"] = 1;
-						    if ($db->insert("producto_usuario", $datos)) {
+						    if ($db->insert("producto_empresa", $datos)) {
 						        Alerts::Alerta("success","Agregado!","Datos Agregados!");
 						    } else {
 						    	 Alerts::Alerta("error","Error!","No se agragaron los datos!");
 						    }
 						} else { // eliminar
-							if ($db->delete("producto_usuario", "WHERE username='".$data["username"]."' and  producto='".$data["producto"]."'")) {
-						        Alerts::Alerta("success","Agregado!","Usuario Eliminado correctamente!");
+							if ($db->delete("producto_empresa", "WHERE empresa='".$data["empresa"]."' and  producto='".$data["producto"]."'")) {
+						        Alerts::Alerta("success","Agregado!","Producto Eliminado correctamente!");
 						    } else {
-						        Alerts::Alerta("error","Error!","Error en la eliminacion del usuario!");
+						        Alerts::Alerta("error","Error!","Error en la eliminacion del producto!");
 						    } 
 						}
 		} else {
 		        Alerts::Alerta("error","Error!","faltan datos importante!");
 		}
-		$this->VerUsuarios($data["iden"]);
+		$this->VerEmp($data["empresa"]);
 	}
 
 
 
 
 
-   public function VerEmp($producto){ // guarda archivo del producto
+   public function VerEmp($empresa, $btn = NULL){ // listado de usuarios
    $db = new dbConn();
 
-    $a = $db->query("SELECT * FROM perfil WHERE edo = 1");
+    $a = $db->query("SELECT * FROM producto WHERE edo = 1");
     if($a->num_rows){
     	echo '<table class="table table-striped table-sm">
 			  <thead>
 			    <tr>
 			      <th scope="col">#</th>
-			      <th scope="col">Usuario</th>
-			      <th scope="col">Eliminar</th>'; 
+			      <th scope="col">Producto</th>
+            <th scope="col">Rugro</th>';
+            if($btn == NULL){ echo '<th scope="col">Opción</th>'; }
 			echo '</tr>
 			  </thead>
 			  <tbody>';
 			  $n = 1;
 	    foreach ($a as $b) {
-	    	$ax = $db->query("SELECT * FROM producto_usuario WHERE username = '".$b["username"]."' and producto = '".$producto."' and edo = 1");
-			if($ax->num_rows > 0) { $src = "2"; $c = "red-text"; $ba = "badge-danger"; $fa= "fa-ban";} else { $src = "1"; $c = "black-text"; $ba = "badge-success"; $fa = "fa-check"; }
-			$ax->close();
+	    	$ax = $db->query("SELECT * FROM producto_empresa WHERE producto = '".$b["id"]."' and empresa = '".$empresa."'"); $canti = $ax->num_rows;
+			if($canti > 0) { $src = "2"; $c = "red-text"; $ba = "badge-danger"; $fa= "fa-ban";} else { $src = "1"; $c = "black-text"; $ba = "badge-success"; $fa = "fa-check"; }
+			$ax->close(); 
+
 	    	echo '<tr class="'.$c.'">
 			      <th scope="row">'.$n ++.'</th>
-			      <td>'. Encrypt::Decrypt($b["nombre"], $_SESSION["secret_key"]) .'</td>
-			      <td> <a id="user-op" op="33" opx="'. $src .'" username="'. $b["username"] .'" producto="'. $producto .'"><span class="badge '.$ba.'"><i class="fas '.$fa.'" aria-hidden="true"></i></span></a></td>';   
+			      <td>'. $b["producto"] .'</td>
+            <td>'. $b["rugro"] .'</td>';
+			      if($btn == NULL){
+              if($canti == 0){ // estas comprobaciones son para que no se elimine si ya cambio el estado de activo
+                echo '<td> <a id="emp-op" op="37" opx="'. $src .'" empresa="'. $empresa .'" producto="'. $b["id"] .'"><span class="badge '.$ba.'"><i class="fas '.$fa.'" aria-hidden="true"></i></span></a></td>';
+              } else {
+                if ($r = $db->select("edo", "producto_empresa", "WHERE producto = '".$b["id"]."' and empresa = '".$empresa."'")) { $edox = $r["edo"]; } unset($r); 
+                
+                    if($edox == 1){
+                    echo '<td> <a id="emp-op" op="37" opx="'. $src .'" empresa="'. $empresa .'" producto="'. $b["id"] .'"><span class="badge '.$ba.'"><i class="fas '.$fa.'" aria-hidden="true"></i></span></a></td>';
+                  } else {
+                    echo '<td><span class="badge badge-info"><i class="fas '.$fa.'" aria-hidden="true"></i></span></td>';
+                  }
+              }
+              
+            }
 			echo '</tr>';
 	    } echo '</tbody>
 				</table>';
-	} else {
-		Alerts::Mensajex("No se han asinado Usuarios a este producto","danger");
 	}
     $a->close();
  }
 
 
+
+   public function VerEmpAsig($empresa){ // listado de usuarios
+   $db = new dbConn();
+
+    $a = $db->query("SELECT producto, edo FROM producto_empresa WHERE empresa = '$empresa' and edo = 1");
+    if($a->num_rows){
+      echo '<h3>Productos Asignados</h3><table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Estado</th></tr>
+        </thead>
+        <tbody>';
+        $n = 1;
+      foreach ($a as $b) {
+            if ($r = $db->select("producto, rugro", "producto", "WHERE id = '".$b["producto"]."'")) { 
+                $producto = $r["producto"]; } unset($r);  
+        echo '<tr class="'.$c.'">
+            <th scope="row">'.$n ++.'</th>
+            <td>'. $producto .'</td>
+            <td>'. Helpers::EdoProAsig($b["edo"]) .'</td>
+            </tr>';
+      } echo '</tbody>
+        </table>';
+  }
+    $a->close();
+ }
 
 
 

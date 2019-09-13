@@ -40,10 +40,19 @@ $comentarios = $r["comentarios"];
 
               <!-- Card image -->
               <div class="view view-cascade gradient-card-header warning-color-dark">
-                <h5 class="mb-0 font-weight-bold">Caracteristicas</h5>
+                <h5 class="mb-0 font-weight-bold">Productos Asignados</h5>
               </div>
               <!-- Card image -->
-
+              <div id="empresas">
+                <?php 
+                if($_REQUEST["key"] != NULL){
+                    $empresa->VerEmp($_REQUEST["key"]);
+                } else {
+                  Alerts::Mensajex("Debe agregar la información de la empresa primero","danger");
+                }                  
+               ?>
+              </div>
+                
               <!-- Card content -->
               <div class="card-body card-body-cascade text-center">
 
@@ -208,11 +217,14 @@ $comentarios = $r["comentarios"];
 
 
   <div class="form-row">
-        <div class="col-md-6 my-6 md-form text-left">
-     <a class="btn btn-success btn-rounded my-4" href="?verempresa&key=<?= $iden ?>"><i class="fas fa-user mr-1"></i> Ver Perfil </a>
+    <div class="col-6 my-6 md-form text-left">
+        <?php 
+            if($_REQUEST["key"] != NULL){
+              echo '<a class="btn btn-success btn-rounded my-4" href="?verempresa&key='.$iden.'"><i class="fas fa-user mr-1"></i> Ver </a>'; }
+         ?>
 
     </div>
-  	<div class="col-md-6 my-6 md-form text-right">
+  	<div class="col-6 my-6 md-form text-right">
   	 <button class="btn btn-info btn-rounded my-4" type="submit" id="btn-empresa"><i class="fas fa-user mr-1"></i> Guardar </button>
 
   	</div>

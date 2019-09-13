@@ -43,6 +43,20 @@ class Helpers{
     if($string == "3") return 'Suspendido';
     }
 
+    static public function EdoEmpresa($string) {
+    if($string == "1") return 'Activa';
+    if($string == "2") return 'Eliminada';
+    if($string == "3") return 'Disponible';
+    if($string == "4") return 'Abandonada';
+    }
+
+    static public function EdoProAsig($string) {
+    if($string == "1") return 'Activo';
+    if($string == "2") return 'Eliminado';
+    if($string == "3") return 'Cancelado';
+    if($string == "4") return 'Eliminado';
+    }
+
 
 
         public function InOut($string) {

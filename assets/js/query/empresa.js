@@ -74,7 +74,25 @@ $(document).ready(function(){
 
 
 
+    $("body").on("click","#emp-op",function(){
+        var op = $(this).attr('op');
+        var empresa = $(this).attr('empresa');
+        var opx = $(this).attr('opx');
+        var producto = $(this).attr('producto');
+        var dataString = 'op='+op+'&empresa='+empresa+'&opx='+opx+'&producto='+producto;
 
+        $.ajax({
+            type: "POST",
+            url: "application/src/routes.php",
+            data: dataString,
+            beforeSend: function () {
+               $("#empresas").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            },
+            success: function(data) {            
+                $("#empresas").html(data); // lo que regresa de la busquea 
+            }
+        });
+    });  
 
 
 

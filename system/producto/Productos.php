@@ -253,11 +253,11 @@ $op = 30; // opcion a donde se redirige la pginacion
  $a = $db->query("SELECT * FROM producto_usuario WHERE username = '".$_SESSION["username"]."' and edo = 1 order by ".$orden." ".$dir." limit $offset, $limit");
       
       if($a->num_rows > 0){
-          echo '<table class="table table-sm table-striped">
+          echo '<div class="table-responsive"><table class="table table-sm table-striped">
         <thead>
           <tr>
             <th class="th-sm">Producto</th>
-            <th class="th-sm">Descripción</th>
+            <th class="th-sm d-none d-md-block">Descripción</th>
             <th class="th-sm">Rugro</th>
             <th class="th-sm">Estado</th>
             <th class="th-sm">Ver</th>
@@ -268,7 +268,7 @@ $op = 30; // opcion a donde se redirige la pginacion
            $r = $db->select("*", "producto", "WHERE id = '".$b["producto"]."'");
           echo '<tr>
                       <td>'.$r["producto"].'</td>
-                      <td>'.$r["descripcion"].'</td>
+                      <td class="d-none d-md-block">'.$r["descripcion"].'</td>
                       <td>'.$r["rugro"].'</td>
                       <td>'.Helpers::EdoProducto($r["edo"]) . '</td>
                       <td><a id="xver" op="31" key="'. $r["id"] .'"><i class="fas fa-search fa-lg green-text"></i></a></td>
@@ -276,7 +276,7 @@ $op = 30; // opcion a donde se redirige la pginacion
          unset($r); 
         }
         echo '</tbody>
-        </table>';
+        </table></div>';
       }
         $a->close();
 

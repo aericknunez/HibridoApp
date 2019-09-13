@@ -27,7 +27,9 @@ $empresa = new Empresas();
 
               <!-- Card content -->
               <div class="card-body card-body-cascade text-center">
-
+                <?php 
+                   $empresa->VerEmp($_REQUEST["key"], 1);
+               ?>
 
               </div>
               <!-- Card content -->

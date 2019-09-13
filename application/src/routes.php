@@ -90,7 +90,7 @@ include_once '../../system/user/Usuarios.php';
 if($_REQUEST["op"]=="5"){ // pregunta si elimina el usuario
 include_once '../../system/user/Usuarios.php';
 $usuarios = new Usuarios;
-$alert->EliminarUsuario($_REQUEST["iden"], $_REQUEST["username"]);
+Alerts::EliminarUsuario($_REQUEST["iden"], $_REQUEST["username"]);
 
 }
 
@@ -318,6 +318,15 @@ include_once '../../system/empresa/Empresas.php';
 	$empresa->ModalEmpresa($_POST["key"]);
 
 }
+
+if($_REQUEST["op"]=="37"){ // Agrega productos a la empresa
+include_once '../../system/empresa/Empresas.php';
+	$empresa = new Empresas();	
+	$empresa->AddEmp($_POST);
+
+}
+
+
 
 
 

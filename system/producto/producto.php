@@ -218,11 +218,11 @@ $condiciones = $r["condiciones"];
 
 
   <div class="form-row">
-        <div class="col-md-6 my-6 md-form text-left">
+        <div class="col-6 my-6 md-form text-left">
      <?php if($iden != NULL){ ?><a class="btn btn-success btn-rounded my-4" href="?pro&key=<?= $iden ?>"><i class="fas fa-user mr-1"></i> Ver Producto </a>
      <?php  } ?>
     </div>
-  	<div class="col-md-6 my-6 md-form text-right">
+  	<div class="col-6 my-6 md-form text-right">
   	 <button class="btn btn-info btn-rounded my-4" type="submit" id="btn-producto"><i class="fas fa-user mr-1"></i> Guardar </button>
 
   	</div>

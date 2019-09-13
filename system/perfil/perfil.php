@@ -312,11 +312,11 @@ $comentarios = Encrypt::Decrypt($r["comentarios"],$_SESSION['secret_key']);
 
 
   <div class="form-row">
-        <div class="col-md-6 my-6 md-form text-left">
-     <a class="btn btn-success btn-rounded my-4" href="?me"><i class="fas fa-user mr-1"></i> Ver Perfil </a>
+        <div class="col-6 my-6 md-form text-left">
+     <a class="btn btn-success btn-rounded my-4" href="?me"><i class="fas fa-user mr-1"></i> Ver </a>
 
     </div>
-  	<div class="col-md-6 my-6 md-form text-right">
+  	<div class="col-6 my-6 md-form text-right">
   	 <button class="btn btn-info btn-rounded my-4" type="submit" id="btn-perfil"><i class="fas fa-user mr-1"></i> Guardar </button>
 
   	</div>
