@@ -1,0 +1,358 @@
+<?php 
+class Empresas{
+
+	public function __construct() { 
+     } 
+
+
+
+
+     public function AddDatos($data){
+     	$db = new dbConn();
+     	if($data["nombre"] != NULL and $data["encargado"] != NULL){
+	     	if($data["iden"] == NULL){ // insertar
+	     		$this->Insertar($data);
+	     	} else { // actualizar
+	     		$this->Actualizar($data);
+	     	}
+     	} else {
+		        Alerts::Alerta("error","Error!","faltan datos importante!");
+		}
+     }
+
+
+
+	public function Actualizar($data){
+		$db = new dbConn();
+		    
+		    $cambio = array();
+		    $cambio["nombre"] = $data["nombre"];
+		    $cambio["encargado"] = $data["encargado"];
+		    $cambio["pais"] = $data["pais"];
+		    $cambio["departamento"] = $data["departamento"];
+		    $cambio["municipio"] = $data["municipio"];
+		    $cambio["direccion"] = $data["direccion"];
+		    $cambio["rugro"] = $data["rugro"];
+		    $cambio["giro"] = $data["giro"];
+		    $cambio["telefono"] = $data["telefono"];
+		    $cambio["telefono2"] = $data["telefono2"];
+		    $cambio["whatsapp"] = $data["whatsapp"];
+		    $cambio["email"] = $data["email"];
+		    $cambio["comentarios"] = $data["comentarios"];
+		    $cambio["edo"] = 1;
+
+		    if ($db->update("empresa", $cambio, "WHERE id='".$data["iden"]."'")) {
+		        Alerts::Alerta("success","Actualizado!","Actualizado correctamente!");
+		        echo '<script>
+					window.location.href="?verempresa&key='.$data["iden"].'"
+				</script>';
+		    } else {
+		        Alerts::Alerta("error","Error!","Sucedio un error!");
+		    }
+	    
+	}
+
+
+
+	public function Insertar($data){
+		$db = new dbConn();
+		    $datos = array();
+		    $datos["nombre"] = $data["nombre"];
+		    $datos["encargado"] = $data["encargado"];
+		    $datos["pais"] = $data["pais"];
+		    $datos["departamento"] = $data["departamento"];
+		    $datos["municipio"] = $data["municipio"];
+		    $datos["direccion"] = $data["direccion"];
+		    $datos["fecha"] = date("d-m-Y");
+		    $datos["hora"] = date("H:i:s");
+		    $datos["rugro"] = $data["rugro"];
+		    $datos["giro"] = $data["giro"];
+		    $datos["telefono"] = $data["telefono"];
+		    $datos["telefono2"] = $data["telefono2"];
+		    $datos["whatsapp"] = $data["whatsapp"];
+		    $datos["email"] = $data["email"];
+		    $datos["comentarios"] = $data["comentarios"];
+		    $datos["username"] = $_SESSION["username"];
+		    $datos["edo"] = 1;
+			    if ($db->insert("empresa", $datos)) {
+			    	$i = $db->insert_id();
+			        Alerts::Alerta("success","Agregado!","Datos Agregados!");
+			        echo '<script>
+					window.location.href="?verempresa&key='.$i.'"
+				</script>';
+			    } else {
+			    	 Alerts::Alerta("error","Error!","No se agragaron los datos!");
+			    }
+	}
+
+
+
+public function AllEmpresas($npagina, $orden, $dir){
+      $db = new dbConn();
+
+  $limit = 12;
+  $adjacents = 2;
+  if($npagina == NULL) $npagina = 1;
+  $a = $db->query("SELECT * FROM empresa WHERE edo = 1");
+  $total_rows = $a->num_rows;
+  $a->close();
+
+  $total_pages = ceil($total_rows / $limit);
+  
+  if(isset($npagina) && $npagina != NULL) {
+    $page = $npagina;
+    $offset = $limit * ($page-1);
+  } else {
+    $page = 1;
+    $offset = 0;
+  }
+
+if($dir == "desc") $dir2 = "asc";
+if($dir == "asc") $dir2 = "desc";
+$op = 35; // opcion a donde se redirige la pginacion
+
+ $a = $db->query("SELECT * FROM empresa WHERE edo = 1 order by ".$orden." ".$dir." limit $offset, $limit");
+      
+      if($a->num_rows > 0){
+          echo '<table class="table table-sm table-striped">
+        <thead>
+          <tr>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="nombre" dir="'.$dir2.'">Nombre</a></th>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="encargado" dir="'.$dir2.'">Encargado</a></th>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="pais" dir="'.$dir2.'">Pais</a></th>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="departamento" dir="'.$dir2.'">Departamento</a></th>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="municipio" dir="'.$dir2.'">Municipo</a></th>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="telefono" dir="'.$dir2.'">Telefono</a></th>
+            <th class="th-sm">Ver</th>
+          </tr>
+        </thead>
+        <tbody>';
+        foreach ($a as $b) {
+          echo '<tr>
+                      <td>'.$b["nombre"].'</td>
+                      <td>'.$b["encargado"].'</td>
+                      <td>'.$b["pais"].'</td>
+                      <td>'.$b["departamento"].'</td>
+                      <td>'.$b["municipio"].'</td>
+                      <td>'.$b["telefono"].'</td>
+                      <td><a id="xver" op="36" key="'. $b["id"] .'"><i class="fas fa-search fa-lg green-text"></i></a></td>
+                    </tr>';
+        }
+        echo '</tbody>
+        </table>';
+      }
+        $a->close();
+
+  if($total_pages <= (1+($adjacents * 2))) {
+    $start = 1;
+    $end   = $total_pages;
+  } else {
+    if(($page - $adjacents) > 1) {  
+      if(($page + $adjacents) < $total_pages) {  
+        $start = ($page - $adjacents); 
+        $end   = ($page + $adjacents); 
+      } else {              
+        $start = ($total_pages - (1+($adjacents*2))); 
+        $end   = $total_pages; 
+      }
+    } else {
+      $start = 1; 
+      $end   = (1+($adjacents * 2));
+    }
+  }
+echo $total_rows . " Registros encontrados";
+   if($total_pages > 1) { 
+
+$page <= 1 ? $enable = 'disabled' : $enable = '';
+    echo '<ul class="pagination pagination-sm justify-content-center">
+    <li class="page-item '.$enable.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="1" orden="'.$orden.'" dir="'.$dir.'">&lt;&lt;</a>
+      </li>';
+    
+    $page>1 ? $pagina = $page-1 : $pagina = 1;
+    echo '<li class="page-item '.$enable.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="'.$pagina.'" orden="'.$orden.'" dir="'.$dir.'">&lt;</a>
+      </li>';
+
+    for($i=$start; $i<=$end; $i++) {
+      $i == $page ? $pagina =  'active' : $pagina = '';
+      echo '<li class="page-item '.$pagina.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="'.$i.'" orden="'.$orden.'" dir="'.$dir.'">'.$i.'</a>
+      </li>';
+    }
+
+    $page >= $total_pages ? $enable = 'disabled' : $enable = '';
+    $page < $total_pages ? $pagina = ($page+1) : $pagina = $total_pages;
+    echo '<li class="page-item '.$enable.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="'.$pagina.'" orden="'.$orden.'" dir="'.$dir.'">&gt;</a>
+      </li>';
+
+    echo '<li class="page-item '.$enable.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="'.$total_pages.'" orden="'.$orden.'" dir="'.$dir.'">&gt;&gt;</a>
+      </li>
+
+      </ul>';
+     }  // end pagination 
+  } // termina productos
+
+
+public function ModalEmpresa($empresa){
+      $this->VerEmpresa($empresa);
+
+  }
+
+
+public function VerEmpresa($empresa, $btn = NULL){
+      $db = new dbConn();
+  if ($r = $db->select("*", "empresa", "WHERE id = '".$empresa."'")) { 
+$iden = $r["id"];
+$nombre = $r["nombre"];
+$encargado = $r["encargado"];
+$pais = $r["pais"];
+$departamento = $r["departamento"];
+$municipio = $r["municipio"];
+$direccion = $r["direccion"];
+$rugro = $r["rugro"];
+$giro = $r["giro"];
+$telefono = $r["telefono"];
+$telefono2 = $r["telefono2"];
+$whatsapp = $r["whatsapp"];
+$email = $r["email"];
+$comentarios = $r["comentarios"];
+
+  }  unset($r);
+echo '<blockquote class="blockquote bq-danger">
+              <p class="bq-title">'.$nombre.'</p>
+              <p>'.$comentarios.'</p>
+            </blockquote>
+
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item d-flex justify-content-between align-items-center"><span> Encargado: </span> <span class="pro-detail">'.$encargado.'</span></li>
+      <li class="list-group-item d-flex justify-content-between align-items-center"><span> Lugar: </span> <span class="pro-detail">'.$municipio. ", ". Helpers::Departamento($departamento) .", " . Helpers::Pais($pais).'</span></li>
+      <li class="list-group-item d-flex justify-content-between align-items-center"><span> Dirección: </span> <span class="pro-detail">'.$direccion.'</span></li>
+      <li class="list-group-item d-flex justify-content-between align-items-center"><span> Rugro: </span> <span class="pro-detail">'. $rugro.'</span></li>
+      <li class="list-group-item d-flex justify-content-between align-items-center"><span> Giro: </span> <span class="pro-detail">'.$giro.'</span></li>
+      <li class="list-group-item d-flex justify-content-between align-items-center"><span> E-mail: </span> <span class="pro-detail">'.$email.'</span></li>
+      <li class="list-group-item d-flex justify-content-between align-items-center"><span> Teléfonos: </span> <span class="pro-detail">'.$telefono. ", " . $telefono2 .'</span></li>
+      <li class="list-group-item d-flex justify-content-between align-items-center"><span> WhatsApp: </span> <span class="pro-detail">'.$whatsapp.'</span></li>
+
+    </ul>
+
+      <div class="row">
+            <div class="col-md-6 my-6 md-form text-left">
+         
+
+        </div>
+        <div class="col-md-6 my-6 md-form text-right">';
+         if($btn != NULL or $_SESSION["tipo_cuenta"] == 1){
+         	echo '<a class="btn btn-success btn-rounded btn-sm my-4" href="?empresa&key='.$iden.'"><i class="fas fa-user mr-1"></i> Modificar Infomación </a>';
+         }
+
+        echo '</div>
+      </div>';
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public function AddEmp($data){
+		$db = new dbConn();
+		if($data["opx"] != NULL){
+		    		
+		    		if($data["opx"] == 1){ //insertar
+		    			$datos = array();
+					    $datos["producto"] = $data["producto"];
+					    $datos["username"] = $data["username"];
+					    $datos["fecha"] = date("d-m-Y");
+					    $datos["hora"] = date("H:i:s");
+					    $datos["edo"] = 1;
+						    if ($db->insert("producto_usuario", $datos)) {
+						        Alerts::Alerta("success","Agregado!","Datos Agregados!");
+						    } else {
+						    	 Alerts::Alerta("error","Error!","No se agragaron los datos!");
+						    }
+						} else { // eliminar
+							if ($db->delete("producto_usuario", "WHERE username='".$data["username"]."' and  producto='".$data["producto"]."'")) {
+						        Alerts::Alerta("success","Agregado!","Usuario Eliminado correctamente!");
+						    } else {
+						        Alerts::Alerta("error","Error!","Error en la eliminacion del usuario!");
+						    } 
+						}
+		} else {
+		        Alerts::Alerta("error","Error!","faltan datos importante!");
+		}
+		$this->VerUsuarios($data["iden"]);
+	}
+
+
+
+
+
+   public function VerEmp($producto){ // guarda archivo del producto
+   $db = new dbConn();
+
+    $a = $db->query("SELECT * FROM perfil WHERE edo = 1");
+    if($a->num_rows){
+    	echo '<table class="table table-striped table-sm">
+			  <thead>
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Usuario</th>
+			      <th scope="col">Eliminar</th>'; 
+			echo '</tr>
+			  </thead>
+			  <tbody>';
+			  $n = 1;
+	    foreach ($a as $b) {
+	    	$ax = $db->query("SELECT * FROM producto_usuario WHERE username = '".$b["username"]."' and producto = '".$producto."' and edo = 1");
+			if($ax->num_rows > 0) { $src = "2"; $c = "red-text"; $ba = "badge-danger"; $fa= "fa-ban";} else { $src = "1"; $c = "black-text"; $ba = "badge-success"; $fa = "fa-check"; }
+			$ax->close();
+	    	echo '<tr class="'.$c.'">
+			      <th scope="row">'.$n ++.'</th>
+			      <td>'. Encrypt::Decrypt($b["nombre"], $_SESSION["secret_key"]) .'</td>
+			      <td> <a id="user-op" op="33" opx="'. $src .'" username="'. $b["username"] .'" producto="'. $producto .'"><span class="badge '.$ba.'"><i class="fas '.$fa.'" aria-hidden="true"></i></span></a></td>';   
+			echo '</tr>';
+	    } echo '</tbody>
+				</table>';
+	} else {
+		Alerts::Mensajex("No se han asinado Usuarios a este producto","danger");
+	}
+    $a->close();
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+} // fin de la clase
+
+ ?>
