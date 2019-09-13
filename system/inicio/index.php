@@ -9,6 +9,5 @@ $index = TRUE;
 
 
 include_once 'system/inicio/cards.php';
+
 ?>
-
-
