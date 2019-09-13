@@ -31,7 +31,7 @@ class Productos{
 		    $datos["rugro"] = $data["rugro"];
 		    $datos["fecha"] = date("d-m-Y");
 		    $datos["hora"] = date("H:i:s");
-		    $datos["caduca"] = $data["caduca"];
+		    $datos["caduca"] = date("d-m-Y", strtotime($data["caduca"]));
 		    $datos["edo"] = 1;
 
 		    if ($db->update("producto", $datos, "WHERE id='".$data["iden"]."'")) {
@@ -56,7 +56,7 @@ class Productos{
 		    $datos["rugro"] = $data["rugro"];
 		    $datos["fecha"] = date("d-m-Y");
 		    $datos["hora"] = date("H:i:s");
-		    $datos["caduca"] = $data["caduca"];
+		    $datos["caduca"] = date("d-m-Y", strtotime($data["caduca"]));
 		    $datos["edo"] = 1;
 			    if ($db->insert("producto", $datos)) {
 			    	$i = $db->insert_id();

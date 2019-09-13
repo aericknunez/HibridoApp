@@ -251,6 +251,7 @@ $whatsapp = $r["whatsapp"];
 $email = $r["email"];
 $comentarios = $r["comentarios"];
 $edo = $r["edo"];
+$username = $r["username"];
 
   }  unset($r);
 echo '<blockquote class="blockquote bq-danger">
@@ -277,7 +278,7 @@ echo '<blockquote class="blockquote bq-danger">
 
         </div>
         <div class="col-md-6 my-6 md-form text-right">';
-         if($btn != NULL or $_SESSION["tipo_cuenta"] == 1){
+         if($btn != NULL or $_SESSION["tipo_cuenta"] == 1 or $_SESSION["username"] == $username){
          	echo '<a class="btn btn-success btn-rounded btn-sm my-4" href="?empresa&key='.$iden.'"><i class="fas fa-user mr-1"></i> Modificar Infomación </a>';
          }
 
@@ -373,7 +374,7 @@ echo '<blockquote class="blockquote bq-danger">
                 echo '<td> <a id="emp-op" op="37" opx="'. $src .'" empresa="'. $empresa .'" producto="'. $b["id"] .'"><span class="badge '.$ba.'"><i class="fas '.$fa.'" aria-hidden="true"></i></span></a></td>';
               } else {
                 if ($r = $db->select("edo", "producto_empresa", "WHERE producto = '".$b["id"]."' and empresa = '".$empresa."'")) { $edox = $r["edo"]; } unset($r); 
-                
+
                     if($edox == 1){
                     echo '<td> <a id="emp-op" op="37" opx="'. $src .'" empresa="'. $empresa .'" producto="'. $b["id"] .'"><span class="badge '.$ba.'"><i class="fas '.$fa.'" aria-hidden="true"></i></span></a></td>';
                   } else {
