@@ -95,9 +95,9 @@ echo '<script type="text/javascript" src="assets/js/query/index.js?v='.$numero.'
 	});
 
 // preloader
-    // $(window).on("load", function () {
-    //     $('#mdb-preloader').fadeOut('fast');
-    // });
+    $(window).on("load", function () {
+        $('#mdb-preloader').fadeOut('fast');
+    });
 
 <?php if($index == TRUE){ ?>
 function VerPerfil(){ // Extrae los datos del perfil cuando es invocada la funcion
