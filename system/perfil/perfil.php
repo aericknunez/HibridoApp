@@ -32,121 +32,7 @@ $comentarios = Encrypt::Decrypt($r["comentarios"],$_SESSION['secret_key']);
       <section class="section">
         <!-- First row -->
         <div class="row">
-          <!-- First column -->
-          <div class="col-lg-4 mb-4">
-
-            <!-- Card -->
-            <div class="card card-cascade narrower">
-
-              <!-- Card image -->
-              <div class="view view-cascade gradient-card-header mdb-color lighten-3">
-                <h5 class="mb-0 font-weight-bold">Editar Foto</h5>
-              </div>
-              <!-- Card image -->
-
-              <!-- Card content -->
-              <div class="card-body card-body-cascade text-center">
-                <div id="contenido-img">
-                   <?php 
-                   $foto = $perfil->GetFotoPerfil($_SESSION["username"]);
-                      echo '<img src="assets/img/avatar/'.$foto.'" alt="User Photo" class="z-depth-1 mb-3 img-fluid" />';
-                    ?> 
-                  </div>
-
-                <p class="text-muted"><small>Esta será la foto que aparecera en su perfil</small></p>
-                
-                <div class="row flex-center">
-
-					<form id="form-img" name="form-img" class="md-form">
-					
-					<div class="file-field row">
-				        <a class="btn-floating blue-gradient mt-0 float-left btn-sm">
-				            <i class="fas fa-paperclip" aria-hidden="true"></i>
-				            <input type="file" id="archivo" name="archivo">
-				        </a>
-				        <div class="file-path-wrapper">
-				           <input class="file-path validate" type="text" placeholder="Agregue su Foto">
-				        </div>
-				    </div>
-					
-				<button class="btn btn-info btn-rounded btn-sm" type="submit" id="btn-img" name="btn-img">Subir Foto</button>
-        </form>
-             	
-                	
-                </div>
-<button class="btn btn-danger btn-rounded btn-sm" id="borrar-img" op="12">Eliminar</button>
-           
-              </div>
-              <!-- Card content -->
-
-            </div>
-            <!-- Card -->
- 
-
-<div class="mt-3" id="dui-msj">
-  <div class="text-center">Documentos de Identidad</div>
-  <?php 
-        if($perfil->CompruebaDoc($_SESSION["username"], 1) == TRUE){
-          Alerts::Mensajex("Existe Documento adjuntado","success",null,'<a class="btn btn-info btn-rounded btn-sm my-4" id="dui-ver"><i class="fas fa-user mr-1"></i> Agregar </a>');
-        } else {
-          Alerts::Mensajex("No se encontro Documento","danger",null,'<a class="btn btn-info btn-rounded btn-sm my-4" id="dui-ver"><i class="fas fa-user mr-1"></i> Agregar </a>');
-        }
-   ?>
-</div>
- <div class="card card-cascade narrower" id="dui">
-  <div class="row flex-center">
-          <form id="form-dui" name="form-dui" class="md-form">
-          <input type="hidden" value="1" name="documento">
-          <div class="file-field row">
-                <a class="btn-floating purple-gradient mt-0 float-left btn-sm">
-                    <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
-                    <input type="file" id="archivo" name="archivo">
-                </a>
-                <div class="file-path-wrapper">
-                   <input class="file-path validate" type="text" placeholder="Agregue su Documento">
-                </div>
-            </div>
-        <a class="btn btn-danger btn-rounded btn-sm my-4" id="dui-hid"><i class="fas fa-ban mr-1"></i> Cancelar </a>
-        <button class="btn btn-info btn-rounded btn-sm" type="submit" id="btn-dui" name="btn-dui">Subir Documento</button>
-        </form>
-</div>              
-</div>
-
-<div class="mt-3" id="nit-msj">
-  <?php 
-        if($perfil->CompruebaDoc($_SESSION["username"], 2) == TRUE){
-          Alerts::Mensajex("Existe NIT adjuntado","success",NULL,'<a class="btn btn-info btn-rounded btn-sm my-4" id="nit-ver"><i class="fas fa-user mr-1"></i> Agregar </a>');
-        } else {
-          Alerts::Mensajex("No se encontro NIT","danger",NULL,'<a class="btn btn-info btn-rounded btn-sm my-4" id="nit-ver"><i class="fas fa-user mr-1"></i> Agregar </a>');
-        }
-   ?>
-</div>
-
- <div class="card card-cascade narrower" id="nit">
-  <div class="row flex-center">
-          <form id="form-nit" name="form-nit" class="md-form">
-          <input type="hidden" value="2" name="documento">
-          <div class="file-field row">
-                <a class="btn-floating purple-gradient mt-0 float-left btn-sm">
-                    <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
-                    <input type="file" id="archivo" name="archivo">
-                </a>
-                <div class="file-path-wrapper">
-                   <input class="file-path validate" type="text" placeholder="Agregue su NIT">
-                </div>
-            </div>
-         
-         <a class="btn btn-danger btn-rounded btn-sm my-4" id="nit-hid"><i class="fas fa-ban mr-1"></i> Cancelar </a>
-         <button class="btn btn-info btn-rounded btn-sm" type="submit" id="btn-nit" name="btn-nit">Subir NIT</button>
-        </form>
-</div>              
-</div>
-
-
-
-
-          </div>
-          <!-- First column -->
+          
 
 
 
@@ -161,7 +47,7 @@ $comentarios = Encrypt::Decrypt($r["comentarios"],$_SESSION['secret_key']);
             <div class="card card-cascade narrower">
 
               <!-- Card image -->
-              <div class="view view-cascade gradient-card-header mdb-color lighten-3">
+              <div class="view view-cascade gradient-card-header warning-color lighten-3">
                 <h5 class="mb-0 font-weight-bold">Cambiar Datos</h5>
               </div>
               <!-- Card image -->
@@ -338,6 +224,129 @@ $comentarios = Encrypt::Decrypt($r["comentarios"],$_SESSION['secret_key']);
 
           </div>
           <!-- Second column -->
+
+
+
+
+
+<!-- First column -->
+          <div class="col-lg-4 mb-4">
+
+            <!-- Card -->
+            <div class="card card-cascade narrower">
+
+              <!-- Card image -->
+              <div class="view view-cascade gradient-card-header info-color lighten-3">
+                <h5 class="mb-0 font-weight-bold">Editar Foto</h5>
+              </div>
+              <!-- Card image -->
+
+              <!-- Card content -->
+              <div class="card-body card-body-cascade text-center">
+                <div id="contenido-img">
+                   <?php 
+                   $foto = $perfil->GetFotoPerfil($_SESSION["username"]);
+                      echo '<img src="assets/img/avatar/'.$foto.'" alt="User Photo" class="z-depth-1 mb-3 img-fluid" />';
+                    ?> 
+                  </div>
+
+                <p class="text-muted"><small>Esta será la foto que aparecera en su perfil</small></p>
+                
+                <div class="row flex-center">
+
+          <form id="form-img" name="form-img" class="md-form">
+          
+          <div class="file-field row">
+                <a class="btn-floating blue-gradient mt-0 float-left btn-sm">
+                    <i class="fas fa-paperclip" aria-hidden="true"></i>
+                    <input type="file" id="archivo" name="archivo">
+                </a>
+                <div class="file-path-wrapper">
+                   <input class="file-path validate" type="text" placeholder="Agregue su Foto">
+                </div>
+            </div>
+          
+        <button class="btn btn-info btn-rounded btn-sm" type="submit" id="btn-img" name="btn-img">Subir Foto</button>
+        </form>
+              
+                  
+                </div>
+<button class="btn btn-danger btn-rounded btn-sm" id="borrar-img" op="12">Eliminar</button>
+           
+              </div>
+              <!-- Card content -->
+
+            </div>
+            <!-- Card -->
+ 
+
+<div class="mt-3" id="dui-msj">
+  <div class="text-center">Documentos de Identidad</div>
+  <?php 
+        if($perfil->CompruebaDoc($_SESSION["username"], 1) == TRUE){
+          Alerts::Mensajex("Existe Documento adjuntado","success",null,'<a class="btn btn-info btn-rounded btn-sm my-4" id="dui-ver"><i class="fas fa-user mr-1"></i> Agregar </a>');
+        } else {
+          Alerts::Mensajex("No se encontro Documento","danger",null,'<a class="btn btn-info btn-rounded btn-sm my-4" id="dui-ver"><i class="fas fa-user mr-1"></i> Agregar </a>');
+        }
+   ?>
+</div>
+ <div class="card card-cascade narrower" id="dui">
+  <div class="row flex-center">
+          <form id="form-dui" name="form-dui" class="md-form">
+          <input type="hidden" value="1" name="documento">
+          <div class="file-field row">
+                <a class="btn-floating purple-gradient mt-0 float-left btn-sm">
+                    <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+                    <input type="file" id="archivo" name="archivo">
+                </a>
+                <div class="file-path-wrapper">
+                   <input class="file-path validate" type="text" placeholder="Agregue su Documento">
+                </div>
+            </div>
+        <a class="btn btn-danger btn-rounded btn-sm my-4" id="dui-hid"><i class="fas fa-ban mr-1"></i> Cancelar </a>
+        <button class="btn btn-info btn-rounded btn-sm" type="submit" id="btn-dui" name="btn-dui">Subir Documento</button>
+        </form>
+</div>              
+</div>
+
+<div class="mt-3" id="nit-msj">
+  <?php 
+        if($perfil->CompruebaDoc($_SESSION["username"], 2) == TRUE){
+          Alerts::Mensajex("Existe NIT adjuntado","success",NULL,'<a class="btn btn-info btn-rounded btn-sm my-4" id="nit-ver"><i class="fas fa-user mr-1"></i> Agregar </a>');
+        } else {
+          Alerts::Mensajex("No se encontro NIT","danger",NULL,'<a class="btn btn-info btn-rounded btn-sm my-4" id="nit-ver"><i class="fas fa-user mr-1"></i> Agregar </a>');
+        }
+   ?>
+</div>
+
+ <div class="card card-cascade narrower" id="nit">
+  <div class="row flex-center">
+          <form id="form-nit" name="form-nit" class="md-form">
+          <input type="hidden" value="2" name="documento">
+          <div class="file-field row">
+                <a class="btn-floating purple-gradient mt-0 float-left btn-sm">
+                    <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+                    <input type="file" id="archivo" name="archivo">
+                </a>
+                <div class="file-path-wrapper">
+                   <input class="file-path validate" type="text" placeholder="Agregue su NIT">
+                </div>
+            </div>
+         
+         <a class="btn btn-danger btn-rounded btn-sm my-4" id="nit-hid"><i class="fas fa-ban mr-1"></i> Cancelar </a>
+         <button class="btn btn-info btn-rounded btn-sm" type="submit" id="btn-nit" name="btn-nit">Subir NIT</button>
+        </form>
+</div>              
+</div>
+
+
+
+
+          </div>
+          <!-- First column -->
+
+
+
 
         </div>
         <!-- First row -->

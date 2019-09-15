@@ -65,6 +65,12 @@ elseif(isset($_GET["empresas"])) {
 echo '<script type="text/javascript" src="assets/js/query/empresa.js?v='.$numero.'"></script>';
 echo '<script type="text/javascript" src="assets/js/query/paginador.js?v='.$numero.'"></script>';
 }
+elseif(isset($_GET["myempresa"])) {
+echo '<script type="text/javascript" src="assets/js/query/empresa.js?v='.$numero.'"></script>';
+echo '<script type="text/javascript" src="assets/js/query/paginador.js?v='.$numero.'"></script>';
+}
+
+
 
 elseif(isset($_GET["producto"])) {
 echo '<script type="text/javascript" src="assets/js/query/producto.js?v='.$numero.'"></script>';

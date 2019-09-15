@@ -32,41 +32,7 @@ $comentarios = $r["comentarios"];
       <section class="section">
         <!-- First row -->
         <div class="row">
-          <!-- First column -->
-          <div class="col-lg-5 mb-4">
-
-            <!-- Card -->
-            <div class="card card-cascade narrower">
-
-              <!-- Card image -->
-              <div class="view view-cascade gradient-card-header warning-color-dark">
-                <h5 class="mb-0 font-weight-bold">Productos Asignados</h5>
-              </div>
-              <!-- Card image -->
-              <div id="empresas">
-                <?php 
-                if($_REQUEST["key"] != NULL){
-                    $empresa->VerEmp($_REQUEST["key"]);
-                } else {
-                  Alerts::Mensajex("Debe agregar la información de la empresa primero","danger");
-                }                  
-               ?>
-              </div>
-                
-              <!-- Card content -->
-              <div class="card-body card-body-cascade text-center">
-
-
-              </div>
-              <!-- Card content -->
-
-            </div>
-            <!-- Card -->
- 
-
-</div>
-<!-- termina primera columna -->
-<!-- First column -->
+          
 
 
 
@@ -245,6 +211,52 @@ $comentarios = $r["comentarios"];
 
           </div>
           <!-- Second column -->
+
+
+
+
+
+
+
+
+<!-- First column -->
+          <div class="col-lg-5 mb-4">
+
+            <!-- Card -->
+            <div class="card card-cascade narrower">
+
+              <!-- Card image -->
+              <div class="view view-cascade gradient-card-header warning-color-dark">
+                <h5 class="mb-0 font-weight-bold">Productos Asignados</h5>
+              </div>
+              <!-- Card image -->
+              <div id="empresas">
+                <?php 
+                if($_REQUEST["key"] != NULL){
+                    $empresa->VerEmp($_REQUEST["key"]);
+                } else {
+                  Alerts::Mensajex("Debe agregar la información de la empresa primero","danger");
+                }                  
+               ?>
+              </div>
+                
+              <!-- Card content -->
+              <div class="card-body card-body-cascade text-center">
+
+
+              </div>
+              <!-- Card content -->
+
+            </div>
+            <!-- Card -->
+ 
+
+</div>
+<!-- termina primera columna -->
+<!-- First column -->
+
+
+
 
         </div>
         <!-- First row -->

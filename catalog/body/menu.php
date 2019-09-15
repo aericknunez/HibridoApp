@@ -4,8 +4,9 @@
 
 
 <li><a href="?empresa" class="waves-effect"><i class="fas fa-plus"></i> Nueva Empresa</a></li>
+<li><a href="?myempresa" class="waves-effect"><i class="fas fa-search"></i> Mis Empresas </a></li>
+
 <li><a href="?empresas" class="waves-effect"><i class="fas fa-columns"></i> Todas Las Empresas</a></li>
-<li><a href="?ebuscar" class="waves-effect"><i class="fas fa-search"></i> Buscar Empresa </a></li>
 
 
 <hr>

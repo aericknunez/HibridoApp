@@ -9,7 +9,7 @@ $product = new Productos();
 ?>
 
 <div id="msj"></div>
-<h2 class="h2-responsive">Productos</h2>
+<h2 class="h2-responsive">PRODUCTOS AGREGADOS</h2>
 
 
 <div id="contenido">

@@ -9,11 +9,11 @@ $empresa = new Empresas();
 ?>
 
 <div id="msj"></div>
-<h2 class="h2-responsive">TODAS LAS EMPRESAS</h2>
+<h2 class="h2-responsive">MIS EMPRESAS AGREGADAS</h2>
 
 
 <div id="contenido">
-   <?php $empresa->AllEmpresas(1, "id", "asc"); ?>
+   <?php $empresa->MyEmpresas(1, "id", "asc"); ?>
 </div>
 
 

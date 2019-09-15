@@ -305,7 +305,11 @@ include_once '../../system/producto/Productos.php';
 	$producto->AddUserP($_POST);
 }
 
-
+if($_REQUEST["op"]=="34"){ 
+include_once '../../system/empresa/Empresas.php';
+	$empresa = new Empresas();	
+	$empresa->MyEmpresas($_POST["iden"], $_POST["orden"], $_POST["dir"]);
+}
 
 
 

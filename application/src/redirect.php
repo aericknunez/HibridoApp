@@ -19,6 +19,7 @@ elseif(isset($_GET["me"])) include_once 'system/perfil/verperfil.php';
 elseif(isset($_GET["empresa"])) include_once 'system/empresa/empresa.php';
 elseif(isset($_GET["verempresa"])) include_once 'system/empresa/verempresa.php';
 elseif(isset($_GET["empresas"])) include_once 'system/empresa/todaslasempresas.php';
+elseif(isset($_GET["myempresa"])) include_once 'system/empresa/myempresas.php';
 
 
 //producto

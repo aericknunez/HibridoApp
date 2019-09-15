@@ -25,113 +25,7 @@ $condiciones = $r["condiciones"];
       <section class="section">
         <!-- First row -->
         <div class="row">
-          <!-- First column -->
-          <div class="col-lg-6 mb-4">
-
-            <!-- Card -->
-            <div class="card card-cascade narrower">
-
-              <!-- Card image -->
-              <div class="view view-cascade gradient-card-header mdb-color lighten-3">
-                <h5 class="mb-0 font-weight-bold">Archivos del producto</h5>
-              </div>
-              <!-- Card image -->
-
-              <!-- Card content -->
-              <div class="card-body card-body-cascade text-center">
-                <div id="contenido-archivo">
-                  <?php 
-                    $product->VerDocumento($_REQUEST["key"]);
-                   ?>
-                </div>
-
-                <p class="text-muted"><small>Archivos subidos al servidor</small></p>
-                
-                <div class="row flex-center">
-
-					<form id="form-archivo" name="form-archivo" class="md-form">
-					
-					<div class="file-field row">
-				        <a class="btn-floating blue-gradient mt-0 float-left btn-sm">
-				            <i class="fas fa-paperclip" aria-hidden="true"></i>
-				            <input type="file" id="archivo" name="archivo">
-				        </a>
-				        <div class="file-path-wrapper">
-				           <input class="file-path validate" type="text" placeholder="Agregar Archivo">
-				        </div>
-				    </div>
-				<input type="hidden" name="producto" id="producto" value="<?= $iden ?>" >
-        <input type="text" name="descripcion"  id="descripcion" class="form-control" placeholder="Descripcion">
-				<button class="btn btn-info btn-rounded btn-sm" type="submit" id="btn-archivo" name="btn-archivo">Agregar Archivo</button>
-        </form>
-             	
-                	
-                </div>
-
-              </div>
-              <!-- Card content -->
-
-            </div>
-            <!-- Card -->
- 
-                         <!-- Card -->
-            <div class="card card-cascade narrower mt-4">
-
-              <!-- Card image -->
-              <div class="view view-cascade gradient-card-header mdb-color lighten-3">
-                <h5 class="mb-0 font-weight-bold">Precios</h5>
-              </div>
-              <!-- Card image -->
-
-              <!-- Card content -->
-              <div class="card-body card-body-cascade text-center">
-                <div id="contenido-precios">
-                  <?php 
-                    $product->VerPrecios($_REQUEST["key"]);
-                   ?>
-                </div>
-
-                <p class="text-muted"><small>Precios del Producto</small></p>
-                
-
-                <div class="row flex-center">
-
-          <form id="form-precio" name="form-precio" class="md-form">
           
-        <input type="hidden" name="producto" id="producto" value="<?= $iden ?>" >
-        
-   <div class="form-row">
-    
-    <div class="col-md-6 mb-2 md-form">
-      <label for="producto">* Cantidad </label>
-      <input type="number" class="form-control" id="cantidad" name="cantidad" >
-  </div>
-
-  <div class="col-md-6 mb-2 md-form">
-      <label for="rugro">* Precio</label>
-      <input type="number" step="any" class="form-control" id="precio" name="precio">
-  </div>
-
-  </div>
-<input type="text" name="descripcion"  id="descripcion" class="form-control" placeholder="Descripcion">
-
-
-        <button class="btn btn-info btn-rounded btn-sm" type="submit" id="btn-precio" name="btn-precio">Agregar Precio</button>
-        </form>
-           </div>
-
-
-              </div>
-              <!-- Card content -->
-
-            </div>
-            <!-- Card -->
-
-
-
-
-          </div>
-          <!-- First column -->
 
 
 
@@ -146,7 +40,7 @@ $condiciones = $r["condiciones"];
             <div class="card card-cascade narrower">
 
               <!-- Card image -->
-              <div class="view view-cascade gradient-card-header mdb-color lighten-3">
+              <div class="view view-cascade gradient-card-header success-color">
                 <h5 class="mb-0 font-weight-bold">Datos del Producto</h5>
               </div>
               <!-- Card image -->
@@ -251,6 +145,121 @@ $condiciones = $r["condiciones"];
 
           </div>
           <!-- Second column -->
+
+
+
+
+<!-- First column -->
+          <div class="col-lg-6 mb-4">
+
+            <!-- Card -->
+            <div class="card card-cascade narrower">
+
+              <!-- Card image -->
+              <div class="view view-cascade gradient-card-header warning-color lighten-3">
+                <h5 class="mb-0 font-weight-bold">Archivos del producto</h5>
+              </div>
+              <!-- Card image -->
+
+              <!-- Card content -->
+              <div class="card-body card-body-cascade text-center">
+                <div id="contenido-archivo">
+                  <?php 
+                    $product->VerDocumento($_REQUEST["key"]);
+                   ?>
+                </div>
+
+                <p class="text-muted"><small>Archivos subidos al servidor</small></p>
+                
+                <div class="row flex-center">
+
+          <form id="form-archivo" name="form-archivo" class="md-form">
+          
+          <div class="file-field row">
+                <a class="btn-floating blue-gradient mt-0 float-left btn-sm">
+                    <i class="fas fa-paperclip" aria-hidden="true"></i>
+                    <input type="file" id="archivo" name="archivo">
+                </a>
+                <div class="file-path-wrapper">
+                   <input class="file-path validate" type="text" placeholder="Agregar Archivo">
+                </div>
+            </div>
+        <input type="hidden" name="producto" id="producto" value="<?= $iden ?>" >
+        <input type="text" name="descripcion"  id="descripcion" class="form-control" placeholder="Descripcion">
+        <button class="btn btn-info btn-rounded btn-sm" type="submit" id="btn-archivo" name="btn-archivo">Agregar Archivo</button>
+        </form>
+              
+                  
+                </div>
+
+              </div>
+              <!-- Card content -->
+
+            </div>
+            <!-- Card -->
+ 
+                         <!-- Card -->
+            <div class="card card-cascade narrower mt-4">
+
+              <!-- Card image -->
+              <div class="view view-cascade gradient-card-header info-color lighten-3">
+                <h5 class="mb-0 font-weight-bold">Precios</h5>
+              </div>
+              <!-- Card image -->
+
+              <!-- Card content -->
+              <div class="card-body card-body-cascade text-center">
+                <div id="contenido-precios">
+                  <?php 
+                    $product->VerPrecios($_REQUEST["key"]);
+                   ?>
+                </div>
+
+                <p class="text-muted"><small>Precios del Producto</small></p>
+                
+
+                <div class="row flex-center">
+
+          <form id="form-precio" name="form-precio" class="md-form">
+          
+        <input type="hidden" name="producto" id="producto" value="<?= $iden ?>" >
+        
+   <div class="form-row">
+    
+    <div class="col-md-6 mb-2 md-form">
+      <label for="producto">* Cantidad </label>
+      <input type="number" class="form-control" id="cantidad" name="cantidad" >
+  </div>
+
+  <div class="col-md-6 mb-2 md-form">
+      <label for="rugro">* Precio</label>
+      <input type="number" step="any" class="form-control" id="precio" name="precio">
+  </div>
+
+  </div>
+<input type="text" name="descripcion"  id="descripcion" class="form-control" placeholder="Descripcion">
+
+
+        <button class="btn btn-info btn-rounded btn-sm" type="submit" id="btn-precio" name="btn-precio">Agregar Precio</button>
+        </form>
+           </div>
+
+
+              </div>
+              <!-- Card content -->
+
+            </div>
+            <!-- Card -->
+
+
+
+
+          </div>
+          <!-- First column -->
+
+
+
+
 
         </div>
         <!-- First row -->

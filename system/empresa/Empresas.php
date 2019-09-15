@@ -119,8 +119,7 @@ $op = 35; // opcion a donde se redirige la pginacion
           <tr>
             <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="nombre" dir="'.$dir2.'">Nombre</a></th>
             <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="encargado" dir="'.$dir2.'">Encargado</a></th>
-            <th class="th-sm d-none d-md-block">Lugar</th>
-            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="telefono" dir="'.$dir2.'">Telefono</a></th>
+            <th class="th-sm">Lugar</th>
             <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="edo" dir="'.$dir2.'">Estado</a></th>
             <th class="th-sm">Ver</th>
           </tr>
@@ -130,8 +129,7 @@ $op = 35; // opcion a donde se redirige la pginacion
           echo '<tr>
                       <td>'.$b["nombre"].'</td>
                       <td>'.$b["encargado"].'</td>
-                      <td class="d-none d-md-block">'.$b["municipio"].', '.Helpers::Departamento($b["departamento"]).', '.Helpers::Pais($b["pais"]).'</td>
-                      <td>'.$b["telefono"].'</td>
+                      <td>'.$b["municipio"].', '.Helpers::Departamento($b["departamento"]).', '.Helpers::Pais($b["pais"]).'</td>
                       <td>'.Helpers::EdoEmpresa($b["edo"]).'</td>
                       <td><a id="xver" op="36" key="'. $b["id"] .'"><i class="fas fa-search fa-lg green-text"></i></a></td>
                     </tr>';
@@ -264,11 +262,13 @@ echo '<blockquote class="blockquote bq-danger">
       <li class="list-group-item d-flex justify-content-between align-items-center"><span> Lugar: </span> <span class="pro-detail">'.$municipio. ", ". Helpers::Departamento($departamento) .", " . Helpers::Pais($pais).'</span></li>
       <li class="list-group-item d-flex justify-content-between align-items-center"><span> Dirección: </span> <span class="pro-detail">'.$direccion.'</span></li>
       <li class="list-group-item d-flex justify-content-between align-items-center"><span> Rugro: </span> <span class="pro-detail">'. $rugro.'</span></li>
-      <li class="list-group-item d-flex justify-content-between align-items-center"><span> Giro: </span> <span class="pro-detail">'.$giro.'</span></li>
-      <li class="list-group-item d-flex justify-content-between align-items-center"><span> E-mail: </span> <span class="pro-detail">'.$email.'</span></li>
+      <li class="list-group-item d-flex justify-content-between align-items-center"><span> Giro: </span> <span class="pro-detail">'.$giro.'</span></li>';
+      if($btn != NULL or $_SESSION["tipo_cuenta"] == 1 or $_SESSION["username"] == $username){
+      echo '<li class="list-group-item d-flex justify-content-between align-items-center"><span> E-mail: </span> <span class="pro-detail">'.$email.'</span></li>
       <li class="list-group-item d-flex justify-content-between align-items-center"><span> Teléfonos: </span> <span class="pro-detail">'.$telefono. ", " . $telefono2 .'</span></li>
-      <li class="list-group-item d-flex justify-content-between align-items-center"><span> WhatsApp: </span> <span class="pro-detail">'.$whatsapp.'</span></li>
-      <li class="list-group-item d-flex justify-content-between align-items-center"><span> Estado: </span> <span class="pro-detail">'.Helpers::EdoEmpresa($edo).'</span></li>
+      <li class="list-group-item d-flex justify-content-between align-items-center"><span> WhatsApp: </span> <span class="pro-detail">'.$whatsapp.'</span></li>';
+      }
+      echo '<li class="list-group-item d-flex justify-content-between align-items-center"><span> Estado: </span> <span class="pro-detail">'.Helpers::EdoEmpresa($edo).'</span></li>
 
     </ul>
 
@@ -422,7 +422,109 @@ echo '<blockquote class="blockquote bq-danger">
 
 
 
+public function MyEmpresas($npagina, $orden, $dir){
+      $db = new dbConn();
 
+  $limit = 12;
+  $adjacents = 2;
+  if($npagina == NULL) $npagina = 1;
+  $a = $db->query("SELECT * FROM empresa WHERE username = '".$_SESSION["username"]."'");
+  $total_rows = $a->num_rows;
+  $a->close();
+
+  $total_pages = ceil($total_rows / $limit);
+  
+  if(isset($npagina) && $npagina != NULL) {
+    $page = $npagina;
+    $offset = $limit * ($page-1);
+  } else {
+    $page = 1;
+    $offset = 0;
+  }
+
+if($dir == "desc") $dir2 = "asc";
+if($dir == "asc") $dir2 = "desc";
+$op = 34; // opcion a donde se redirige la pginacion
+
+ $a = $db->query("SELECT * FROM empresa WHERE username = '".$_SESSION["username"]."' order by ".$orden." ".$dir." limit $offset, $limit");
+      
+      if($a->num_rows > 0){
+          echo '<div class="table-responsive"><table class="table table-sm table-striped">
+        <thead>
+          <tr>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="nombre" dir="'.$dir2.'">Nombre</a></th>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="encargado" dir="'.$dir2.'">Encargado</a></th>
+            <th class="th-sm">Lugar</th>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="edo" dir="'.$dir2.'">Estado</a></th>
+            <th class="th-sm">Ver</th>
+          </tr>
+        </thead>
+        <tbody>';
+        foreach ($a as $b) {
+          echo '<tr>
+                      <td>'.$b["nombre"].'</td>
+                      <td>'.$b["encargado"].'</td>
+                      <td>'.$b["municipio"].', '.Helpers::Departamento($b["departamento"]).', '.Helpers::Pais($b["pais"]).'</td>
+                      <td>'.Helpers::EdoEmpresa($b["edo"]).'</td>
+                      <td><a id="xver" op="36" key="'. $b["id"] .'"><i class="fas fa-search fa-lg green-text"></i></a></td>
+                    </tr>';
+        }
+        echo '</tbody>
+        </table></div>';
+      }
+        $a->close();
+
+  if($total_pages <= (1+($adjacents * 2))) {
+    $start = 1;
+    $end   = $total_pages;
+  } else {
+    if(($page - $adjacents) > 1) {  
+      if(($page + $adjacents) < $total_pages) {  
+        $start = ($page - $adjacents); 
+        $end   = ($page + $adjacents); 
+      } else {              
+        $start = ($total_pages - (1+($adjacents*2))); 
+        $end   = $total_pages; 
+      }
+    } else {
+      $start = 1; 
+      $end   = (1+($adjacents * 2));
+    }
+  }
+echo $total_rows . " Registros encontrados";
+   if($total_pages > 1) { 
+
+$page <= 1 ? $enable = 'disabled' : $enable = '';
+    echo '<ul class="pagination pagination-sm justify-content-center">
+    <li class="page-item '.$enable.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="1" orden="'.$orden.'" dir="'.$dir.'">&lt;&lt;</a>
+      </li>';
+    
+    $page>1 ? $pagina = $page-1 : $pagina = 1;
+    echo '<li class="page-item '.$enable.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="'.$pagina.'" orden="'.$orden.'" dir="'.$dir.'">&lt;</a>
+      </li>';
+
+    for($i=$start; $i<=$end; $i++) {
+      $i == $page ? $pagina =  'active' : $pagina = '';
+      echo '<li class="page-item '.$pagina.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="'.$i.'" orden="'.$orden.'" dir="'.$dir.'">'.$i.'</a>
+      </li>';
+    }
+
+    $page >= $total_pages ? $enable = 'disabled' : $enable = '';
+    $page < $total_pages ? $pagina = ($page+1) : $pagina = $total_pages;
+    echo '<li class="page-item '.$enable.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="'.$pagina.'" orden="'.$orden.'" dir="'.$dir.'">&gt;</a>
+      </li>';
+
+    echo '<li class="page-item '.$enable.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="'.$total_pages.'" orden="'.$orden.'" dir="'.$dir.'">&gt;&gt;</a>
+      </li>
+
+      </ul>';
+     }  // end pagination 
+  } // termina productos
 
 
 
