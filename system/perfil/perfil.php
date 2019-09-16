@@ -200,11 +200,11 @@ $comentarios = Encrypt::Decrypt($r["comentarios"],$_SESSION['secret_key']);
 
   <div class="form-row">
         <div class="col-6 my-6 md-form text-left">
-     <a class="btn btn-success btn-rounded my-4" href="?me"><i class="fas fa-user mr-1"></i> Ver </a>
+     <a class="btn btn-success btn-rounded my-4 btn-sm" href="?me"><i class="fas fa-user mr-1"></i> Ver Datos </a>
 
     </div>
   	<div class="col-6 my-6 md-form text-right">
-  	 <button class="btn btn-info btn-rounded my-4" type="submit" id="btn-perfil"><i class="fas fa-user mr-1"></i> Guardar </button>
+  	 <button class="btn btn-info btn-rounded my-4" type="submit" id="btn-perfil"><i class="fas fa-save mr-1"></i> Guardar </button>
 
   	</div>
   </div>
@@ -284,9 +284,9 @@ $comentarios = Encrypt::Decrypt($r["comentarios"],$_SESSION['secret_key']);
   <div class="text-center">Documentos de Identidad</div>
   <?php 
         if($perfil->CompruebaDoc($_SESSION["username"], 1) == TRUE){
-          Alerts::Mensajex("Existe Documento adjuntado","success",null,'<a class="btn btn-info btn-rounded btn-sm my-4" id="dui-ver"><i class="fas fa-user mr-1"></i> Agregar </a>');
+          Alerts::Mensajex("Existe Documento adjuntado","success",null,'<a class="btn btn-info btn-rounded btn-sm my-4" id="dui-ver"><i class="fas fa-plus mr-1"></i> Agregar </a>');
         } else {
-          Alerts::Mensajex("No se encontro Documento","danger",null,'<a class="btn btn-info btn-rounded btn-sm my-4" id="dui-ver"><i class="fas fa-user mr-1"></i> Agregar </a>');
+          Alerts::Mensajex("No se encontro Documento","danger",null,'<a class="btn btn-info btn-rounded btn-sm my-4" id="dui-ver"><i class="fas fa-plus mr-1"></i> Agregar </a>');
         }
    ?>
 </div>
@@ -312,9 +312,9 @@ $comentarios = Encrypt::Decrypt($r["comentarios"],$_SESSION['secret_key']);
 <div class="mt-3" id="nit-msj">
   <?php 
         if($perfil->CompruebaDoc($_SESSION["username"], 2) == TRUE){
-          Alerts::Mensajex("Existe NIT adjuntado","success",NULL,'<a class="btn btn-info btn-rounded btn-sm my-4" id="nit-ver"><i class="fas fa-user mr-1"></i> Agregar </a>');
+          Alerts::Mensajex("Existe NIT adjuntado","success",NULL,'<a class="btn btn-info btn-rounded btn-sm my-4" id="nit-ver"><i class="fas fa-plus mr-1"></i> Agregar </a>');
         } else {
-          Alerts::Mensajex("No se encontro NIT","danger",NULL,'<a class="btn btn-info btn-rounded btn-sm my-4" id="nit-ver"><i class="fas fa-user mr-1"></i> Agregar </a>');
+          Alerts::Mensajex("No se encontro NIT","danger",NULL,'<a class="btn btn-info btn-rounded btn-sm my-4" id="nit-ver"><i class="fas fa-plus mr-1"></i> Agregar </a>');
         }
    ?>
 </div>

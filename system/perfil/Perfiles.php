@@ -249,9 +249,9 @@ if($this->CRedes($_SESSION["username"]) == TRUE){
 		}
 		    if($tipo == 1){ $tip = "dui"; $leg = "Documento"; } else { $tip = "nit"; $leg = "NIT"; }
 		if($this->CompruebaDoc($_SESSION["username"], $tipo) == TRUE){
-          Alerts::Mensajex("Existe ". $leg ." adjuntado","success",null,'<a class="btn btn-info btn-rounded btn-sm my-4" id="'.$tip.'-ver"><i class="fas fa-user mr-1"></i> Agregar </a>');
+          Alerts::Mensajex("Existe ". $leg ." adjuntado","success",null,'<a class="btn btn-info btn-rounded btn-sm my-4" id="'.$tip.'-ver"><i class="fas fa-plus mr-1"></i> Agregar </a>');
         } else {
-          Alerts::Mensajex("No se encontro ". $leg ."","danger",null,'<a class="btn btn-info btn-rounded btn-sm my-4" id="'.$tip.'-ver"><i class="fas fa-user mr-1"></i> Agregar </a>');
+          Alerts::Mensajex("No se encontro ". $leg ."","danger",null,'<a class="btn btn-info btn-rounded btn-sm my-4" id="'.$tip.'-ver"><i class="fas fa-plus mr-1"></i> Agregar </a>');
         }
 
    }

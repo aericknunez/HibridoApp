@@ -45,12 +45,12 @@ $comentarios = Encrypt::Decrypt($r["comentarios"],$_SESSION['secret_key']);
                         if($perfil->CompruebaDoc($_SESSION["username"], 1) == TRUE){
                           Alerts::Mensajex("Existe Documento adjuntado","success",null,NULL);
                         } else {
-                          Alerts::Mensajex("No se encontro Documento","danger",null,'<a href="?perfil" class="btn btn-info btn-rounded btn-sm my-4"><i class="fas fa-user mr-1"></i> Agregar </a>');
+                          Alerts::Mensajex("No se encontro Documento","danger",null,'<a href="?perfil" class="btn btn-info btn-rounded btn-sm my-4"><i class="fas fa-plus mr-1"></i> Agregar </a>');
                         }
                         if($perfil->CompruebaDoc($_SESSION["username"], 2) == TRUE){
                           Alerts::Mensajex("Existe NIT adjuntado","success",null,NULL);
                         } else {
-                          Alerts::Mensajex("No se encontro NIT","danger",null,'<a href="?perfil" class="btn btn-info btn-rounded btn-sm my-4"><i class="fas fa-user mr-1"></i> Agregar </a>');
+                          Alerts::Mensajex("No se encontro NIT","danger",null,'<a href="?perfil" class="btn btn-info btn-rounded btn-sm my-4"><i class="fas fa-plus mr-1"></i> Agregar </a>');
                         }
                    ?>
                   </div>

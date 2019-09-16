@@ -186,12 +186,12 @@ $comentarios = $r["comentarios"];
     <div class="col-6 my-6 md-form text-left">
         <?php 
             if($_REQUEST["key"] != NULL){
-              echo '<a class="btn btn-success btn-rounded my-4" href="?verempresa&key='.$iden.'"><i class="fas fa-user mr-1"></i> Ver </a>'; }
+              echo '<a class="btn btn-success btn-rounded my-4 btn-sm" href="?verempresa&key='.$iden.'"><i class="fas fa-user mr-1"></i> Ver Datos </a>'; }
          ?>
 
     </div>
   	<div class="col-6 my-6 md-form text-right">
-  	 <button class="btn btn-info btn-rounded my-4" type="submit" id="btn-empresa"><i class="fas fa-user mr-1"></i> Guardar </button>
+  	 <button class="btn btn-info btn-rounded my-4" type="submit" id="btn-empresa"><i class="fas fa-save mr-1"></i> Guardar </button>
 
   	</div>
   </div>
