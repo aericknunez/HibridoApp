@@ -195,7 +195,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 public function ModalEmpresa($empresa){
       $this->VerEmpresa($empresa);
       $this->VerUsuarioEmpresa($empresa);
-      $this->VerEmpAsig($empresa);
+      $this->VerEmpAsig($empresa,1);
 
   }
 
@@ -392,12 +392,15 @@ echo '<blockquote class="blockquote bq-danger">
 
 
 
-   public function VerEmpAsig($empresa){ // listado de usuarios
+   public function VerEmpAsig($empresa, $nam = NULL){ // listado de usuarios
    $db = new dbConn();
 
     $a = $db->query("SELECT producto, edo FROM producto_empresa WHERE empresa = '$empresa' and edo = 1");
     if($a->num_rows){
-      echo '<h3>Productos Asignados</h3><table class="table table-striped table-sm">
+      if($nam == 1){
+      echo '<h3>Productos Asignados</h3>';
+      }
+      echo '<table class="table table-striped table-sm">
         <thead>
           <tr>
             <th scope="col">#</th>

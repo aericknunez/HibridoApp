@@ -251,7 +251,7 @@ include_once '../../system/producto/Productos.php';
 		$documento->file_new_name_body   		= Helpers::TimeId(); // agregamos un nuevo nombre	
 		$documento->process('../../assets/archivos/');	
 
-		$producto->SubirDocumento($documento->file_dst_name, $_POST["producto"], $_POST["descripcion"]);
+		$producto->SubirDocumento($documento->file_dst_name, $_POST["producto"], $_POST["nombre"], $_POST["descripcion"]);
 	} 
 
 }

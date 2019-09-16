@@ -185,7 +185,9 @@ $condiciones = $r["condiciones"];
                 </div>
             </div>
         <input type="hidden" name="producto" id="producto" value="<?= $iden ?>" >
-        <input type="text" name="descripcion"  id="descripcion" class="form-control" placeholder="Descripcion">
+        <input type="text" name="nombre"  id="nombre" class="form-control" placeholder="Nombre">
+        <textarea class="form-control rounded-0" id="descripcion" name="descripcion" rows="3"></textarea>
+
         <button class="btn btn-info btn-rounded btn-sm" type="submit" id="btn-archivo" name="btn-archivo">Agregar Archivo</button>
         </form>
               

@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="card">
     <div class="row mt-3">
       <div class="col-md-3 col-3 text-left pl-1">
-        <a type="button" class="btn-floating btn-lg secondary-color ml-4 waves-effect waves-light"><i class="fas fa-barcode" aria-hidden="true"></i></a>
+        <a href="?myempresa" type="button" class="btn-floating btn-lg secondary-color ml-4 waves-effect waves-light"><i class="fas fa-barcode" aria-hidden="true"></i></a>
       </div>
       <div class="col-md-9 col-9 text-right pr-4">
         <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo $dash->EmpresasAgregadas($_SESSION["username"]); ?></h5>
@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="card">
     <div class="row mt-3">
       <div class="col-md-3 col-3 text-left pl-1">
-        <a type="button" class="btn-floating btn-lg info-color ml-4 waves-effect waves-light"><i class="fas fa-credit-card" aria-hidden="true"></i></a>
+        <a href="?productos" type="button" class="btn-floating btn-lg info-color ml-4 waves-effect waves-light"><i class="fas fa-credit-card" aria-hidden="true"></i></a>
       </div>
       <div class="col-md-9 col-9 text-right pr-4">
         <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo $dash->ProductosDisponibles($_SESSION["username"]); ?></h5>

@@ -83,12 +83,13 @@ class Productos{
 	}
 
 
-   public function SubirDocumento($file, $producto, $descripcion){ // guarda archivo del producto
+   public function SubirDocumento($file, $producto, $nombre, $descripcion){ // guarda archivo del producto
    $db = new dbConn();
       if($file != NULL and $producto != NULL){
           $datos = array();
           $datos["archivo"] = $file;
           $datos["producto"] = $producto;
+          $datos["nombre"] = $nombre;
            $datos["descripcion"] = $descripcion;
           $datos["edo"] = 1;
           if($db->insert("producto_archivos", $datos)){
@@ -109,7 +110,9 @@ class Productos{
 
     $a = $db->query("SELECT * FROM producto_archivos WHERE producto = '".$producto."'");
     if($a->num_rows){
+    	if($del == NULL){
     	echo "Documentos asignados al producto";
+    	}
     	echo '<table class="table table-striped table-sm">
 			  <thead>
 			    <tr>
@@ -124,7 +127,7 @@ class Productos{
 	    foreach ($a as $b) {
 	    	echo '<tr>
 			      <th scope="row">'.$n ++.'</th>
-			      <td><a href="download.php?data='. $b["archivo"] .'&name='. $b["descripcion"] .'">'. $b["archivo"] .'</td>
+			      <td><a href="download.php?data='. $b["archivo"] .'&name='. $b["descripcion"] .'">'. $b["nombre"] .'</td>
 			      <td>'. $b["descripcion"] .'</td>';
 			      if($del == NULL){ echo '<td> <a id="eliminar-d" op="27" producto="'. $b["producto"] .'" iden="'. $b["id"] .'" archivo="'. $b["archivo"] .'"><span class="badge badge-danger"><i class="fas fa-ban" aria-hidden="true"></i></span></a></td>'; }   
 			echo '</tr>';
@@ -160,7 +163,9 @@ class Productos{
 
     $a = $db->query("SELECT * FROM producto_precios WHERE producto = '".$producto."'");
     if($a->num_rows){
+    	if($del == NULL){
     	echo "Precios asignados al producto";
+    	}
     	echo '<table class="table table-striped table-sm">
 			  <thead>
 			    <tr>
