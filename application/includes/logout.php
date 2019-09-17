@@ -12,9 +12,9 @@ include_once '../../system/inicio/Inicio.php';
 
 
 
-	if($_SESSION['tipo_cuenta'] != 1){
-	@Inicio::RegisterInOut(2); // registra la salida
-	}
+	// if($_SESSION['tipo_cuenta'] != 1){
+	// @Inicio::RegisterInOut(2); // registra la salida
+	// }
 	
 // Unset all session values 
 $_SESSION = array();
