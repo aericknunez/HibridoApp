@@ -7,8 +7,8 @@ include_once '../includes/DataLogin.php';
 $seslog = new Login();
 $seslog->sec_session_start();
 
-// include_once '../common/Fechas.php';
-// include_once '../../system/inicio/Inicio.php';
+include_once '../common/Fechas.php';
+//include_once '../../system/inicio/Inicio.php';
 
 
 
