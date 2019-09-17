@@ -4,21 +4,21 @@
 
 
 <li><a href="?empresa" class="waves-effect"><i class="fas fa-plus"></i> Nueva Empresa</a></li>
-<li><a href="?myempresa" class="waves-effect"><i class="fas fa-search"></i> Mis Empresas </a></li>
+<li><a href="?myempresa" class="waves-effect"><i class="fas fa-building"></i> Mis Empresas </a></li>
 
-<li><a href="?empresas" class="waves-effect"><i class="fas fa-columns"></i> Todas Las Empresas</a></li>
+<li><a href="?empresas" class="waves-effect"><i class="fas fa-chart-bar"></i> Todas Las Empresas</a></li>
 
 
 <hr>
 <?php if($_SESSION["tipo_cuenta"] == 1){
-echo '<li><a href="?producto" class="waves-effect"><i class="fas fa-money-bill-alt"></i> Nuevo Producto   </a></li>';	
+echo '<li><a href="?producto" class="waves-effect"><i class="fas fa-plus"></i> Nuevo Producto   </a></li>';	
 } ?>
 
 
-<li><a href="?productos" class="waves-effect"><i class="fas fa-money-bill-alt"></i> Todos Los Productos </a></li>
-<li><a href="?proasig" class="waves-effect"><i class="fas fa-money-bill-alt"></i> Productos Asignados </a></li>
+<li><a href="?productos" class="waves-effect"><i class="fas fa-box"></i> Todos Los Productos </a></li>
+<li><a href="?proasig" class="waves-effect"><i class="fas fa-project-diagram"></i> Productos Asignados </a></li>
 <hr>
-<li><a href="?historial" class="waves-effect"><i class="fas fa-money-bill-alt"></i> Citas Programadas </a></li>
+<li><a href="?historial" class="waves-effect"><i class="fas fa-calendar-alt"></i> Citas Programadas </a></li>
 
 <hr>
 <li><a href="?download" class="waves-effect"><i class="fas fa-download"></i> Descargas </a></li>
