@@ -9,7 +9,8 @@
 			?>
 		</div>
 
-		<div id="lateral" class="col-xs-3 col-sm-12 col-md-3">
+
+		<div id="lateral" class="col-xs-3 col-sm-12 col-md-3 <?php if($index != TRUE){ echo "d-none d-md-block"; } ?>">
 			<?php 
 			   include_once 'system/inicio/lateral.php';	
 			?>

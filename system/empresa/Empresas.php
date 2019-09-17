@@ -457,7 +457,7 @@ $op = 34; // opcion a donde se redirige la pginacion
           <tr>
             <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="nombre" dir="'.$dir2.'">Nombre</a></th>
             <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="encargado" dir="'.$dir2.'">Encargado</a></th>
-            <th class="th-sm">Lugar</th>
+            <th class="th-sm d-none d-md-block">Lugar</th>
             <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="edo" dir="'.$dir2.'">Estado</a></th>
             <th class="th-sm">Ver</th>
           </tr>
@@ -467,7 +467,7 @@ $op = 34; // opcion a donde se redirige la pginacion
           echo '<tr>
                       <td>'.$b["nombre"].'</td>
                       <td>'.$b["encargado"].'</td>
-                      <td>'.$b["municipio"].', '.Helpers::Departamento($b["departamento"]).', '.Helpers::Pais($b["pais"]).'</td>
+                      <td  class="d-none d-md-block">'.$b["municipio"].', '.Helpers::Departamento($b["departamento"]).', '.Helpers::Pais($b["pais"]).'</td>
                       <td>'.Helpers::EdoEmpresa($b["edo"]).'</td>
                       <td><a id="xver" op="36" key="'. $b["id"] .'"><i class="fas fa-search fa-lg green-text"></i></a></td>
                     </tr>';

@@ -54,9 +54,16 @@ class Helpers{
 
     static public function EdoProAsig($string) {
     if($string == "1") return 'Activo';
-    if($string == "2") return 'Eliminado';
+    if($string == "2") return 'En Proceso';
     if($string == "3") return 'Cancelado';
     if($string == "4") return 'Eliminado';
+    if($string == "5") return 'Vendido';
+    }
+
+    static public function EdoCita($string) {
+    if($string == "1") return 'Activo';
+    if($string == "2") return 'Cancelada';
+    if($string == "3") return 'Realizada';
     }
 
 

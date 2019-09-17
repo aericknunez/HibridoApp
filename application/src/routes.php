@@ -336,6 +336,25 @@ include_once '../../system/empresa/Empresas.php';
 }
 
 
+/// historial
+if($_REQUEST["op"]=="40"){ // Agrega historial a la empresa
+include_once '../../system/historial/Historiales.php';
+	$historial = new Historiales();	
+	$historial->AddHis($_POST);
+
+}
+
+/// historial
+if($_REQUEST["op"]=="41"){ // Agrega historial a la empresa
+include_once '../../system/historial/Historiales.php';
+	$historial = new Historiales();	
+	$historial->CambiarEdo($_POST);
+
+}
+
+
+
+
 
 
 

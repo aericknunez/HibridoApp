@@ -82,10 +82,20 @@ echo '<script type="text/javascript" src="assets/js/query/paginador.js?v='.$nume
 
 
 
+
+elseif(isset($_GET["historial"])) {
+echo '<script type="text/javascript" src="assets/js/query/historial.js?v='.$numero.'"></script>';
+} 
+
+
+
+
 else{
 /// lo que llevara index
-echo '<script type="text/javascript" src="assets/js/query/index.js?v='.$numero.'"></script>';
 
+		if($index == TRUE){
+		echo '<script type="text/javascript" src="assets/js/query/index.js?v='.$numero.'"></script>';
+		}
 }
 	
 ?>
@@ -104,20 +114,5 @@ echo '<script type="text/javascript" src="assets/js/query/index.js?v='.$numero.'
     $(window).on("load", function () {
         $('#mdb-preloader').fadeOut('fast');
     });
-
-<?php if($index == TRUE){ ?>
-function VerPerfil(){ // Extrae los datos del perfil cuando es invocada la funcion
-        $.ajax({
-            url: "application/src/routes.php?op=15",
-            method: "POST",
-            success: function(data){
-                $("#perfil").html(data);         
-            }
-        });
-}
-
-VerPerfil();
-
-<?php } ?>
 
 </script>

@@ -138,7 +138,9 @@ $condiciones = $r["condiciones"];
 <div id="usuarios" class="text-center z-depth-1 mt-3">
 
   <?php 
-            $product->VerUsuarios($_REQUEST["key"]);
+          if($_REQUEST["key"] != NULL){
+              $product->VerUsuarios($_REQUEST["key"]);
+          }
        ?>
 
 </div>
@@ -166,13 +168,14 @@ $condiciones = $r["condiciones"];
                 <div id="contenido-archivo">
                   <?php 
                     $product->VerDocumento($_REQUEST["key"]);
+         
                    ?>
                 </div>
 
                 <p class="text-muted"><small>Archivos subidos al servidor</small></p>
                 
                 <div class="row flex-center">
-
+<?php if($_REQUEST["key"] != NULL){ ?>
           <form id="form-archivo" name="form-archivo" class="md-form">
           
           <div class="file-field row">
@@ -191,7 +194,7 @@ $condiciones = $r["condiciones"];
         <button class="btn btn-info btn-rounded btn-sm" type="submit" id="btn-archivo" name="btn-archivo">Agregar Archivo</button>
         </form>
               
-                  
+  <?php } ?>                
                 </div>
 
               </div>
@@ -199,7 +202,7 @@ $condiciones = $r["condiciones"];
 
             </div>
             <!-- Card -->
- 
+ <hr>
                          <!-- Card -->
             <div class="card card-cascade narrower mt-4">
 
@@ -221,7 +224,7 @@ $condiciones = $r["condiciones"];
                 
 
                 <div class="row flex-center">
-
+<?php if($_REQUEST["key"] != NULL){ ?>
           <form id="form-precio" name="form-precio" class="md-form">
           
         <input type="hidden" name="producto" id="producto" value="<?= $iden ?>" >
@@ -244,6 +247,7 @@ $condiciones = $r["condiciones"];
 
         <button class="btn btn-info btn-rounded btn-sm" type="submit" id="btn-precio" name="btn-precio">Agregar Precio</button>
         </form>
+      <?php } ?>
            </div>
 
 

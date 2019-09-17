@@ -24,7 +24,7 @@ class Productos{
 
 	public function Actualizar($data){
 		$db = new dbConn();
-		    
+		    $datos = array();
 		    $datos["producto"] = $data["producto"];
 		    $datos["descripcion"] = $data["descripcion"];
 		    $datos["condiciones"] = $data["condiciones"];

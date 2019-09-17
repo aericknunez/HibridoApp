@@ -28,6 +28,14 @@ elseif(isset($_GET["pro"])) include_once 'system/producto/verproducto.php';
 elseif(isset($_GET["productos"])) include_once 'system/producto/todoslosproductos.php';
 
 
+/// historial
+elseif(isset($_GET["historial"])) include_once 'system/historial/historial.php';
+
+
+
+
+
+
 else{
 include_once 'system/inicio/index.php';
 }

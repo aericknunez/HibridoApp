@@ -7,6 +7,9 @@ include_once 'application/common/Encrypt.php';
 include_once 'system/empresa/Empresas.php';
 $empresa = new Empresas();
 
+include_once 'system/historial/Historiales.php';
+$historial = new Historiales();
+
 ?>
 <div id="msj"></div>
 
@@ -37,6 +40,29 @@ $empresa = new Empresas();
             </div>
             <!-- Card -->
  
+<hr>
+             <!-- Card -->
+            <div class="card card-cascade narrower">
+
+              <!-- Card image -->
+              <div class="view view-cascade gradient-card-header warning-color-dark">
+                <h5 class="mb-0 font-weight-bold">Historial de Citas</h5>
+              </div>
+              <!-- Card image -->
+
+              <!-- Card content -->
+              <div class="card-body card-body-cascade text-center">
+                <?php 
+                   $historial->VerCitas($_REQUEST["key"]);
+               ?>
+
+              </div>
+              <!-- Card content -->
+
+            </div>
+            <!-- Card -->
+
+
 
          </div>
 
