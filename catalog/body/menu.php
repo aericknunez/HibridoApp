@@ -16,10 +16,13 @@ echo '<li><a href="?producto" class="waves-effect"><i class="fas fa-money-bill-a
 
 
 <li><a href="?productos" class="waves-effect"><i class="fas fa-money-bill-alt"></i> Todos Los Productos </a></li>
+<li><a href="?proasig" class="waves-effect"><i class="fas fa-money-bill-alt"></i> Productos Asignados </a></li>
 <hr>
 <li><a href="?historial" class="waves-effect"><i class="fas fa-money-bill-alt"></i> Citas Programadas </a></li>
 
 <hr>
+<li><a href="?download" class="waves-effect"><i class="fas fa-download"></i> Descargas </a></li>
+
 <li><a href="?user" class="waves-effect arrow-r"><i class="fas fa-user"></i> Usuarios </a></li>
 
 

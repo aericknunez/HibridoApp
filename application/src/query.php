@@ -69,6 +69,10 @@ elseif(isset($_GET["myempresa"])) {
 echo '<script type="text/javascript" src="assets/js/query/empresa.js?v='.$numero.'"></script>';
 echo '<script type="text/javascript" src="assets/js/query/paginador.js?v='.$numero.'"></script>';
 }
+elseif(isset($_GET["proasig"])) {
+echo '<script type="text/javascript" src="assets/js/query/empresa.js?v='.$numero.'"></script>';
+echo '<script type="text/javascript" src="assets/js/query/paginador.js?v='.$numero.'"></script>';
+}
 
 
 

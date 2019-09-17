@@ -13,6 +13,6 @@
     <link href="assets/css/mdb.min.css" rel="stylesheet">
     <link href="assets/css/galeria.css" rel="stylesheet">
 
-<link href="assets/css/addons/datatables.min.css" rel="stylesheet">
-
+<!-- <link href="assets/css/addons/datatables.min.css" rel="stylesheet">
+ -->
 </head>

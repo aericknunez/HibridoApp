@@ -98,6 +98,43 @@ $(document).ready(function(){
 
 
 
+    $("body").on("click","#xcambiar",function(){ // para cambiar el estado del producto asignado
+        
+        $('#ModalCambiar').modal('show');
+        
+        var key = $(this).attr('key');
+
+        $('#producto').attr("value",key);
+        $('#btn-pro').attr("href",'?pro&key='+key);
+        
+    });
+
+
+    $('#btn-estado').click(function(e){ /// agregar datos
+    e.preventDefault();
+    $.ajax({
+            url: "application/src/routes.php?op=39",
+            method: "POST",
+            data: $("#form-estado").serialize(),
+            beforeSend: function () {
+                $('#btn-estado').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+            },
+            success: function(data){
+                $('#btn-estado').html('Guardar').removeClass('disabled');          
+                $("#form-estado").trigger("reset");
+                $('#ModalCambiar').modal('hide');
+                $("#contenido").html(data);
+            }
+        })
+    });
+
+
+
+
+
+
+
+
 
 
 

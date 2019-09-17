@@ -336,6 +336,21 @@ include_once '../../system/empresa/Empresas.php';
 }
 
 
+if($_REQUEST["op"]=="38"){ // Ver empresa y productos asignados
+include_once '../../system/empresa/Empresas.php';
+	$empresa = new Empresas();	
+	$empresa->MyProducts($_POST["iden"], $_POST["orden"], $_POST["dir"]);
+
+}
+
+if($_REQUEST["op"]=="39"){ // cambia el estado del producto asignado
+include_once '../../system/empresa/Empresas.php';
+	$empresa = new Empresas();	
+	$empresa->cambiarEdo($_POST);
+
+}
+
+
 /// historial
 if($_REQUEST["op"]=="40"){ // Agrega historial a la empresa
 include_once '../../system/historial/Historiales.php';
@@ -344,7 +359,7 @@ include_once '../../system/historial/Historiales.php';
 
 }
 
-/// historial
+/// historial cambiar historial de cita
 if($_REQUEST["op"]=="41"){ // Agrega historial a la empresa
 include_once '../../system/historial/Historiales.php';
 	$historial = new Historiales();	

@@ -20,12 +20,14 @@ elseif(isset($_GET["empresa"])) include_once 'system/empresa/empresa.php';
 elseif(isset($_GET["verempresa"])) include_once 'system/empresa/verempresa.php';
 elseif(isset($_GET["empresas"])) include_once 'system/empresa/todaslasempresas.php';
 elseif(isset($_GET["myempresa"])) include_once 'system/empresa/myempresas.php';
+elseif(isset($_GET["proasig"])) include_once 'system/empresa/myproducts.php';
 
 
 //producto
 elseif(isset($_GET["producto"])) include_once 'system/producto/producto.php';
 elseif(isset($_GET["pro"])) include_once 'system/producto/verproducto.php';
 elseif(isset($_GET["productos"])) include_once 'system/producto/todoslosproductos.php';
+elseif(isset($_GET["download"])) include_once 'system/producto/download.php';
 
 
 /// historial

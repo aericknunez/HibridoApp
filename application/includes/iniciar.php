@@ -10,7 +10,7 @@ $seslog->sec_session_start();
 include_once '../common/Encrypt.php';
 include_once '../common/Alerts.php';
 include_once '../common/Fechas.php';
-include_once '../../system/index/Inicio.php';
+include_once '../../system/inicio/Inicio.php';
 include_once '../../system/config/Config.php';
 
 
@@ -37,6 +37,12 @@ $user=sha1($_SESSION['username']);
 
             } unset($r);
 
+
+            if($_SESSION['tipo_cuenta'] != 1){
+            @Inicio::RegisterInOut(2); // registra la salida
+            }
+
+    
 
         $configuracion = new Config;
         $configuracion->CrearVariables(); // creo el resto de variables del sistema

@@ -90,7 +90,7 @@ class Productos{
           $datos["archivo"] = $file;
           $datos["producto"] = $producto;
           $datos["nombre"] = $nombre;
-           $datos["descripcion"] = $descripcion;
+          $datos["descripcion"] = $descripcion;
           $datos["edo"] = 1;
           if($db->insert("producto_archivos", $datos)){
           	Alerts::Alerta("success","Agregado!","Archivo Agregado correctamente!");
@@ -274,7 +274,7 @@ $op = 30; // opcion a donde se redirige la pginacion
           echo '<tr>
                       <td>'.$r["producto"].'</td>
                       <td class="d-none d-md-block">'.$r["descripcion"].'</td>
-                      <td>'.$r["rugro"].'</td>
+                      <td>'.Helpers::Rugro($r["rugro"]).'</td>
                       <td>'.Helpers::EdoProducto($r["edo"]) . '</td>
                       <td><a id="xver" op="31" key="'. $r["id"] .'"><i class="fas fa-search fa-lg green-text"></i></a></td>
                     </tr>';
@@ -360,7 +360,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 
 	<ul class="list-group list-group-flush">
 	<li class="list-group-item d-flex justify-content-between align-items-center"><span> Condiciones: </span> <span class="pro-detail">'.$condiciones.'</span></li>
-	<li class="list-group-item d-flex justify-content-between align-items-center"><span> Rugro: </span> <span class="pro-detail">'.$rugro.'</span></li>
+	<li class="list-group-item d-flex justify-content-between align-items-center"><span> Rugro: </span> <span class="pro-detail">'.Helpers::Rugro($rugro).'</span></li>
 	<li class="list-group-item d-flex justify-content-between align-items-center"><span> Fecha de caducidad: </span> <span class="pro-detail">'.$caduca.'</span></li>
 
 	</ul>

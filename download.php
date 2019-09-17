@@ -1,7 +1,7 @@
 <?php
-$data = $_REQUEST["data"];
+$info = new SplFileInfo($_REQUEST["data"]);
+$ext = $info->getExtension();
 
-$ext = substr($data, -3);
 $nombre =  $_REQUEST["name"] . ".". $ext;;
 
 $filename = "assets/archivos/" . $_REQUEST["data"]; 

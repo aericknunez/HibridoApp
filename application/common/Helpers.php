@@ -55,9 +55,9 @@ class Helpers{
     static public function EdoProAsig($string) {
     if($string == "1") return 'Activo';
     if($string == "2") return 'En Proceso';
-    if($string == "3") return 'Cancelado';
-    if($string == "4") return 'Eliminado';
-    if($string == "5") return 'Vendido';
+    if($string == "3") return 'Vendido';
+    if($string == "4") return 'Pagado';
+    if($string == "5") return 'Eliminado';
     }
 
     static public function EdoCita($string) {
@@ -89,6 +89,13 @@ class Helpers{
           }  unset($r);
     }
 
+
+    static public function Rugro($string) {
+      $db = new dbConn();
+          if ($r = $db->select("rugro", "system_rugro", "WHERE id = '".$string."'")) { 
+              return $r["rugro"];
+          }  unset($r);
+    }
 
     static public function Sexo($string) {
         if($string == "1") return 'Masculino';

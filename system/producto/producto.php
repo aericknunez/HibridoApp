@@ -60,10 +60,19 @@ $condiciones = $r["condiciones"];
       <input type="text" class="form-control" id="producto" name="producto" value="<?php echo $producto; ?>">
   </div>
 
-  <div class="col-md-4 mb-2 md-form">
-      <label for="rugro">* Rugro</label>
-      <input type="text" class="form-control" id="rugro" name="rugro" value="<?php echo $rugro; ?>">
-  </div>
+    <div class="col-md-4 my-1 md-form">
+      <select class="browser-default custom-select my-4" id="rugro" name="rugro">
+        <option selected disabled>* Rugro</option> 
+
+        <?php     
+          $ap = $db->query("SELECT * FROM system_rugro");
+          foreach ($ap as $bp) {
+            if($rugro == $bp["id"]) $s = "selected"; else $s = "";
+              echo '<option '.$s.' value="'.$bp["id"].'">'.$bp["rugro"].'</option>';
+          } $ap->close();
+       ?>    
+      </select>
+    </div>
 
   </div>
 

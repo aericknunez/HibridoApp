@@ -261,7 +261,7 @@ echo '<blockquote class="blockquote bq-danger">
       <li class="list-group-item d-flex justify-content-between align-items-center"><span> Encargado: </span> <span class="pro-detail">'.$encargado.'</span></li>
       <li class="list-group-item d-flex justify-content-between align-items-center"><span> Lugar: </span> <span class="pro-detail">'.$municipio. ", ". Helpers::Departamento($departamento) .", " . Helpers::Pais($pais).'</span></li>
       <li class="list-group-item d-flex justify-content-between align-items-center"><span> Dirección: </span> <span class="pro-detail">'.$direccion.'</span></li>
-      <li class="list-group-item d-flex justify-content-between align-items-center"><span> Rugro: </span> <span class="pro-detail">'. $rugro.'</span></li>
+      <li class="list-group-item d-flex justify-content-between align-items-center"><span> Rugro: </span> <span class="pro-detail">'. Helpers::Rugro($rugro) .'</span></li>
       <li class="list-group-item d-flex justify-content-between align-items-center"><span> Giro: </span> <span class="pro-detail">'.$giro.'</span></li>';
       if($btn != NULL or $_SESSION["tipo_cuenta"] == 1 or $_SESSION["username"] == $username){
       echo '<li class="list-group-item d-flex justify-content-between align-items-center"><span> E-mail: </span> <span class="pro-detail">'.$email.'</span></li>
@@ -368,7 +368,7 @@ echo '<blockquote class="blockquote bq-danger">
 	    	echo '<tr class="'.$c.'">
 			      <th scope="row">'.$n ++.'</th>
 			      <td>'. $b["producto"] .'</td>
-            <td>'. $b["rugro"] .'</td>';
+            <td>'. Helpers::Rugro($b["rugro"]) .'</td>';
 			      if($btn == NULL){
               if($canti == 0){ // estas comprobaciones son para que no se elimine si ya cambio el estado de activo
                 echo '<td> <a id="emp-op" op="37" opx="'. $src .'" empresa="'. $empresa .'" producto="'. $b["id"] .'"><span class="badge '.$ba.'"><i class="fas '.$fa.'" aria-hidden="true"></i></span></a></td>';
@@ -528,6 +528,160 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
       </ul>';
      }  // end pagination 
   } // termina productos
+
+
+
+
+
+
+
+
+
+
+
+
+////////////empresa y productos asignadoa a cada una
+public function MyProducts($npagina, $orden, $dir){
+      $db = new dbConn();
+
+  $limit = 12;
+  $adjacents = 2;
+  if($npagina == NULL) $npagina = 1;
+  $a = $db->query("SELECT * FROM empresa WHERE username = '".$_SESSION["username"]."'");
+  $total_rows = $a->num_rows;
+  $a->close();
+
+  $total_pages = ceil($total_rows / $limit);
+  
+  if(isset($npagina) && $npagina != NULL) {
+    $page = $npagina;
+    $offset = $limit * ($page-1);
+  } else {
+    $page = 1;
+    $offset = 0;
+  }
+
+if($dir == "desc") $dir2 = "asc";
+if($dir == "asc") $dir2 = "desc";
+$op = 38; // opcion a donde se redirige la pginacion
+
+ $a = $db->query("SELECT * FROM empresa WHERE username = '".$_SESSION["username"]."' order by ".$orden." ".$dir." limit $offset, $limit");
+      
+      if($a->num_rows > 0){
+          echo '<div class="table-responsive"><table class="table table-sm table-striped">
+        <thead>
+          <tr>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="nombre" dir="'.$dir2.'">Nombre</a></th>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="encargado" dir="'.$dir2.'">Encargado</a></th>
+            <th class="th-sm d-none d-md-block">Lugar</th>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="edo" dir="'.$dir2.'">Estado</a></th>
+          </tr>
+        </thead>
+        <tbody>';
+        foreach ($a as $b) {
+          echo '<tr>
+                      <td>'.$b["nombre"].'</td>
+                      <td>'.$b["encargado"].'</td>
+                      <td  class="d-none d-md-block">'.$b["municipio"].', '.Helpers::Departamento($b["departamento"]).', '.Helpers::Pais($b["pais"]).'</td>
+                      <td>'.Helpers::EdoEmpresa($b["edo"]).'</td>
+                    </tr>';
+            $this->VerEmpProduct($b["id"]);
+        }
+        echo '</tbody>
+        </table></div>';
+      }
+        $a->close();
+
+  if($total_pages <= (1+($adjacents * 2))) {
+    $start = 1;
+    $end   = $total_pages;
+  } else {
+    if(($page - $adjacents) > 1) {  
+      if(($page + $adjacents) < $total_pages) {  
+        $start = ($page - $adjacents); 
+        $end   = ($page + $adjacents); 
+      } else {              
+        $start = ($total_pages - (1+($adjacents*2))); 
+        $end   = $total_pages; 
+      }
+    } else {
+      $start = 1; 
+      $end   = (1+($adjacents * 2));
+    }
+  }
+echo $total_rows . " Registros encontrados";
+   if($total_pages > 1) { 
+
+$page <= 1 ? $enable = 'disabled' : $enable = '';
+    echo '<ul class="pagination pagination-sm justify-content-center">
+    <li class="page-item '.$enable.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="1" orden="'.$orden.'" dir="'.$dir.'">&lt;&lt;</a>
+      </li>';
+    
+    $page>1 ? $pagina = $page-1 : $pagina = 1;
+    echo '<li class="page-item '.$enable.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="'.$pagina.'" orden="'.$orden.'" dir="'.$dir.'">&lt;</a>
+      </li>';
+
+    for($i=$start; $i<=$end; $i++) {
+      $i == $page ? $pagina =  'active' : $pagina = '';
+      echo '<li class="page-item '.$pagina.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="'.$i.'" orden="'.$orden.'" dir="'.$dir.'">'.$i.'</a>
+      </li>';
+    }
+
+    $page >= $total_pages ? $enable = 'disabled' : $enable = '';
+    $page < $total_pages ? $pagina = ($page+1) : $pagina = $total_pages;
+    echo '<li class="page-item '.$enable.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="'.$pagina.'" orden="'.$orden.'" dir="'.$dir.'">&gt;</a>
+      </li>';
+
+    echo '<li class="page-item '.$enable.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="'.$total_pages.'" orden="'.$orden.'" dir="'.$dir.'">&gt;&gt;</a>
+      </li>
+
+      </ul>';
+     }  // end pagination 
+  } // termina productos
+
+
+
+
+   public function VerEmpProduct($empresa){ // Productos asignados, clase para MyProducts()
+   $db = new dbConn();
+
+    $a = $db->query("SELECT * FROM producto_empresa WHERE empresa = '$empresa'");
+    if($a->num_rows){
+
+      foreach ($a as $b) {
+            if ($r = $db->select("producto, descripcion", "producto", "WHERE id = '".$b["producto"]."'")) { 
+                $producto = $r["producto"]; $descripcion = $r["descripcion"]; } unset($r);  
+        echo '<tr class="cyan lighten-5">
+            <td scope="row">'.$producto.'</td>
+            <td class="d-none d-md-block">'. $descripcion .'</td>
+            <td>'. Helpers::EdoProAsig($b["edo"]) .'</td>
+            <td><a id="xcambiar" key="'. $b["id"] .'"><i class="fas fa-search fa-lg green-text"></i></a></td>
+            </tr>';
+      }
+  }
+    $a->close();
+ }
+
+   public function CambiarEdo($data){ // cambia el estado del producto asignado
+   $db = new dbConn();
+        $cambio = array();
+         $cambio["edo"] = $data["edo"];
+         if($db->update("producto_empresa", $cambio, "WHERE id='".$data["producto"]."'")){
+
+            Alerts::Alerta("success","Agregado!","Estado Agregado correctamente!");
+        } else {
+           Alerts::Alerta("error","Error!","No se agragaron los datos!");
+        }
+
+   $this->MyProducts(1, "id", "asc");
+  }
+
+
 
 
 

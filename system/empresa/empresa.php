@@ -78,10 +78,19 @@ $comentarios = $r["comentarios"];
 
   <div class="form-row">
     
-    <div class="col-md-6 mb-2 md-form">
-      <label for="rugro">* Rugro de la empresa</label>
-      <input type="text" class="form-control" id="rugro" name="rugro" value="<?php echo $rugro; ?>">
-  </div>
+    <div class="col-md-6 my-1 md-form">
+      <select class="browser-default custom-select my-4" id="rugro" name="rugro">
+        <option selected disabled>* Rugro</option> 
+
+        <?php     
+          $ap = $db->query("SELECT * FROM system_rugro");
+          foreach ($ap as $bp) {
+            if($rugro == $bp["id"]) $s = "selected"; else $s = "";
+              echo '<option '.$s.' value="'.$bp["id"].'">'.$bp["rugro"].'</option>';
+          } $ap->close();
+       ?>    
+      </select>
+    </div>
 
   <div class="col-md-6 mb-2 md-form">
       <label for="giro">* Giro comercial</label>
