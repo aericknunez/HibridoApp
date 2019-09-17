@@ -49,7 +49,6 @@ $(document).ready(function(){
         var key = $(this).attr('key');
 
         $('#visita').attr("value",key);
-        $('#btn-pro').attr("href",'?verempresa&key='+key);
         
     });
 

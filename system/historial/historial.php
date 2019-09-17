@@ -210,8 +210,6 @@ $historial = new Historiales();
       </div>
       <div class="modal-footer">
 
-<a href="" id="btn-pro" class="btn btn-secondary btn-rounded">Detalles</a>
-
 <a id="cerrarmodal" class="btn btn-primary btn-rounded" data-dismiss="modal">Regresar</a>
 
           

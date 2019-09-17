@@ -60,11 +60,9 @@ public function ProductosAsignados($username){
 	 	
 	 	$ax = $db->query("SELECT * FROM producto_empresa WHERE empresa = '".$b["id"]."'");
 		$num = $num + $ax->num_rows;
-		$ax->close();	
-
-       return $num;
+		$ax->close();	     
     } $a->close();
-
+ return $num;
 }
 
 
@@ -80,9 +78,9 @@ public function TratosCerrados($username){
 		$num = $num + $ax->num_rows;
 		$ax->close();	
 
-       return $num;
+       
     } $a->close();
-
+return $num;
 }
 
 

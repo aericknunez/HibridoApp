@@ -26,8 +26,6 @@ echo '<li><a href="?producto" class="waves-effect"><i class="fas fa-plus"></i> N
 <li><a href="?user" class="waves-effect arrow-r"><i class="fas fa-user"></i> Usuarios </a></li>
 
 
-<hr>
-
 <li><a href="application/includes/logout.php" class="waves-effect arrow-r"><i class="fas fa-power-off"></i> Salir </a></li>
 
 </ul>

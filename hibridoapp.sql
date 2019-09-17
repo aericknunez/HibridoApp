@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 16-09-2019 a las 23:46:26
+-- Tiempo de generación: 17-09-2019 a las 14:06:45
 -- Versión del servidor: 5.7.17-log
 -- Versión de PHP: 5.6.30
 
@@ -47,6 +47,15 @@ CREATE TABLE `empresa` (
   `edo` int(2) NOT NULL COMMENT '1 activo, 2 eliminada 3 disponible, 4 abandonada,4 vloqueada'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `empresa`
+--
+
+INSERT INTO `empresa` (`id`, `nombre`, `encargado`, `pais`, `departamento`, `municipio`, `direccion`, `fecha`, `hora`, `rugro`, `giro`, `telefono`, `telefono2`, `whatsapp`, `email`, `comentarios`, `username`, `edo`) VALUES
+(1, 'Mr. Pollo', 'Erick Nunez', 2, 27, 'Gracias', 'Bo, La Graciana', '17-09-2019', '13:45:15', '2', 'Venta de Pollo Frito', '', '', '79867387', 'mrpollo@superpollo.net', 'Es la que esta en frente de Funeraria la Graciana', 'e794f0', 1),
+(2, 'Jaguar Blanco', 'Felix Sanabria', 1, 12, 'Metapán', 'Carretera Internacional Km 113', '17-09-2019', '13:47:04', '1', 'Restaurante', '24020576', '', '72710536', '', 'Contiguo a Repuestos El Leon', 'e794f0', 1),
+(3, 'El Punto Electrico', 'Lino Lima', 1, 12, 'Metapán', 'Callejon Luna', '17-09-2019', '14:02:49', '12', 'Ferreteria', '', '76020987', '', '', 'Donde venden materiales eléctricos, no tienen sistema aun', 'e794f0', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -73,9 +82,16 @@ CREATE TABLE `login_inout` (
   `navegador` varchar(250) NOT NULL,
   `fecha` varchar(30) NOT NULL,
   `fechaF` varchar(30) NOT NULL,
-  `hora` varchar(30) NOT NULL,
-  `td` int(3) NOT NULL
+  `hora` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `login_inout`
+--
+
+INSERT INTO `login_inout` (`id`, `user`, `nombre`, `accion`, `ip`, `navegador`, `fecha`, `fechaF`, `hora`) VALUES
+(1, 'e75e9a2017b9afe7939972d8fc840d67b1393316', 'Erick Adonai Nuñez', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.75 Safari/537.36', '17-09-2019', '1568700000', '13:40:55'),
+(2, 'e75e9a2017b9afe7939972d8fc840d67b1393316', 'Erick Adonai Nuñez', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.75 Safari/537.36', '17-09-2019', '1568700000', '13:48:16');
 
 -- --------------------------------------------------------
 
@@ -90,6 +106,13 @@ CREATE TABLE `login_members` (
   `password` char(128) NOT NULL,
   `salt` char(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `login_members`
+--
+
+INSERT INTO `login_members` (`id`, `username`, `email`, `password`, `salt`) VALUES
+(1, 'e794f0', 'aerick.nunez@gmail.com', 'eb35cf826e7bfd9c8f059167ebca239530a402ff388698d024b0e67db3b030d4f1393107f3b4fba2137dc723935ff80ad9f6a742e5dce5e5ac9a58e10396f5a1', '0a56ea826555b0669bff3f298ec7ba28a7f87df346c703b8e577b79f68564c6d9f5909b8381ec953464b20a8ff67ad5a9a9668034d3bc3c5aaa8dbeb9b526dee');
 
 -- --------------------------------------------------------
 
@@ -106,6 +129,13 @@ CREATE TABLE `login_userdata` (
   `avatar` varchar(50) NOT NULL,
   `td` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `login_userdata`
+--
+
+INSERT INTO `login_userdata` (`id`, `nombre`, `tipo`, `user`, `tkn`, `avatar`, `td`) VALUES
+(1, 'Erick Adonai Nuñez Martinez', 1, 'e75e9a2017b9afe7939972d8fc840d67b1393316', '1', '1.png', 0);
 
 -- --------------------------------------------------------
 
@@ -132,6 +162,13 @@ CREATE TABLE `perfil` (
   `username` varchar(100) NOT NULL,
   `edo` int(1) NOT NULL COMMENT '1, activo 0, inactivo, 2 eliminado'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `perfil`
+--
+
+INSERT INTO `perfil` (`id`, `nombre`, `documento`, `fecha_nac`, `edo_civil`, `sexo`, `pais`, `departamento`, `municipio`, `direccion`, `email`, `telefono1`, `telefono2`, `skin`, `comentarios`, `username`, `edo`) VALUES
+(1, 'V3VadkJQOStrSGw3cUptTjFIQ1JMZTVKRXFsTjhKN0xHZFRrTHlvZEVnOD0=', 'cWpiMDNnOUZCc3NUajJoOFdBR0RWZz09', 'VlZud1M4czJjclhZeHlBaTVYU2Z5dz09', 'alNuY2twSG1IaG02RWtJQmM5UzlzUT09', 'alNuY2twSG1IaG02RWtJQmM5UzlzUT09', 'alNuY2twSG1IaG02RWtJQmM5UzlzUT09', 'UGxXaTdkcTFhMi80dXFKa1dNcmZ2UT09', 'ZkxxRWVHRml6aUNqanpzdXZDM2J1QT09', 'MXFGanJyUzV5NGN1emJiTW9SaHp3VlFsZ0JRL05QQk16T2hib21zTkdXYmxlQm03SGtrNklzbzU1WUlLeW1mUQ=', 'TmFreGVlTGdJc29zNHJpQWF3RXl2VkVMUCs1T0Y0MmJaZWtLVVVjdzZxND0=', 'NVl1ZjRZMUE2bitZZVlHOFFnVXJmZz09', 'eGx2bVpNc2lMSk5IN3JjL2NTWE9OUT09', '', 'MDQraURIVHhXTmtIR2czYkp2NS8wMmtXZFVIVFR1WHJQS21sajBCc0dxTT0=', 'e794f0', 1);
 
 -- --------------------------------------------------------
 
@@ -178,6 +215,15 @@ CREATE TABLE `producto` (
   `edo` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id`, `producto`, `descripcion`, `condiciones`, `rugro`, `fecha`, `hora`, `caduca`, `edo`) VALUES
+(1, 'Sistema Para Restaurante', 'Sistema Completo para restaurante', 'Un solo pago o por cuotas mensuales. Incluye mantenimiento, actualizaciones y mejoras gratis.\r\nPrecio NO incluye IVA.', '1', '17-09-2019', '13:53:38', '31-12-2019', 1),
+(2, 'Sistema para Ferreteria', 'Sistema completo para el manejo de una ferreteria', 'Un solo pago o por cuotas mensuales. Incluye mantenimiento, actualizaciones y mejoras gratis. Precio NO incluye IVA.', '12', '17-09-2019', '13:56:38', '31-12-2019', 1),
+(3, 'Sistema para Abarroteria', 'Sistema completo para abarroteria', 'Un solo pago o por cuotas mensuales. Incluye mantenimiento, actualizaciones y mejoras gratis. Precio NO incluye IVA.', '5', '17-09-2019', '13:59:15', '31-12-2019', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -188,9 +234,19 @@ CREATE TABLE `producto_archivos` (
   `id` int(6) NOT NULL,
   `archivo` varchar(50) NOT NULL,
   `producto` varchar(50) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
   `descripcion` varchar(50) NOT NULL,
   `edo` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='archivos y fotos del producto';
+
+--
+-- Volcado de datos para la tabla `producto_archivos`
+--
+
+INSERT INTO `producto_archivos` (`id`, `archivo`, `producto`, `nombre`, `descripcion`, `edo`) VALUES
+(1, '1568750049.pdf', '1', 'Restaurante', 'Detalles sistema para restaurante', 1),
+(2, '1568750233.pdf', '2', 'Ferreteria', 'Características sistema para ferretería', 1),
+(3, '1568750383.pdf', '3', 'Abarroteria', 'Detalles del sistema para Abarroteria', 1);
 
 -- --------------------------------------------------------
 
@@ -204,8 +260,17 @@ CREATE TABLE `producto_empresa` (
   `empresa` int(6) NOT NULL,
   `fecha` varchar(20) NOT NULL,
   `hora` varchar(20) NOT NULL,
-  `edo` int(1) NOT NULL COMMENT '1 activo, 2 en proceso, 3 cancelado, 4 eliminado'
+  `edo` int(1) NOT NULL COMMENT '1 activo, 2 en proceso, 3 vendido, 4 pagado, 5 Eliminado'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `producto_empresa`
+--
+
+INSERT INTO `producto_empresa` (`id`, `producto`, `empresa`, `fecha`, `hora`, `edo`) VALUES
+(1, 1, 1, '17-09-2019', '14:00:45', 1),
+(2, 1, 2, '17-09-2019', '14:00:57', 1),
+(3, 2, 3, '17-09-2019', '14:02:55', 1);
 
 -- --------------------------------------------------------
 
@@ -221,6 +286,18 @@ CREATE TABLE `producto_precios` (
   `precio` float(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `producto_precios`
+--
+
+INSERT INTO `producto_precios` (`id`, `producto`, `cantidad`, `descripcion`, `precio`) VALUES
+(1, 1, 1.00, 'Un solo pago, IVA no incluido', 550.00),
+(2, 1, 1.00, 'Cuota Mensual. No incluye IVA', 25.00),
+(3, 2, 1.00, 'Un solo pago, NO incluye IVA', 550.00),
+(4, 2, 1.00, 'Cuota Mensual', 25.00),
+(5, 3, 1.00, 'Un solo pago, No incluye IVA', 550.00),
+(6, 3, 1.00, 'Cuotas Mensuales, No incluye IVA', 25.00);
+
 -- --------------------------------------------------------
 
 --
@@ -235,6 +312,15 @@ CREATE TABLE `producto_usuario` (
   `hora` varchar(20) NOT NULL,
   `edo` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `producto_usuario`
+--
+
+INSERT INTO `producto_usuario` (`id`, `producto`, `username`, `fecha`, `hora`, `edo`) VALUES
+(1, 1, 'e794f0', '17-09-2019', '13:53:38', 1),
+(2, 2, 'e794f0', '17-09-2019', '13:56:38', 1),
+(3, 3, 'e794f0', '17-09-2019', '13:59:15', 1);
 
 -- --------------------------------------------------------
 
@@ -327,6 +413,37 @@ INSERT INTO `system_paises` (`id`, `pais`) VALUES
 (1, 'El Salvador'),
 (2, 'Honduras'),
 (3, 'Guatemala');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `system_rugro`
+--
+
+CREATE TABLE `system_rugro` (
+  `id` int(3) NOT NULL,
+  `rugro` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `system_rugro`
+--
+
+INSERT INTO `system_rugro` (`id`, `rugro`) VALUES
+(1, 'Restaurante'),
+(2, 'Comida Rápida'),
+(3, 'Cafetería'),
+(4, 'Pizzería'),
+(5, 'Abarroteria'),
+(6, 'Agroservicio'),
+(7, 'Almacén'),
+(8, 'Boutique'),
+(9, 'Bar'),
+(10, 'Farmacia'),
+(11, 'Librería'),
+(12, 'Ferreteria'),
+(13, 'Zapateria'),
+(14, 'Otros');
 
 -- --------------------------------------------------------
 
@@ -447,6 +564,12 @@ ALTER TABLE `system_paises`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `system_rugro`
+--
+ALTER TABLE `system_rugro`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `visitas`
 --
 ALTER TABLE `visitas`
@@ -466,27 +589,27 @@ ALTER TABLE `visitas_detalles`
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `login_inout`
 --
 ALTER TABLE `login_inout`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `login_members`
 --
 ALTER TABLE `login_members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `login_userdata`
 --
 ALTER TABLE `login_userdata`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `perfil`
 --
 ALTER TABLE `perfil`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `perfil_documentos`
 --
@@ -501,32 +624,37 @@ ALTER TABLE `perfil_fotos`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `producto_archivos`
 --
 ALTER TABLE `producto_archivos`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `producto_empresa`
 --
 ALTER TABLE `producto_empresa`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `producto_precios`
 --
 ALTER TABLE `producto_precios`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `producto_usuario`
 --
 ALTER TABLE `producto_usuario`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `system_paises`
 --
 ALTER TABLE `system_paises`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de la tabla `system_rugro`
+--
+ALTER TABLE `system_rugro`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `visitas`
 --
