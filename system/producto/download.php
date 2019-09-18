@@ -11,7 +11,7 @@ $product = new Productos();
 ?>
 
 
-
+<h2 class="h2-responsive">DOCUMENTOS A DESCARGAR</h2>
 <?php 
 
     $a = $db->query("SELECT * FROM producto_archivos");
@@ -20,7 +20,8 @@ $product = new Productos();
       $ext = $info->getExtension();
       echo '
       <figure class="figure">
-      <a href="download.php?data='. $b["archivo"] .'&name='. $b["nombre"] .'">
+      <a href="download.php?data='. $b["archivo"] .'&name='. $b["nombre"] .'" data-toggle="tooltip" data-html="true"
+  title="<b>'.$b["descripcion"].'</b>">
       <img src="assets/img/ico/'.$ext.'.png" class="img-thumbnail img-responsive img-fluid z-depth-1" style="width: 150px">
       <figcaption class="figure-caption text-center">'.$b["nombre"].'</figcaption>
       </a>

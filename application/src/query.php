@@ -92,6 +92,9 @@ echo '<script type="text/javascript" src="assets/js/query/historial.js?v='.$nume
 } 
 
 
+elseif(isset($_GET["download"])) {
+echo '<script type="text/javascript" src="assets/js/query/download.js?v='.$numero.'"></script>';
+} 
 
 
 else{
