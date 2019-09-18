@@ -1,12 +1,18 @@
+<?php 
+include_once 'application/common/Alerts.php';
+ ?>
 <div class="modal" id="<? echo $_GET["modal"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-          Titulo del modal</h5>
+          AGREGAR REDES SOCIALES</h5>
       </div>
       <div class="modal-body">
 <!-- ./  content -->
+<?php 
+Alerts::Mensajex("Las resde sociales son importantes para que personas que tu autorices puedan buscarte en ellas","info");
+ ?>
 <div id="msj"></div>
 
  <form id="form-redes">
