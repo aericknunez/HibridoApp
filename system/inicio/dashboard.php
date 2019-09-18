@@ -74,10 +74,10 @@ public function TratosCerrados($username){
 	    $num = 0;
     foreach ($a as $b) {
 	 	
-	 	$ax = $db->query("SELECT * FROM producto_empresa WHERE empresa = '".$b["id"]."' and edo='3' or edo='4'");
-		$num = $num + $ax->num_rows;
+	 	$ax = $db->query("SELECT * FROM producto_empresa WHERE empresa = '".$b["id"]."' and (edo='3' OR edo='4')");
+		if($ax->num_rows > 0) $nx = 1; else $nx = 0;
 		$ax->close();	
-
+		$num = $num + $nx;
        
     } $a->close();
 return $num;
