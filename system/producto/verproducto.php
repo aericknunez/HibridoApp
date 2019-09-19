@@ -41,7 +41,7 @@ $product = new Productos();
             </div>
             <!-- Card -->
 
-
+            <hr>
                         <!-- Card -->
             <div class="card card-cascade narrower mt-4">
 

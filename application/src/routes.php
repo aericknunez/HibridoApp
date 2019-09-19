@@ -252,6 +252,11 @@ include_once '../../system/producto/Productos.php';
 		$documento->process('../../assets/archivos/');	
 
 		$producto->SubirDocumento($documento->file_dst_name, $_POST["producto"], $_POST["nombre"], $_POST["descripcion"]);
+
+		/// notifi
+		include_once '../../system/notificaciones/Notifi.php';
+		$not = new Notifi(); // 1 producto, 2 cita hoy, 3 descarga
+		$not->AddNotifi("Nuevo Archivo Agregado", 3);
 	} 
 
 }
@@ -303,7 +308,16 @@ if($_REQUEST["op"]=="33"){ // Asigna usuario al producto
 include_once '../../system/producto/Productos.php';
 	$producto = new Productos();	
 	$producto->AddUserP($_POST);
+
+/// notifi
+	if($_POST["opx"] == 1){
+	include_once '../../system/notificaciones/Notifi.php';
+	$not = new Notifi(); // 1 producto, 2 cita hoy, 3 descarga
+	$not->AddNotifi("Nuevo Producto Agregado", 1, $_POST["username"], $_POST["producto"]);
+	}
 }
+
+
 
 if($_REQUEST["op"]=="34"){ 
 include_once '../../system/empresa/Empresas.php';
@@ -368,6 +382,14 @@ include_once '../../system/historial/Historiales.php';
 }
 
 
+
+/// Ver Notiicaciones
+if($_REQUEST["op"]=="50"){ // Agrega historial a la empresa
+include_once '../../system/notificaciones/Notifi.php';
+	$notificaciones = new Notifi();	
+	$notificaciones->VerNotifi();
+
+}
 
 
 

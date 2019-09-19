@@ -76,34 +76,14 @@
 
 
 
-                           <!-- Dropdown -->
-        <li class="nav-item dropdown notifications-nav">
-          <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            <span class="badge red">0</span> <i class="fas fa-bell"></i>
-            <span class="d-none d-md-inline-block">Notifications</span>
-          </a>
-<!--           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">
-              <i class="far fa-money-bill-alt mr-2" aria-hidden="true"></i>
-              <span>New order received</span>
-            </a>
-            <a class="dropdown-item" href="#">
-              <i class="far fa-money-bill-alt mr-2" aria-hidden="true"></i>
-              <span>New order received from Erick</span>
-            </a>
-            <a class="dropdown-item" href="#">
-              <i class="fas fa-chart-line mr-2" aria-hidden="true"></i>
-              <span>Your campaign is about to end</span>
-            </a>
-          </div> -->
-        </li>
+             <!-- Notificaciones -->
+          <div id="notificaciones"></div>
 
 
 
 
             
-<!--                 <li class="nav-item">
+<!--           <li class="nav-item">
                     <a id="cambiar" op="15" class="nav-link"><i class="fab fa-first-order-alt"></i></a>
                 </li>
  -->

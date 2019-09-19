@@ -35,6 +35,8 @@ elseif(isset($_GET["historial"])) include_once 'system/historial/historial.php';
 
 
 
+/// Notificaciones
+elseif(isset($_GET["notificaciones"])) include_once 'system/notificaciones/notificaciones.php';
 
 
 

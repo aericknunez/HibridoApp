@@ -26,6 +26,7 @@ $user=sha1($_SESSION['username']);
 
 	function UserInicio($user){
         $db = new dbConn();
+            
             if ($r = $db->select("*", "login_userdata", "WHERE user = '$user' limit 1")) { 
             $_SESSION['nombre'] = $r["nombre"];
             $_SESSION['tipo_cuenta'] = $r["tipo"];
@@ -35,7 +36,7 @@ $user=sha1($_SESSION['username']);
             $_SESSION['td'] = $r["td"];
             $_SESSION['secret_key'] = md5($us);
 
-            } unset($r);
+        } unset($r);
 
 
             // if($_SESSION['tipo_cuenta'] != 1){
@@ -54,6 +55,6 @@ UserInicio($user);
 
 } else {
    header("location: logout.php");
-    exit(); 
+   exit(); 
 }
 ?>

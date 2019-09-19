@@ -122,4 +122,17 @@ else{
         $('#mdb-preloader').fadeOut('fast');
     });
 
+
+function Notificaciones(){ // Ver notificaciones
+        $.ajax({
+            url: "application/src/routes.php?op=50",
+            method: "POST",
+            success: function(data){
+                $("#notificaciones").html(data);         
+            }
+        });
+}
+
+Notificaciones();
+
 </script>
