@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 include_once 'application/common/Alerts.php';
 include_once 'system/user/Usuarios.php';
-
+$user = new Usuarios();
 ?>
 <h1>Usuarios
 <?php 
@@ -17,6 +17,6 @@ echo '<a href="?modal=registrar" class="btn-floating btn-sm blue-gradient"><i cl
 <!-- informacion de eliminado -->
 <div id="userinfo">
   <?php 
-   Usuarios::VerUsuarios();
+   $user->VerUsuarios();
    ?>
 </div> 
