@@ -11,9 +11,9 @@ include_once '../common/Encrypt.php';
 include_once '../common/Alerts.php';
 include_once '../common/Fechas.php';
 
-//include_once '../../system/inicio/Inicio.php';
-
 include_once '../../system/config/Config.php';
+
+include_once '../../system/inicio/Inicio.php';
 
 
 if($_SESSION['username'] == NULL){
