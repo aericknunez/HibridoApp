@@ -1,6 +1,10 @@
 <?php 
-class Inicio {
-
+/**
+  * 
+  */
+ class Inicio
+ {
+ 	
      	public function RegisterInOut($edo){
 		$db = new dbConn();
 		    $datos = array();
@@ -15,13 +19,4 @@ class Inicio {
 		    $db->insert("login_inout", $datos); 		
 	}
 
-
-
-
-
-
-
-} // fin de la clase
-
- ?>
-
+ } ?>
