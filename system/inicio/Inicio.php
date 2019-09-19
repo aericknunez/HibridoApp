@@ -1,11 +1,7 @@
 <?php 
-class Inicio{
+class Inicio {
 
-	public function __construct() { 
-     } 
-
-   
-     	static public function RegisterInOut($edo){
+     	public function RegisterInOut($edo){
 		$db = new dbConn();
 		    $datos = array();
 		    $datos["user"] = $_SESSION['user'];
