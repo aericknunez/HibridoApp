@@ -105,12 +105,12 @@ class Productos{
 
 
 
-   public function VerDocumento($producto, $del = NULL){ // guarda archivo del producto
+   public function VerDocumento($producto, $del = NULL, $tit = NULL){ // guarda archivo del producto
    $db = new dbConn();
 
     $a = $db->query("SELECT * FROM producto_archivos WHERE producto = '".$producto."'");
     if($a->num_rows){
-    	if($del == NULL){
+    	if($tit != NULL){
     	echo "Documentos asignados al producto";
     	}
     	echo '<table class="table table-striped table-sm">
@@ -127,7 +127,7 @@ class Productos{
 	    foreach ($a as $b) {
 	    	echo '<tr>
 			      <th scope="row">'.$n ++.'</th>
-			      <td><a href="download.php?data='. $b["archivo"] .'&name='. $b["descripcion"] .'">'. $b["nombre"] .'</td>
+			      <td><a href="download.php?data='. $b["archivo"] .'&name='. $b["nombre"] .'" title="'.$b["descripcion"].'">'. $b["nombre"] .'</td>
 			      <td>'. $b["descripcion"] .'</td>';
 			      if($del == NULL){ echo '<td> <a id="eliminar-d" op="27" producto="'. $b["producto"] .'" iden="'. $b["id"] .'" archivo="'. $b["archivo"] .'"><span class="badge badge-danger"><i class="fas fa-ban" aria-hidden="true"></i></span></a></td>'; }   
 			echo '</tr>';
@@ -158,12 +158,12 @@ class Productos{
 
 
 
-   public function VerPrecios($producto, $del = NULL){ // guarda archivo del producto
+   public function VerPrecios($producto, $del = NULL, $tit = null){ // guarda archivo del producto
    $db = new dbConn();
 
     $a = $db->query("SELECT * FROM producto_precios WHERE producto = '".$producto."'");
     if($a->num_rows){
-    	if($del == NULL){
+    	if($tit != NULL){
     	echo "Precios asignados al producto";
     	}
     	echo '<table class="table table-striped table-sm">
@@ -181,7 +181,7 @@ class Productos{
 	    foreach ($a as $b) {
 	    	echo '<tr>
 			      <th scope="row">'.$n ++.'</th>
-			      <td>'. $b["precio"] .'</td>
+			      <td>'. $b["cantidad"] .'</td>
 			      <td>'. $b["descripcion"] .'</td>
 			      <td>'. $b["precio"] .'</td>';
 			      if($del == NULL){ echo '<td> <a id="eliminar-p" op="29" producto="'. $b["producto"] .'" iden="'. $b["id"] .'" ><span class="badge badge-danger"><i class="fas fa-ban" aria-hidden="true"></i></span></a></td>'; }   
@@ -384,8 +384,8 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 
    public function DataModal($producto){ // datos exclusivos del modal
   		$this->VerProducto($producto);
-  		$this->VerPrecios($producto,1);
-  		$this->VerDocumento($producto,1);
+  		$this->VerPrecios($producto,1,1);
+  		$this->VerDocumento($producto,1,1);
   }
 
 

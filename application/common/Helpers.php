@@ -114,8 +114,8 @@ class Helpers{
     static public function UserName($tipo){
         if($tipo == 1) return "Root";
         if($tipo == 2) return "Administrador";
-        if($tipo == 3) return "Cajero";
-        if($tipo == 4) return "Usuario";
+        if($tipo == 3) return "Ejecutivo";
+        if($tipo == 4) return "Tecnico";
         if($tipo == 5) return "Gerencia";
     }
 

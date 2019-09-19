@@ -167,12 +167,6 @@ class Usuarios{
 				<a ><i class="fa fa-edit grey-text fa-lg"></i></a></td>';
 			}
 
-			if($_SESSION["user"] == $user or $_SESSION["tipo_cuenta"] == 1  or $_SESSION["tipo_cuenta"] == 2){
-				echo '<td><a href="?modal=avatar&user='.$b["username"].'" ><i class="fa fa-user red-text fa-lg"></i></a></td>';
-			} else {
-				echo '<td><a ><i class="fa fa-user grey-text fa-lg"></i></a></td>';
-			}
-
 		echo '</tr>';  
 	}
 

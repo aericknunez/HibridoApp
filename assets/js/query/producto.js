@@ -171,5 +171,4 @@ $(document).ready(function(){
 
 
 
-
 }); // termina query
