@@ -33,10 +33,14 @@ $comentarios = Encrypt::Decrypt($r["comentarios"],$_SESSION['secret_key']);
       <section id="about" class="section-padding">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-6 col-md-12 text-center">
                    <?php 
                   $foto = $perfil->GetFotoPerfil($_SESSION["username"]);
                   echo '<img src="assets/img/avatar/'.$foto.'" alt="User Photo" class="z-depth-1 mb-3 img-fluid" />';
+
+                  if($foto == "default.jpg"){
+                        echo '<div class="col-md-12 text-center"><a class="btn btn-success btn-rounded btn-sm" href="?perfil#contenido-img"><i class="fas fa-plus mr-1"></i> Agregar Foto </a></div>';
+                      }
                     ?>
 
                   <div>
