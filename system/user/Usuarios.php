@@ -130,7 +130,6 @@ class Usuarios{
 			      <th scope="col">Cuenta</th>
 			      <th scope="col">Eliminar</th>
 			      <th scope="col">Editar</th>
-			      <th scope="col">Avatar</th>
 			    </tr>
 			  </thead>
 			  <tbody>';
