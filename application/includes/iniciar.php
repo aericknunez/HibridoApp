@@ -41,9 +41,9 @@ $user=sha1($_SESSION['username']);
         } unset($r);
 
 
-            // if($_SESSION['tipo_cuenta'] != 1){
-            // @Inicio::RegisterInOut(2); // registra la salida
-            // }
+            if($_SESSION['tipo_cuenta'] != 1){
+            Inicio::RegisterInOut(2); // registra la salida
+            }
 
     
 

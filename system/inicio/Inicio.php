@@ -5,7 +5,7 @@
  class Inicio
  {
  	
-     	public function RegisterInOut($edo){
+     	static public function RegisterInOut($edo){
 		$db = new dbConn();
 		    $datos = array();
 		    $datos["user"] = $_SESSION['user'];
