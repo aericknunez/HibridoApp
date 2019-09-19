@@ -5,6 +5,16 @@ class Productos{
      } 
 
 
+	public function CompruebaExistencia($key){ // comprueba si existe o no 
+		$db = new dbConn();
+		$a = $db->query("SELECT * FROM producto_usuario WHERE producto = '".$key."' and username = '".$_SESSION["username"]."'");
+		if($a->num_rows > 0) return TRUE;
+		else return FALSE;
+		$a->close();
+	}
+
+
+
 
 
      public function AddDatos($data){

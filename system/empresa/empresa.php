@@ -7,6 +7,15 @@ include_once 'application/common/Encrypt.php';
 include_once 'system/empresa/Empresas.php';
 $empresa = new Empresas();
 
+if(isset($_REQUEST["key"])){ /// comprueba la existencia de la empresa
+  if($empresa->CompruebaExistencia($_REQUEST["key"]) != TRUE){
+  echo '<script>
+    window.location.href="?empresa"
+  </script>';
+  exit();
+  }
+}
+
   if ($r = $db->select("*", "empresa", "WHERE id = '".$_REQUEST["key"]."'")) { 
 
 $iden = $r["id"];

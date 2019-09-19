@@ -8,6 +8,15 @@ include_once 'system/producto/Productos.php';
 $product = new Productos();
 
 
+if(isset($_REQUEST["key"])){ /// comprueba la existencia del producto
+  if($product->CompruebaExistencia($_REQUEST["key"]) != TRUE){
+  echo '<script>
+    window.location.href="?producto"
+  </script>';
+  exit();
+  }
+}
+
   if ($r = $db->select("*", "producto", "WHERE id = '".$_REQUEST["key"]."'")) { 
 $iden = $r["id"];
 $producto = $r["producto"];

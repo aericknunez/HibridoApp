@@ -5,6 +5,13 @@ class Empresas{
      } 
 
 
+  public function CompruebaExistencia($key){ // comprueba si existe o no el producto
+    $db = new dbConn();
+    $a = $db->query("SELECT * FROM empresa WHERE id = '".$key."' and username='".$_SESSION["username"]."'");
+    if($a->num_rows > 0) return TRUE;
+    else return FALSE;
+    $a->close();
+  }
 
 
      public function AddDatos($data){

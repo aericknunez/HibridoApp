@@ -10,6 +10,8 @@ $empresa = new Empresas();
 include_once 'system/historial/Historiales.php';
 $historial = new Historiales();
 
+if($empresa->CompruebaExistencia($_REQUEST["key"]) == TRUE){ // comprueba exixtencia de la empresa
+
 ?>
 <div id="msj"></div>
 
@@ -78,3 +80,7 @@ $historial = new Historiales();
         </div>
     </div>
 </section>
+
+<?php } else {
+  Alerts::Mensajex("Error! No se encontro la pagina","danger");
+} ?>

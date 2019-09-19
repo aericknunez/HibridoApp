@@ -7,7 +7,7 @@ include_once 'application/common/Encrypt.php';
 include_once 'system/producto/Productos.php';
 $product = new Productos();
 
-
+if($product->CompruebaExistencia($_REQUEST["key"]) == TRUE){
 
 ?>
 <div id="msj"></div>
@@ -82,3 +82,7 @@ $product = new Productos();
         </div>
     </div>
 </section>
+
+<?php } else {
+  Alerts::Mensajex("Error! No se encontro la pagina","danger");
+} ?>
