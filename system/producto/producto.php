@@ -249,14 +249,18 @@ $condiciones = $r["condiciones"];
         
    <div class="form-row">
     
-    <div class="col-md-6 mb-2 md-form">
+    <div class="col-md-4 mb-2 md-form">
       <label for="producto">* Cantidad </label>
       <input type="number" class="form-control" id="cantidad" name="cantidad" >
   </div>
 
-  <div class="col-md-6 mb-2 md-form">
+  <div class="col-md-4 mb-2 md-form">
       <label for="rugro">* Precio</label>
       <input type="number" step="any" class="form-control" id="precio" name="precio">
+  </div>
+  <div class="col-md-4 mb-2 md-form">
+      <label for="rugro">* Puntos</label>
+      <input type="number" step="any" class="form-control" id="puntos" name="puntos">
   </div>
 
   </div>

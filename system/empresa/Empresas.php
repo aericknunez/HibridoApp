@@ -328,6 +328,7 @@ echo '<blockquote class="blockquote bq-danger">
 					    $datos["empresa"] = $data["empresa"];
 					    $datos["fecha"] = date("d-m-Y");
 					    $datos["hora"] = date("H:i:s");
+              $datos["fechaF"] = Fechas::Format(date("d-m-Y"));
 					    $datos["edo"] = 1;
 						    if ($db->insert("producto_empresa", $datos)) {
 						        Alerts::Alerta("success","Agregado!","Datos Agregados!");
@@ -369,7 +370,7 @@ echo '<blockquote class="blockquote bq-danger">
 			  $n = 1;
 	    foreach ($a as $b) {
 	    	$ax = $db->query("SELECT * FROM producto_empresa WHERE producto = '".$b["id"]."' and empresa = '".$empresa."'"); $canti = $ax->num_rows;
-			if($canti > 0) { $src = "2"; $c = "red-text"; $ba = "badge-danger"; $fa= "fa-ban";} else { $src = "1"; $c = "black-text"; $ba = "badge-success"; $fa = "fa-check"; }
+			if($canti > 0) { $src = "2"; $c = "red-text"; $ba = "badge-danger"; $fa= "fa-window-close";} else { $src = "1"; $c = "black-text"; $ba = "badge-success"; $fa = "fa-check"; }
 			$ax->close(); 
 
 	    	echo '<tr class="'.$c.'">
@@ -385,7 +386,7 @@ echo '<blockquote class="blockquote bq-danger">
                     if($edox == 1){
                     echo '<td> <a id="emp-op" op="37" opx="'. $src .'" empresa="'. $empresa .'" producto="'. $b["id"] .'"><span class="badge '.$ba.'"><i class="fas '.$fa.'" aria-hidden="true"></i></span></a></td>';
                   } else {
-                    echo '<td><span class="badge badge-info"><i class="fas '.$fa.'" aria-hidden="true"></i></span></td>';
+                    echo '<td><span class="badge badge-secondary"><i class="fas '.$fa.'" aria-hidden="true"></i></span></td>';
                   }
               }
               
@@ -667,7 +668,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
             <td scope="row">'.$producto.'</td>
             <td class="d-none d-md-block">'. $descripcion .'</td>
             <td>'. Helpers::EdoProAsig($b["edo"]) .'</td>
-            <td><a id="xcambiar" key="'. $b["id"] .'"><i class="fas fa-search fa-lg green-text"></i></a></td>
+            <td><a id="xcambiar" key="'. $b["id"] .'" edo="'. $b["edo"] .'"><i class="fas fa-search fa-lg green-text"></i></a></td>
             </tr>';
       }
   }
@@ -677,17 +678,80 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
    public function CambiarEdo($data){ // cambia el estado del producto asignado
    $db = new dbConn();
         $cambio = array();
-         $cambio["edo"] = $data["edo"];
-         if($db->update("producto_empresa", $cambio, "WHERE id='".$data["producto"]."'")){
+    if($data["edo"] != 0){
+            if($data["edo"] == 3){
+              $cambio["vfecha"] = date("d-m-Y");
+              $cambio["vhora"] = date("H:i:s");
+              $cambio["vfechaF"] = Fechas::Format(date("d-m-Y"));
+            }
+            if($data["edo"] == 4){
+              $cambio["pfecha"] = date("d-m-Y");
+              $cambio["phora"] = date("H:i:s");
+              $cambio["pfechaF"] = Fechas::Format(date("d-m-Y"));
+            }
+            $cambio["edo"] = $data["edo"];
+             if($db->update("producto_empresa", $cambio, "WHERE id='".$data["producto"]."'")){
 
-            Alerts::Alerta("success","Agregado!","Estado Agregado correctamente!");
-        } else {
-           Alerts::Alerta("error","Error!","No se agragaron los datos!");
-        }
-
+                Alerts::Alerta("success","Agregado!","Estado Agregado correctamente!");
+            } else {
+               Alerts::Alerta("error","Error!","No se agragaron los datos!");
+            }
+      }
    $this->MyProducts(1, "id", "asc");
   }
 
+
+
+   public function FormData($data){ // cambia el estado del producto asignado
+   $db = new dbConn();
+
+        if ($r = $db->select("edo", "producto_empresa", "WHERE id = '".$data["key"]."'")) { 
+          return $r["edo"];
+        }  unset($r);  
+    }
+
+
+   public function DataForm($data){ // cambia el estado del producto asignado
+
+      $edo = $this->FormData($data);
+
+        if($edo == 1){
+        echo '<select class="browser-default custom-select" id="edo" name="edo">'; 
+        echo '<option selected disabled>* Estado</option>';
+        echo '<option '; if($edo == 1) { echo 'selected '; } echo 'value="1">Activo</option>';
+        echo '<option '; if($edo == 2) { echo 'selected '; } echo 'value="2">En Proceso</option>';
+        echo '<option '; if($edo == 3) { echo 'selected '; } echo 'value="3">Vendido</option>';
+        echo '<option '; if($edo == 4) { echo 'selected '; } echo 'value="4">Pagado</option>';
+        echo '<option '; if($edo == 5) { echo 'selected '; } echo 'value="5">Eliminar</option>';
+        echo '</select>';          
+        }
+        if($edo == 2){
+        echo '<select class="browser-default custom-select" id="edo" name="edo">'; 
+        echo '<option selected disabled>* Estado</option>';
+        echo '<option '; if($edo == 2) { echo 'selected '; } echo 'value="2">En Proceso</option>';
+        echo '<option '; if($edo == 3) { echo 'selected '; } echo 'value="3">Vendido</option>';
+        echo '<option '; if($edo == 4) { echo 'selected '; } echo 'value="4">Pagado</option>';
+        echo '<option '; if($edo == 5) { echo 'selected '; } echo 'value="5">Eliminar</option>';
+        echo '</select>';          
+        }
+        if($edo == 3){
+        echo '<select class="browser-default custom-select" id="edo" name="edo">'; 
+        echo '<option selected disabled>* Estado</option>';
+        echo '<option '; if($edo == 3) { echo 'selected '; } echo 'value="3">Vendido</option>';
+        echo '<option '; if($edo == 4) { echo 'selected '; } echo 'value="4">Pagado</option>'; 
+        echo '</select>';       
+        }               
+        if($edo == 4){
+        echo '<select class="browser-default custom-select" id="edo" name="edo">'; 
+        echo '<option selected disabled>* Estado</option>';
+        echo '<option '; if($edo == 4) { echo 'selected '; } echo 'value="4">Pagado</option>';  
+        echo '</select>';    
+        }         
+        if($edo == 5){
+        Alerts::Mensajex("Este producto ha sido eliminado!","warning");      
+        } 
+
+  }
 
 
 

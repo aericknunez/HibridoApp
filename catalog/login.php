@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,7 +25,8 @@ header,
   body,
   header,
   .view {
-    height: 1000px;
+    height: 700px;
+    background-color: #000 !important;
   }
 }
 @media (min-width: 800px) and (max-width: 850px) {
@@ -58,7 +59,7 @@ header,
 }*/
 
 .card {
-  background-color: rgba(0, 64, 90, 0.7);
+  background-color: rgba(100, 100, 100, 0.2);
 }
 
 .md-form label {
@@ -134,14 +135,15 @@ body { overflow-x: hidden; padding-left: 5px; padding-right: 5px; }</style>
                 </div>
 
                 <div class="text-center mt-4">
+                  <div id="msj"></div>
                 	
-                  <button class="btn btn-info btn-rounded my-4" type="submit" id="btn-login" name="btn-login">Ingresar</button>
-
+                  <button class="btn btn-info my-4" type="submit" id="btn-login" name="btn-login">Ingresar</button>
+                  
                   
                   <hr class="hr-light mb-3 mt-4">                
                   <div class="inline-ul text-center d-flex justify-content-center">
 
-                  	<div id="msj"></div>
+                  	
                     <!-- <a class="p-2 m-2 tw-ic">
                       <i class="fa fa-twitter white-text"></i>
                     </a>
@@ -154,7 +156,7 @@ body { overflow-x: hidden; padding-left: 5px; padding-right: 5px; }</style>
                     <img src="assets/img/logo/pizto.png" alt="">
                     
                   </div>
-                  <a class="btn btn-outline-danger btn-sm waves-effect" href="?register">Registrarse</a>
+                  <a href="?change">Cambiar inicio</a>
                 </div>
               </div>
             </div>

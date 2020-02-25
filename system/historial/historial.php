@@ -172,6 +172,8 @@ $historial = new Historiales();
       </div>
       <div class="modal-body">
 <!-- ./  content -->
+
+<?php Alerts::Mensajex("Determina el estado de la cita programada","info"); ?>
  <form id="form-estado">
 
 <input type="hidden" id="visita" name="visita" value="">
@@ -200,7 +202,7 @@ $historial = new Historiales();
 
   <div class="form-row">
     <div class="col-12 my-12 md-form text-right">
-     <button class="btn btn-info btn-rounded my-4" type="submit" id="btn-estado"><i class="fas fa-save mr-1"></i> Guardar </button>
+     <button class="btn btn-success btn-rounded my-4" type="submit" id="btn-estado"><i class="fas fa-save mr-1"></i> Guardar </button>
     </div>
   </div>
 

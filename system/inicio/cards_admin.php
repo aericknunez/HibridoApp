@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <a href="?myempresa" type="button" class="btn-floating btn-lg secondary-color ml-4 waves-effect waves-light"><i class="fas fa-barcode" aria-hidden="true"></i></a>
       </div>
       <div class="col-md-9 col-9 text-right pr-4">
-        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo $dash->EmpresasAgregadas($_SESSION["username"]); ?></h5>
+        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo $dash->EmpresasAgregadas(); ?></h5>
         <p class="font-small grey-text">Empresas Agregadas</p>
       </div>
     </div>
@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <a type="button" class="btn-floating btn-lg success-color ml-4 waves-effect waves-light"><i class="fas fa-chart-line" aria-hidden="true"></i></a>
       </div>
       <div class="col-md-7 col-7 text-right pr-4">
-        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo $dash->TratosCerrados($_SESSION["username"]); ?></h5>
+        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo $dash->TratosCerrados(); ?></h5>
         <p class="font-small grey-text">Tratos Cerrados</p>
       </div>
     </div>
@@ -60,7 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <a type="button" class="btn-floating btn-lg light-blue lighten-1 ml-4 waves-effect waves-light"><i class="fas fa-grin-beam" aria-hidden="true"></i></a>
       </div>
       <div class="col-md-7 col-7 text-right pr-4">
-        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo $dash->VisitasPendientes($_SESSION["username"]); ?></h5>
+        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo $dash->VisitasPendientes(); ?></h5>
         <p class="font-small grey-text"> Visitas Pendientes </p>
       </div>
     </div>
@@ -77,7 +77,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <a type="button" class="btn-floating btn-lg red accent-2 ml-4 waves-effect waves-light"><i class="fas fa-sliders-h" aria-hidden="true"></i></a>
       </div>
       <div class="col-md-7 col-7 text-right pr-4">
-        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo $dash->VisitasRealizadas($_SESSION["username"]); ?></h5>
+        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo $dash->VisitasRealizadas(); ?></h5>
         <p class="font-small grey-text">Visitas Realizadas</p>
       </div>
     </div>
@@ -111,8 +111,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <a type="button" class="btn-floating btn-lg secondary-color ml-4 waves-effect waves-light"><i class="far fa-chart-bar" aria-hidden="true"></i></a>
       </div>
       <div class="col-md-9 col-9 text-right pr-4">
-        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo $dash->PuntosProyectados($_SESSION["username"]); ?></h5>
-        <p class="font-small grey-text">Puntos Proyectados</p>
+        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo Helpers::Dinero($dash->DineroIngresado()); ?></h5>
+        <p class="font-small grey-text">Dinero Ingresado</p>
       </div>
     </div>
 
@@ -131,8 +131,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <a type="button" class="btn-floating btn-lg success-color ml-4 waves-effect waves-light"><i class="fas fa-chart-line" aria-hidden="true"></i></a>
       </div>
       <div class="col-md-7 col-7 text-right pr-4">
-        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo $dash->PuntosObtenidos($_SESSION["username"]); ?></h5>
-        <p class="font-small grey-text">Puntos Obtenidos</p>
+        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo Helpers::Dinero($dash->DineroProyectado()); ?></h5>
+        <p class="font-small grey-text">Dinero Proyectado</p>
       </div>
     </div>
 
@@ -149,8 +149,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <a type="button" class="btn-floating btn-lg secondary-color ml-4 waves-effect waves-light"><i class="far fa-chart-bar" aria-hidden="true"></i></a>
       </div>
       <div class="col-md-9 col-9 text-right pr-4">
-        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo Helpers::Dinero(Helpers::EfectivoPuntos($dash->PuntosProyectados($_SESSION["username"]))); ?></h5>
-        <p class="font-small grey-text">Comisión Proyectada</p>
+        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo Helpers::Entero($dash->NoEmpleados()); ?></h5>
+        <p class="font-small grey-text">Cantidad Empleados</p>
       </div>
     </div>
 
@@ -169,8 +169,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <a type="button" class="btn-floating btn-lg success-color ml-4 waves-effect waves-light"><i class="fas fa-chart-line" aria-hidden="true"></i></a>
       </div>
       <div class="col-md-7 col-7 text-right pr-4">
-        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo Helpers::Dinero(Helpers::EfectivoPuntos($dash->PuntosObtenidos($_SESSION["username"]))); ?></h5>
-        <p class="font-small grey-text">Comisión Obtenida</p>
+        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo $dash->TratosPendientes(); ?></h5>
+        <p class="font-small grey-text">Tratos Pendientes</p>
       </div>
     </div>
 

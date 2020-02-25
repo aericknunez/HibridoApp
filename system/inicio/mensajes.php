@@ -11,7 +11,7 @@ if($_SESSION["config_edo"] == NULL){
   <!-- Section heading -->
   <h2 class="h1-responsive font-weight-bold text-center my-5">Bienvenid@!</h2>
   <!-- Section description -->
-  <p class="black-text text-center w-responsive mx-auto mb-5">Gracias por formar parte de nuestro gran equipo, somos una empresa muy muy responsable y dedicada a lo que hacemos, nos gusta siempre dar lo mejor que tenemos, eso nos hace diferentes y especiales. Si estás aquí es porque alguien especial de nuestro equipo cree que tu talento vale la pena. Como empresa deseamos que tú también des lo mejor de ti y que juntos avancemos hacia el éxito. </p>
+  <p class="black-text text-center w-responsive mx-auto mb-5">Gracias por formar parte de nuestro gran equipo, somos una empresa muy muy responsable y dedicada a lo que hacemos, nos gusta siempre dar lo mejor que tenemos, eso nos hace diferentes y especiales. Si estás aquí es porque creemos que tu talento vale la pena. Como empresa deseamos que tú también des lo mejor de ti y que juntos avancemos hacia el éxito. </p>
 
   <!-- Grid row -->
   <div class="row">

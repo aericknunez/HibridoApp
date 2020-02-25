@@ -364,6 +364,18 @@ include_once '../../system/empresa/Empresas.php';
 
 }
 
+if($_REQUEST["op"]=="390"){ // cambia el estado del producto asignado
+include_once '../../system/empresa/Empresas.php';
+	$empresa = new Empresas();	
+	$empresa->DataForm($_POST);
+
+}
+if($_REQUEST["op"]=="391"){ // cambia el estado del producto asignado
+include_once '../../system/empresa/Empresas.php';
+	$empresa = new Empresas();	
+	$empresa->FormData($_POST);
+
+}
 
 /// historial
 if($_REQUEST["op"]=="40"){ // Agrega historial a la empresa

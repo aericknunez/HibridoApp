@@ -181,6 +181,7 @@ class Productos{
 			    <tr>
 			      <th scope="col">#</th>
 			      <th scope="col">Cantidad</th>
+			      <th scope="col">Pts</th>
 			      <th scope="col">Descripción</th>
 			      <th scope="col">Precio</th>';
 			      if($del == NULL){ echo '<th scope="col">Eliminar</th>'; }
@@ -192,6 +193,7 @@ class Productos{
 	    	echo '<tr>
 			      <th scope="row">'.$n ++.'</th>
 			      <td>'. $b["cantidad"] .'</td>
+			      <td>'. $b["puntos"] .'</td>
 			      <td>'. $b["descripcion"] .'</td>
 			      <td>'. $b["precio"] .'</td>';
 			      if($del == NULL){ echo '<td> <a id="eliminar-p" op="29" producto="'. $b["producto"] .'" iden="'. $b["id"] .'" ><span class="badge badge-danger"><i class="fas fa-ban" aria-hidden="true"></i></span></a></td>'; }   
@@ -211,6 +213,7 @@ class Productos{
 		    $datos = array();
 		    $datos["producto"] = $data["producto"];
 		    $datos["cantidad"] = $data["cantidad"];
+		    $datos["puntos"] = $data["puntos"];
 		    $datos["descripcion"] = $data["descripcion"];
 		    $datos["precio"] = $data["precio"];
 			    if ($db->insert("producto_precios", $datos)) {

@@ -103,11 +103,36 @@ $(document).ready(function(){
         $('#ModalCambiar').modal('show');
         
         var key = $(this).attr('key');
+        var edo = $(this).attr('edo');
+
+        var dataString = 'op=390&key='+key;
+
+            $.ajax({
+            type: "POST",
+            url: "application/src/routes.php",
+            data: dataString,
+            beforeSend: function () {
+               $("#data_form").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            },
+            success: function(data) {            
+                $("#data_form").html(data); // lo que regresa de la busquea 
+            }
+        });
+
+
+        if(edo == 5 || edo == 4){
+            $('#btn-estado').hide();
+        } else {
+            $('#btn-estado').show();
+        }
+
 
         $('#producto').attr("value",key);
         $('#btn-pro').attr("href",'?pro&key='+key);
         
     });
+
+
 
 
     $('#btn-estado').click(function(e){ /// agregar datos

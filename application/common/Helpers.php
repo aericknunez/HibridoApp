@@ -37,6 +37,21 @@ class Helpers{
     }
 
 
+    static public function EfectivoPuntos($puntos, $precio = NULL) {
+      if($precio == NULL){ $precio = 7; }
+
+      if($puntos < 12) { return $puntos * $precio; } 
+      elseif($puntos == 12) { return 150; } 
+      elseif($puntos == 15) { return 200; }
+      elseif($puntos == 18) { return 250; }
+      elseif($puntos == 21) { return 300; }
+      elseif($puntos == 24) { return 350; }
+      elseif($puntos == 27) { return 400; }
+      elseif($puntos == 30) { return 450; }
+      else { return 500; }
+
+    }
+
 
 
     static public function EdoProducto($string) {

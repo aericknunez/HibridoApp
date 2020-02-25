@@ -33,18 +33,13 @@ $empresa = new Empresas();
 <!-- ./  content -->
  <form id="form-estado">
 
+<?php Alerts::Mensajex("Seleccione el estado actual del produto asignado a la empresa","danger"); ?>
+
 <input type="hidden" id="producto" name="producto" value="">
 
     <div class="form-row text-center">
-    <div class="col-md-12 mb-1 md-form">
-      <select class="browser-default custom-select" id="edo" name="edo">
-        <option selected disabled>* Estado</option>       
-        <option <?php if($edo == 1) echo "selected"; ?> value="1">Activo</option>
-        <option <?php if($edo == 2) echo "selected"; ?> value="2">En Proceso</option>
-        <option <?php if($edo == 3) echo "selected"; ?> value="3">Vendido</option>
-        <option <?php if($edo == 4) echo "selected"; ?> value="4">Pagado</option>
-        <option <?php if($edo == 5) echo "selected"; ?> value="5">Eliminado</option>
-      </select>
+    <div class="col-md-12 mb-1 md-form" id="data_form">
+
     </div>
   </div>     
 
