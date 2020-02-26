@@ -72,6 +72,7 @@ class Empresas{
 		    $datos["direccion"] = $data["direccion"];
 		    $datos["fecha"] = date("d-m-Y");
 		    $datos["hora"] = date("H:i:s");
+        $datos["fechaF"] = Fechas::Format(date("d-m-Y"));
 		    $datos["rugro"] = $data["rugro"];
 		    $datos["giro"] = $data["giro"];
 		    $datos["telefono"] = $data["telefono"];

@@ -26,7 +26,7 @@ public function EmpresasAgregadas($username = NULL){
 
 
 
-public function TratosCerrados($username = NULL){
+public function TratosCerrados($primero, $segundo, $username = NULL){ /// por rango
 	$db = new dbConn();
 
 	if($username == NULL){
@@ -39,7 +39,7 @@ public function TratosCerrados($username = NULL){
 	    $num = 0;
     foreach ($a as $b) {
 	 	
-	 	$ax = $db->query("SELECT * FROM producto_empresa WHERE empresa = '".$b["id"]."' and (edo='3' OR edo='4')");
+	 	$ax = $db->query("SELECT * FROM producto_empresa WHERE empresa = '".$b["id"]."' and (edo='3' OR edo='4') and fechaF BETWEEN '$primero' AND '$segundo'");
 		if($ax->num_rows > 0) $nx = 1; else $nx = 0;
 		$ax->close();	
 		$num = $num + $nx;
@@ -53,13 +53,13 @@ return $num;
 
 
 
-public function VisitasPendientes($username = NULL){
+public function VisitasPendientes($primero, $segundo, $username = NULL){ /// por rango
 	$db = new dbConn();
 
 	if($username == NULL){
-	$a = $db->query("SELECT * FROM visitas WHERE edo = '1'");
+	$a = $db->query("SELECT * FROM visitas WHERE edo = '1' and fechaF BETWEEN '$primero' AND '$segundo'");
 	} else {
-		$a = $db->query("SELECT * FROM visitas WHERE username = '$username' and edo = '1'");
+		$a = $db->query("SELECT * FROM visitas WHERE username = '$username' and edo = '1' and fechaF BETWEEN '$primero' AND '$segundo'");
 	}
 
 
@@ -71,13 +71,13 @@ public function VisitasPendientes($username = NULL){
 
 
 
-public function VisitasRealizadas($username = NULL){
+public function VisitasRealizadas($primero, $segundo, $username = NULL){ /// por rango
 	$db = new dbConn();
 
 	if($username == NULL){
-	$a = $db->query("SELECT * FROM visitas WHERE edo = '3'");
+	$a = $db->query("SELECT * FROM visitas WHERE edo = '3' and fechaF BETWEEN '$primero' AND '$segundo'");
 	} else {
-	$a = $db->query("SELECT * FROM visitas WHERE username = '$username' and edo = '3'");
+	$a = $db->query("SELECT * FROM visitas WHERE username = '$username' and edo = '3' and fechaF BETWEEN '$primero' AND '$segundo'");
 	}
 
 	return $a->num_rows;
@@ -90,14 +90,14 @@ public function VisitasRealizadas($username = NULL){
 
 
 
-public function PuntosProyectados($username){
+public function PuntosProyectados($primero, $segundo, $username){ /// por rango
 	$db = new dbConn();
 
 	$a = $db->query("SELECT id FROM empresa WHERE username = '$username'");
 	$precio = 0;
     foreach ($a as $b) {
     		    
-    		    $ax = $db->query("SELECT producto FROM producto_empresa WHERE empresa = ".$b["id"]."");
+    		    $ax = $db->query("SELECT producto FROM producto_empresa WHERE empresa = ".$b["id"]." and fechaF BETWEEN '$primero' AND '$segundo'");
 			    foreach ($ax as $bx) {
 
 			    		if ($r = $db->select("puntos", "producto_precios", "WHERE producto = ".$bx["producto"]."")) { 
@@ -110,14 +110,14 @@ public function PuntosProyectados($username){
 
 
 
-public function PuntosObtenidos($username){
+public function PuntosObtenidos($primero, $segundo, $username){ /// por rango
 	$db = new dbConn();
 
 	    $a = $db->query("SELECT id FROM empresa WHERE username = '$username'");
 	    $pts = 0;
     foreach ($a as $b) {
 
-    	    	$ax = $db->query("SELECT producto FROM producto_empresa WHERE empresa = '".$b["id"]."' and (edo='3' OR edo='4')");
+    	    	$ax = $db->query("SELECT producto FROM producto_empresa WHERE empresa = '".$b["id"]."' and (edo='3' OR edo='4') and fechaF BETWEEN '$primero' AND '$segundo'");
 			    foreach ($ax as $bx) {
 
 			    		if ($r = $db->select("puntos", "producto_precios", "WHERE producto = ".$bx["producto"]."")) { 
@@ -144,11 +144,11 @@ return $pts;
 ///////////////////////////////////////////////////////////////
 
 
-public function DineroIngresado(){
+public function DineroIngresado($primero, $segundo){ /// por rango
 	$db = new dbConn();
 
     		    
-    		    $ax = $db->query("SELECT producto FROM producto_empresa WHERE edo='3' OR edo='4'");
+    		    $ax = $db->query("SELECT producto FROM producto_empresa WHERE edo='3' OR edo='4' and fechaF BETWEEN '$primero' AND '$segundo'");
 			    foreach ($ax as $bx) {
 
 			    		if ($r = $db->select("precio", "producto_precios", "WHERE producto = ".$bx["producto"]."")) { 
@@ -162,11 +162,11 @@ public function DineroIngresado(){
 
 
 
-public function DineroProyectado(){
+public function DineroProyectado($primero, $segundo){ /// por rango
 	$db = new dbConn();
 
     		    
-    		    $ax = $db->query("SELECT producto FROM producto_empresa WHERE edo !='5'");
+    		    $ax = $db->query("SELECT producto FROM producto_empresa WHERE edo !='5' and fechaF BETWEEN '$primero' AND '$segundo'");
 			    foreach ($ax as $bx) {
 
 			    		if ($r = $db->select("precio", "producto_precios", "WHERE producto = ".$bx["producto"]."")) { 

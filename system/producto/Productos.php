@@ -66,6 +66,7 @@ class Productos{
 		    $datos["rugro"] = $data["rugro"];
 		    $datos["fecha"] = date("d-m-Y");
 		    $datos["hora"] = date("H:i:s");
+		    $datos["fechaF"] = Fechas::Format(date("d-m-Y"));
 		    $datos["caduca"] = date("d-m-Y", strtotime($data["caduca"]));
 		    $datos["edo"] = 1;
 			    if ($db->insert("producto", $datos)) {

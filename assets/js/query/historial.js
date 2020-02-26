@@ -47,8 +47,34 @@ $(document).ready(function(){
         $('#ModalVer').modal('show');
         
         var key = $(this).attr('key');
+        var estado = $(this).attr('estado');
 
         $('#visita').attr("value",key);
+
+
+
+		var dataString = 'op=42&key='+key+'&estado='+estado;
+
+            $.ajax({
+            type: "POST",
+            url: "application/src/routes.php",
+            data: dataString,
+            beforeSend: function () {
+               $("#estado_form").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            },
+            success: function(data) {            
+                $("#estado_form").html(data); // lo que regresa de la busquea 
+            }
+        });
+
+        if(estado == 2 || estado == 3){
+            $('#btn-estado').hide();
+            $('#frm-det').hide();
+        } else {
+            $('#btn-estado').show();
+            $('#frm-det').show();
+        }
+
         
     });
 
@@ -67,6 +93,8 @@ $(document).ready(function(){
                 $('#btn-estado').html('Guardar').removeClass('disabled');          
                 $("#form-estado").trigger("reset");
                 $("#contenido-historial").html(data);
+                
+                $('#ModalVer').modal('hide');
             }
         })
     });

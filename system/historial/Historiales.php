@@ -17,6 +17,7 @@ class Historiales{
 	    $datos["detalles"] = $data["datalles"];
 	    $datos["fecha"] = $data["fecha_submit"];
 	    $datos["hora"] = $data["hora"];
+	    $datos["fechaF"] = Fechas::Format($data["fecha_submit"]);
 	    $datos["edo"] = 1;
 		    if ($db->insert("visitas", $datos)) {
 		        Alerts::Alerta("success","Agregado!","Datos Agregados!");
@@ -69,7 +70,7 @@ class Historiales{
        
        echo '<td>'. $b["detalles"] .'</td>
             <td>'. $b["fecha"] .' | '. $b["hora"] .'</td> 
-            <td><a id="xver" key="'. $b["id"] .'">'. Helpers::EdoCita($b["edo"]) .'</a></td>';   
+            <td><a id="xver" key="'. $b["id"] .'" estado="'. $b["edo"] .'">'. Helpers::EdoCita($b["edo"]) .'</a></td>';   
       echo '</tr>';
       	$this->VerDetalles($b["id"]);
       } echo '</tbody>
@@ -123,7 +124,27 @@ class Historiales{
 	}
 
 
+   public function EdoForm($data){
 
+	   		if($data["estado"] == 1){
+	   			echo '<select class="browser-default custom-select" id="edo" name="edo">';
+			        echo '<option selected disabled>* Estado</option>';       
+			        echo '<option '; if($edo == 1) echo "selected "; echo 'value="1">Activo</option>';
+			        echo '<option '; if($edo == 2) echo "selected "; echo 'value="2">Cancelado</option>';
+			        echo '<option '; if($edo == 3) echo "selected "; echo 'value="3">Realizado</option>';
+			    echo '</select>';
+	   		}
+	   		if($data["estado"] == 2){
+	   			echo '<select class="browser-default custom-select" id="edo" name="edo">';
+			        echo '<option '; if($edo == 2) echo "selected "; echo 'value="2">Cancelado</option>';
+			    echo '</select>';
+	   		}
+	   		if($data["estado"] == 3){
+	   			echo '<select class="browser-default custom-select" id="edo" name="edo">';
+			        echo '<option '; if($edo == 3) echo "selected "; echo 'value="3">Realizado</option>';
+			    echo '</select>';
+	   		}
+	}
 
 
 

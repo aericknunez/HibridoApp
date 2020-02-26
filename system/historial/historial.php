@@ -179,20 +179,15 @@ $historial = new Historiales();
 <input type="hidden" id="visita" name="visita" value="">
 
     <div class="form-row text-center">
-    <div class="col-md-12 mb-1 md-form">
-      <select class="browser-default custom-select" id="edo" name="edo">
-        <option selected disabled>* Estado</option>       
-        <option <?php if($edo == 1) echo "selected"; ?> value="1">Activo</option>
-        <option <?php if($edo == 2) echo "selected"; ?> value="2">Cancelado</option>
-        <option <?php if($edo == 3) echo "selected"; ?> value="3">Realizado</option>
-      </select>
+    <div class="col-md-12 mb-1 md-form" id="estado_form">
+<!-- Aqui va el resultado de form -->
     </div>
   </div>     
 
 
   <div class="form-row">
     
-    <div class="col-md-12 mb-1 md-form">
+    <div class="col-md-12 mb-1 md-form" id="frm-det">
       <textarea id="datalles" name="datalles" class="md-textarea form-control" rows="3"></textarea>
       <label for="datalles">Detalles de la cita</label>
     </div>

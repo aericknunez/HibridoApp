@@ -26,6 +26,18 @@ $comentarios = Encrypt::Decrypt($r["comentarios"],$_SESSION['secret_key']);
 
 
   }  unset($r);
+
+if($nombre == NULL and $email == NULL){
+
+    if ($x = $db->select("email", "login_members", "WHERE username = '".$_SESSION["username"]."'")) { 
+      $email = $x["email"];
+    }  unset($x);
+
+    if ($y = $db->select("nombre", "login_userdata", "WHERE user = '".$_SESSION["user"]."'")) { 
+      $nombre = $y["nombre"];
+    }  unset($y);
+
+}
 ?>
 <div id="msj"></div>
       <!-- Section: Edit Account -->

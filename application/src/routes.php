@@ -393,6 +393,14 @@ include_once '../../system/historial/Historiales.php';
 
 }
 
+/// historial cambiar historial de cita
+if($_REQUEST["op"]=="42"){ // Agrega historial a la empresa
+include_once '../../system/historial/Historiales.php';
+	$historial = new Historiales();	
+	$historial->EdoForm($_POST);
+
+}
+
 
 
 /// Ver Notiicaciones
