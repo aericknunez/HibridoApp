@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,6 +17,22 @@
 <body class="hidden-sn <?php echo SKIN; ?>">
 <main>
 
+<div id="mdb-preloader" class="flex-center">
+    <div class="preloader-wrapper big active crazy">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+</div>
+
 <!-- <div class="container"> -->
 <div class="row">
 
@@ -29,7 +45,8 @@
   <div class="row d-flex justify-content-center">
 
 <?php 
-    $a = $db->query("SELECT * FROM login_members WHERE username != 'Erick'");
+    $a = $db->query("SELECT * FROM login_members WHERE id != '1' and id != '2'");
+    if($a->num_rows > 0){
     foreach ($a as $b) {
     	$user=sha1($b['username']);
     if ($r = $db->select("nombre, avatar", "login_userdata", "WHERE user = '$user'")) { 
@@ -38,7 +55,7 @@
 
         echo '<div class="col-lg-2 col-md-2 mb-lg-1 mb-5">
         <div class="avatar mx-auto">
-		     <a href="?login='.$user.'&user='.$b['email'].'&avatar='.$avatar.'">
+		     <a id="login" email="'.$b['email'].'" avatar="'.$avatar.'">
 		        <img src="assets/img/avatar/'.$avatar.'" class="rounded-circle z-depth-3"
 		          alt="Sample avatar">
 		      </a>
@@ -56,6 +73,16 @@
 if (isset($_GET['error'])) {
     echo '<p class="text-danger">Error al Ingresar!</p>';
 }
+} else {
+  echo '<div class="row col-md-4 col-lg-4 d-flex justify-content-center">
+  <blockquote class="blockquote bq-success">
+  <p class="bq-title">Aviso!</p>
+  <p>Aún no se encuentran usuarios registrados. Favor Inicie Sesión como administardor y agregue usuarios del sistema
+  </p>
+</blockquote>
+
+  <a class="btn btn-secondary" href="?change">Iniciar</a></div>';
+}
 ?>
 
 </section>
@@ -71,6 +98,7 @@ if (isset($_GET['error'])) {
 
 </main>
 <a href="?change">Cambiar inicio</a>
+  
     <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="assets/js/popper.min.js"></script>
     <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
@@ -78,22 +106,20 @@ if (isset($_GET['error'])) {
  
 
 <!--Modal Form Login with Avatar Demo-->
-<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+<div class="modal bounceIn" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="ModalLogin" aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
         <!--Content-->
 <div class="modal-content">
 
 <!--Header-->
 <div class="modal-header">
-<img src="assets/img/avatar/<? echo $_REQUEST["avatar"]; ?>" class="rounded-circle img-responsive" alt="Avatar photo">
+<img id="avatar" class="rounded-circle img-responsive" alt="Avatar photo" >
 </div>
 <!--Body-->
 <div class="modal-body text-center mb-1">
 
   <form name="form-login" id="form-login"> 
-   <input type="hidden" name="email"
-  <?php if($_REQUEST["user"] != null) echo 'value="'.$_REQUEST["user"].'"'; ?> 
-  />
+   <input type="hidden" name="email" id="email" />
 
 <div class="col-xs-2">
   <input type="password" name="password" id="password" class="form-control"/>
@@ -105,56 +131,82 @@ if (isset($_GET['error'])) {
 
 <button class="btn btn-info my-4" type="submit" id="btn-login" name="btn-login">Ingresar</button>
 </form>
-
+<img src="assets/img/loading (1).gif" width="0" height="0">
 <div id="msj"></div>
 
 </div>
 <div class="modal-footer">
-<a href="?" class="btn btn-secondary">Cancelar</a>
+<a id="cerrarModal" class="btn btn-secondary">Cancelar</a>
 </div>
           
     </div>
     <!--/.Content-->
 </div>
 </div>
+<div id="cssnegro"></div>
 <!--Modal Form Login with Avatar Demo-->
-<?php 
-if(isset($_REQUEST["login"])){
-?>
-<style>
+
+<!-- <style>
     body { 
         background-color: black; /* La página de fondo será negra */
         color: 000; 
       }
-</style>
+</style> -->
  <script>
-$(document).ready(function()
-{
-  $("#login").modal("show");
+$(document).ready(function(){
+
+    $("body").on("click","#login",function(){
+
+        $("#ModalLogin").modal("show");
+
+        var email = $(this).attr('email');
+        var avatar = $(this).attr('avatar');
+
+        $('#email').attr("value", email);
+        $('#avatar').attr("src", 'assets/img/avatar/' + avatar);
 
 
-              $('#show_password').hover(function show() {
-                //Cambiar el atributo a texto
-                $('#password').attr('type', 'text');
-                $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-            },
-            function () {
-                //Cambiar el atributo a contraseña
-                $('#password').attr('type', 'password');
-                $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
-            });
-            //CheckBox mostrar contraseña
-            $('#ShowPassword').click(function () {
-                $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
-            });
+        $("body").css("background","#000");
+
+    });      
+    
+    $("body").on("click","#cerrarModal",function(){
+
+        $("#ModalLogin").modal("hide");
+         $("body").css("background","#FFF");
+    });
+
+  
+
+
+        $('#show_password').hover(function show() {
+          //Cambiar el atributo a texto
+          $('#password').attr('type', 'text');
+          $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+      },
+
+      function () {
+          //Cambiar el atributo a contraseña
+          $('#password').attr('type', 'password');
+          $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+      });
+      //CheckBox mostrar contraseña
+      
+      $('#ShowPassword').click(function () {
+          $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+      });
 
 });
 </script>
-<?
-}
-?>
 
-<script type="text/javascript" src="assets/js/query/login.js"></script>
+
+<script>
+      $(window).on("load", function () {
+        $('#mdb-preloader').fadeOut('fast');
+    });
+</script>
+
+<script type="text/javascript" src="system/user/login.js"></script>
 
 </body>
 </html>

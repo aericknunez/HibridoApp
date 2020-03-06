@@ -19,17 +19,6 @@ include_once '../common/Encrypt.php';
 
 
 
-
-
-/// usuarios
-
-if($_REQUEST["op"]=="0"){ // redirecciona despues de registrar a llenar datos
-	include_once '../includes/DataLogin.php';
-	$seslog->Register($_POST);
-exit();
-}
-
-
 // filtros para cuando no hay session abierta
 if ($seslog->login_check() != TRUE) {
 echo '<script>
@@ -45,64 +34,6 @@ echo '<script>
 exit();
 }
 //
-
-
-if($_REQUEST["op"]=="1"){ // cambia el password
-include_once '../../system/user/Usuarios.php';
-$usuarios = new Usuarios;
-$passw1 = filter_input(INPUT_POST, 'pass1', FILTER_SANITIZE_STRING);
-$passw2 = filter_input(INPUT_POST, 'pass2', FILTER_SANITIZE_STRING);
-$usuarios->CompararPass($passw1, $passw2); 
-}
-
-
-if($_REQUEST["op"]=="2"){ // terminar usuario
-	if($_POST["nombre"] != NULL && $_POST["tipo"] != NULL){
-	include_once '../../system/user/Usuarios.php';
-	$usuarios = new Usuarios;
-	$usuarios->TerminarUsuario(Helpers::Mayusculas($_POST["nombre"]),$_POST["tipo"],sha1($_POST["user"]));	
-	} else {
-	Alerts::Alerta("error","Error!","Faltan Datos!");	
-	}
-}
-
-
-
-if($_REQUEST["op"]=="3"){ // terminar actualizar
-	if($_POST["nombre"] != NULL && $_POST["tipo"] != NULL){
-	include_once '../../system/user/Usuarios.php';
-	$usuarios = new Usuarios;
-	$usuarios->ActualizarUsuario(Helpers::Mayusculas($_POST["nombre"]),$_POST["tipo"],sha1($_POST["user"]));	
-	} else {
-	Alerts::Alerta("error","Error!","Faltan Datos!");	
-	}
-}
-
-
-if($_REQUEST["op"]=="4"){ // cambiar avatar
-include_once '../../system/user/Usuarios.php';
-	$usuarios = new Usuarios;
-	$usuarios->CambiarAvatar($_REQUEST["iden"],$_REQUEST["user"]);
-}
-
-
-
-if($_REQUEST["op"]=="5"){ // pregunta si elimina el usuario
-include_once '../../system/user/Usuarios.php';
-$usuarios = new Usuarios;
-Alerts::EliminarUsuario($_REQUEST["iden"], $_REQUEST["username"]);
-
-}
-
-
-if($_REQUEST["op"]=="6"){ // elimina el usuario
-include_once '../../system/user/Usuarios.php';
-$usuarios = new Usuarios;
-$usuarios->EliminarUsuario($_REQUEST["iden"], $_REQUEST["username"]);
-}
-
-
-
 
 
 ////////// perfil
