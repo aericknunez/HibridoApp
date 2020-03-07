@@ -58,6 +58,13 @@ class Fechas{
     }
 
 
+    static public function UltimoDiaMes(){
+        $fecha = new DateTime();
+        $fecha->modify('last day of this month');
+        return $fecha->format('d');
+    }
+
+
     public static function NombreDia($fecha){ // nombre del dia segun fecha 
             $fecha = strtotime($fecha); //a timestamp 
 

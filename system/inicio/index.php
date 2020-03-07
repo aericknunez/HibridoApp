@@ -6,11 +6,22 @@ include_once 'application/common/Fechas.php';
 include_once 'system/inicio/dashboard.php';
 $dash = new Dashboard();
 
-$finiciox = Fechas::InicioQuincena(date("d-m-Y"));
-$ffinx = Fechas::FinQuincena(date("d-m-Y"));
-$finicio = Fechas::Format($finiciox);
-$ffin = Fechas::Format($ffinx);
-$tdias = Fechas::ContarDias($finiciox, $ffinx);
+$pormes = NULL; /// inicio de mes o inicio en quicena
+
+if($pormes == NULL){
+	$finiciox = "01-" . date("m-Y");
+	$ffinx = Fechas::UltimoDiaMes() . "-" . date("m-Y");
+	$finicio = Fechas::Format($finiciox);
+	$ffin = Fechas::Format($ffinx);
+	$tdias = Fechas::ContarDias($finiciox, $ffinx);
+} else {
+	$finiciox = Fechas::InicioQuincena(date("d-m-Y"));
+	$ffinx = Fechas::FinQuincena(date("d-m-Y"));
+	$finicio = Fechas::Format($finiciox);
+	$ffin = Fechas::Format($ffinx);
+	$tdias = Fechas::ContarDias($finiciox, $ffinx);
+}
+
 
 $index = TRUE;
 
@@ -24,6 +35,4 @@ if($_SESSION["tipo_cuenta"] == 1){
 echo  "Fecha Inicio: " . $finiciox . " | ";
 echo  "Fecha Fin: " . $ffinx . " | ";
 echo  "Dias Contados: " . $tdias;
-
-
 ?>

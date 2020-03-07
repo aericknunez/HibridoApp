@@ -195,8 +195,9 @@ if($this->CRedes($_SESSION["username"]) == TRUE){
 	 echo '<a href="." class="btn-floating btn-small"><i class="fab fa-whatsapp grey-text"></i></a>';
 	}
 
-} else {
-	Alerts::Mensajex("No ha registrado redes sociales","danger",NULL,'<a href="?modal=redes" class="btn btn-success btn-rounded btn-sm">Agregar</a>');
+} 
+else {
+	// Alerts::Mensajex("No ha registrado redes sociales","danger",NULL,'<a href="?modal=redes" class="btn btn-success btn-rounded btn-sm">Agregar</a>');
 }
  //    <!-- Social -->
  //    <a type="button" class="btn-floating btn-small"><i class="fab fa-facebook-f grey-text"></i></a>
