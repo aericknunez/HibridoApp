@@ -11,7 +11,12 @@ include_once 'system/user/Usuarios.php';
 <!-- informacion de eliminado -->
 <div id="lista_usuarios">
   <?php 
-   Usuarios::VerUsuarios();
+  if($_SESSION['tipo_cuenta'] == 1){
+    Usuarios::VerUsuarios();
+  } else {
+    Usuarios::VerUser();
+  }
+   
    ?>
 </div> 
 
