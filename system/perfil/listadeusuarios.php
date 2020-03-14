@@ -32,7 +32,7 @@ include_once 'application/common/Encrypt.php';
       <td>'.Encrypt::Decrypt($b["documento"],$_SESSION['secret_key']).'</td>
       <td>'.Encrypt::Decrypt($b["email"],$_SESSION['secret_key']).'</td>
       <td>'.Encrypt::Decrypt($b["telefono1"],$_SESSION['secret_key']).' '.Encrypt::Decrypt($b["telefono2"],$_SESSION['secret_key']).'</td>
-      <td><a href="verusuario&username='. $b["username"] .'"><i class="fas fa-cloud-download-alt fa-lg red-text"></i>
+      <td><a href="?verusuario&username='. $b["username"] .'"><i class="fas fa-cloud-download-alt fa-lg red-text"></i>
       </a></td>
     </tr>';
 
