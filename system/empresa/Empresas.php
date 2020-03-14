@@ -769,7 +769,12 @@ public function ProductosVendidos($npagina, $orden, $dir){
   $limit = 12;
   $adjacents = 2;
   if($npagina == NULL) $npagina = 1;
+  if($_SESSION["tipo_cuenta"] == 1){
   $a = $db->query("SELECT * FROM producto_empresa WHERE edo = '3' or edo = '4'");
+  } else {
+  $a = $db->query("SELECT * FROM producto_empresa WHERE edo = '3' or edo = '4' and correlativo != '0'");
+  }
+
   $total_rows = $a->num_rows;
   $a->close();
 
@@ -787,8 +792,12 @@ if($dir == "desc") $dir2 = "asc";
 if($dir == "asc") $dir2 = "desc";
 $op = 43; // opcion a donde se redirige la pginacion
 
- $a = $db->query("SELECT * FROM producto_empresa WHERE edo = '3' or edo = '4' order by ".$orden." ".$dir." limit $offset, $limit");
-      
+  if($_SESSION["tipo_cuenta"] == 1){
+ $a = $db->query("SELECT * FROM producto_empresa WHERE edo = '3' or edo = '4' order by ".$orden." ".$dir." limit $offset, $limit");      
+  } else {
+ $a = $db->query("SELECT * FROM producto_empresa WHERE edo = '3' or edo = '4' and correlativo != '0' order by ".$orden." ".$dir." limit $offset, $limit");         
+  }
+
       if($a->num_rows > 0){
           echo '<div class="table-responsive"><table class="table table-sm table-striped">
         <thead>
@@ -902,6 +911,9 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
           return $r["codigo"];
         }  unset($r);  
     }
+
+
+
 
 
 
