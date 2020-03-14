@@ -20,7 +20,7 @@ $product = new Productos();
     <tr>
       <th scope="col">#</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Docuemto</th>
+      <th scope="col">Documento</th>
       <th scope="col">Descripci&oacuten</th>
       <th scope="col">Descargar</th>
     </tr>

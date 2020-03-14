@@ -3,7 +3,9 @@
 ?>
 <li><a href="?me" class="waves-effect arrow-r"><i class="fas fa-tv"></i> Mi Perfil </a></li>
 
-
+<?php if($_SESSION["tipo_cuenta"] == 1){
+echo '<li><a href="?listadeusuarios" class="waves-effect"><i class="fas fa-plus"></i> Lista de Usuarios  </a></li>';	
+} ?>
 
 <li><a href="?empresa" class="waves-effect"><i class="fas fa-plus"></i> Nueva Empresa</a></li>
 <li><a href="?myempresa" class="waves-effect"><i class="fas fa-building"></i> Mis Empresas </a></li>
