@@ -295,6 +295,8 @@ include_once '../../system/empresa/Empresas.php';
 
 }
 
+
+
 if($_REQUEST["op"]=="390"){ // cambia el estado del producto asignado
 include_once '../../system/empresa/Empresas.php';
 	$empresa = new Empresas();	
@@ -332,7 +334,37 @@ include_once '../../system/historial/Historiales.php';
 
 }
 
+if($_REQUEST["op"]=="43"){ // productos vendidos
+include_once '../../system/empresa/Empresas.php';
+	$empresa = new Empresas();	
+	$empresa->ProductosVendidos($_POST["iden"], $_POST["orden"], $_POST["dir"]);
 
+}
+
+if($_REQUEST["op"]=="44"){ // busca el codigo de activacion
+include_once '../../system/producto/Correlativo.php';
+	$corr = new Correlativo();	
+	$corr->Opciones($_POST);
+}
+
+if($_REQUEST["op"]=="45"){
+include_once '../../system/producto/Correlativo.php';
+	$corr = new Correlativo();	
+	$corr->Insertar($_POST);
+}
+
+if($_REQUEST["op"]=="46"){ // busca el codigo de activacion
+include_once '../../system/producto/Correlativo.php';
+	$corr = new Correlativo();	
+	$corr->QuitarClave($_POST);
+}
+
+
+if($_REQUEST["op"]=="47"){ // busca el codigo de activacion
+include_once '../../system/producto/Correlativo.php';
+	$corr = new Correlativo();	
+	$corr->Activar($_POST);
+}
 
 /// Ver Notiicaciones
 if($_REQUEST["op"]=="50"){ // Agrega historial a la empresa

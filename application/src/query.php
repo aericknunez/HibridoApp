@@ -70,6 +70,10 @@ elseif(isset($_GET["productos"])) {
 echo '<script type="text/javascript" src="assets/js/query/producto.js?v='.$numero.'"></script>';
 echo '<script type="text/javascript" src="assets/js/query/paginador.js?v='.$numero.'"></script>';
 } 
+elseif(isset($_GET["provendidos"])) {
+echo '<script type="text/javascript" src="assets/js/query/correlativo.js?v='.$numero.'"></script>';
+echo '<script type="text/javascript" src="assets/js/query/paginador.js?v='.$numero.'"></script>';
+} 
 
 
 

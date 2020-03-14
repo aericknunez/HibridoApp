@@ -20,6 +20,7 @@ if(isset($_REQUEST["key"])){ /// comprueba la existencia del producto
   if ($r = $db->select("*", "producto", "WHERE id = '".$_REQUEST["key"]."'")) { 
 $iden = $r["id"];
 $producto = $r["producto"];
+$codigo = $r["codigo"];
 $rugro = $r["rugro"];
 $caduca = $r["caduca"];
 $edo = $r["edo"];
@@ -95,7 +96,7 @@ $condiciones = $r["condiciones"];
     </div>
 
 
-    <div class="col-md-6 mb-1 md-form">
+    <div class="col-md-3 mb-1 md-form">
       <select class="browser-default custom-select" id="edo" name="edo">
         <option selected disabled>* Estado</option>       
         <option <?php if($edo == 1) echo "selected"; ?> value="1">Activo</option>
@@ -103,7 +104,10 @@ $condiciones = $r["condiciones"];
         <option <?php if($edo == 2) echo "selected"; ?> value="2">Agotado</option>
       </select>
     </div>
-
+    <div class="col-md-3 md-form">
+        <label for="producto">* Codigo </label>
+      <input type="text" class="form-control" id="codigo" name="codigo" value="<?php echo $codigo; ?>">
+    </div>
 
   </div>                  
 

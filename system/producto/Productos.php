@@ -36,6 +36,7 @@ class Productos{
 		$db = new dbConn();
 		    $datos = array();
 		    $datos["producto"] = $data["producto"];
+		    $datos["codigo"] = $data["codigo"];
 		    $datos["descripcion"] = $data["descripcion"];
 		    $datos["condiciones"] = $data["condiciones"];
 		    $datos["rugro"] = $data["rugro"];
@@ -61,6 +62,7 @@ class Productos{
 		$db = new dbConn();
 		    $datos = array();
 		    $datos["producto"] = $data["producto"];
+		    $datos["codigo"] = $data["codigo"];
 		    $datos["descripcion"] = $data["descripcion"];
 		    $datos["condiciones"] = $data["condiciones"];
 		    $datos["rugro"] = $data["rugro"];

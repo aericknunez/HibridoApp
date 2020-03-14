@@ -21,6 +21,9 @@ echo '<li><a href="?producto" class="waves-effect"><i class="fas fa-plus"></i> N
 
 <li><a href="?productos" class="waves-effect"><i class="fas fa-box"></i> Todos Los Productos </a></li>
 <li><a href="?proasig" class="waves-effect"><i class="fas fa-project-diagram"></i> Productos Asignados </a></li>
+<?php if($_SESSION["tipo_cuenta"] == 1){
+echo '<li><a href="?provendidos" class="waves-effect"><i class="fas fa-plus"></i> Productos Vendidos   </a></li>';	
+} ?>
 <hr>
 <li><a href="?historial" class="waves-effect"><i class="fas fa-calendar-alt"></i> Citas Programadas </a></li>
 

@@ -760,6 +760,161 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 
 
 
+
+
+////////////empresa y productos asignadoa a cada una
+public function ProductosVendidos($npagina, $orden, $dir){
+      $db = new dbConn();
+
+  $limit = 12;
+  $adjacents = 2;
+  if($npagina == NULL) $npagina = 1;
+  $a = $db->query("SELECT * FROM producto_empresa WHERE edo = '3' or edo = '4'");
+  $total_rows = $a->num_rows;
+  $a->close();
+
+  $total_pages = ceil($total_rows / $limit);
+  
+  if(isset($npagina) && $npagina != NULL) {
+    $page = $npagina;
+    $offset = $limit * ($page-1);
+  } else {
+    $page = 1;
+    $offset = 0;
+  }
+
+if($dir == "desc") $dir2 = "asc";
+if($dir == "asc") $dir2 = "desc";
+$op = 43; // opcion a donde se redirige la pginacion
+
+ $a = $db->query("SELECT * FROM producto_empresa WHERE edo = '3' or edo = '4' order by ".$orden." ".$dir." limit $offset, $limit");
+      
+      if($a->num_rows > 0){
+          echo '<div class="table-responsive"><table class="table table-sm table-striped">
+        <thead>
+          <tr>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="producto" dir="'.$dir2.'">Producto</a></th>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="empresa" dir="'.$dir2.'">Empresa</a></th>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="vfecha" dir="'.$dir2.'">Vendido</a></th>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="pfecha" dir="'.$dir2.'">Pagado</a></th>
+            <th class="th-sm"><a id="paginador" op="'.$op.'" iden="1" orden="edo" dir="'.$dir2.'">Estado</a></th>
+            <th>OP</th>
+          </tr>
+        </thead>
+        <tbody>';
+        foreach ($a as $b) {
+          if($b["correlativo"] == 2){
+            $edo = '<i class="fas fa-ban fa-lg red-text"></i>';
+          } else {
+            $edo = '<a id="vendidos" producto="'. $b["producto"] .'" empresa="'. $b["empresa"] .'" codigo="'. $this->CodigoProducto($b["producto"]) .'" op="44"><i class="fas fa-cogs fa-lg green-text"></i></a>';
+          }
+          echo '<tr>
+                      <td>'.$this->NombreProducto($b["producto"]).'</td>
+                      <td>'.$this->NombreEmpresa($b["empresa"]).'</td>
+                      <td>'.$b["vfecha"].'</td>
+                      <td>'.$b["pfecha"].'</td>
+                      <td>'.Helpers::EdoProAsig($b["edo"]).'</td>
+                      <td>'.$edo.'</td>
+                    </tr>';
+        }
+        echo '</tbody>
+        </table></div>';
+      }
+        $a->close();
+
+  if($total_pages <= (1+($adjacents * 2))) {
+    $start = 1;
+    $end   = $total_pages;
+  } else {
+    if(($page - $adjacents) > 1) {  
+      if(($page + $adjacents) < $total_pages) {  
+        $start = ($page - $adjacents); 
+        $end   = ($page + $adjacents); 
+      } else {              
+        $start = ($total_pages - (1+($adjacents*2))); 
+        $end   = $total_pages; 
+      }
+    } else {
+      $start = 1; 
+      $end   = (1+($adjacents * 2));
+    }
+  }
+echo $total_rows . " Registros encontrados";
+   if($total_pages > 1) { 
+
+$page <= 1 ? $enable = 'disabled' : $enable = '';
+    echo '<ul class="pagination pagination-sm justify-content-center">
+    <li class="page-item '.$enable.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="1" orden="'.$orden.'" dir="'.$dir.'">&lt;&lt;</a>
+      </li>';
+    
+    $page>1 ? $pagina = $page-1 : $pagina = 1;
+    echo '<li class="page-item '.$enable.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="'.$pagina.'" orden="'.$orden.'" dir="'.$dir.'">&lt;</a>
+      </li>';
+
+    for($i=$start; $i<=$end; $i++) {
+      $i == $page ? $pagina =  'active' : $pagina = '';
+      echo '<li class="page-item '.$pagina.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="'.$i.'" orden="'.$orden.'" dir="'.$dir.'">'.$i.'</a>
+      </li>';
+    }
+
+    $page >= $total_pages ? $enable = 'disabled' : $enable = '';
+    $page < $total_pages ? $pagina = ($page+1) : $pagina = $total_pages;
+    echo '<li class="page-item '.$enable.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="'.$pagina.'" orden="'.$orden.'" dir="'.$dir.'">&gt;</a>
+      </li>';
+
+    echo '<li class="page-item '.$enable.'">
+        <a class="page-link" id="paginador" op="'.$op.'" iden="'.$total_pages.'" orden="'.$orden.'" dir="'.$dir.'">&gt;&gt;</a>
+      </li>
+
+      </ul>';
+     }  // end pagination 
+  } // termina productos
+
+
+
+
+
+   public function NombreProducto($key){ 
+   $db = new dbConn();
+
+        if ($r = $db->select("producto", "producto", "WHERE id = '".$key."'")) { 
+          return $r["producto"];
+        }  unset($r);  
+    }
+
+
+   public function NombreEmpresa($key){ 
+   $db = new dbConn();
+
+        if ($r = $db->select("nombre", "empresa", "WHERE id = '".$key."'")) { 
+          return $r["nombre"];
+        }  unset($r);  
+    }
+
+   public function CodigoProducto($key){ 
+   $db = new dbConn();
+
+        if ($r = $db->select("codigo", "producto", "WHERE id = '".$key."'")) { 
+          return $r["codigo"];
+        }  unset($r);  
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 } // fin de la clase
 
  ?>

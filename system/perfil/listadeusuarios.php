@@ -11,7 +11,7 @@ include_once 'application/common/Encrypt.php';
 <?php 
 
     $a = $db->query("SELECT * FROM perfil");
-    echo '<table class="table table-striped table-sm">
+    echo '<div class="table-responsive"><table class="table table-striped table-sm">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -39,5 +39,5 @@ include_once 'application/common/Encrypt.php';
     } $a->close();
 
     echo '</tbody>
-        </table>';
+        </table></div>';
 ?>
