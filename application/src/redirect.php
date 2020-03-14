@@ -14,6 +14,7 @@ elseif(isset($_GET["user"])) include_once 'system/user/user.php';
 elseif(isset($_GET["perfil"])) include_once 'system/perfil/perfil.php';
 elseif(isset($_GET["me"])) include_once 'system/perfil/verperfil.php';
 elseif(isset($_GET["listadeusuarios"])) include_once 'system/perfil/listadeusuarios.php';
+elseif(isset($_GET["verusuario"])) include_once 'system/perfil/ver_usuario.php';
 
 
 
