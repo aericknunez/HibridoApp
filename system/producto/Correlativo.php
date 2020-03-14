@@ -65,6 +65,7 @@ class Correlativo {
 					';
 				} else {
 					Alerts::Mensajex("Producto activado","info");
+					$this->MostrarClaveIngresada($data);
 				}		
 	      	} else { // si no hay registro
 	      		echo '<div class="row">
@@ -74,6 +75,32 @@ class Correlativo {
 					</div>';
 	      	}
 	}
+
+   public function MostrarClaveIngresada($data){
+   $db = new dbConn();
+
+	    if ($r = $db->select("fecha, hora, clave, codigo", "producto_correlativo", "WHERE producto='".$data["producto"]."' and empresa='".$data["empresa"]."'")) { 
+
+	       $fecha = $r["fecha"];  
+	       $hora = $r["hora"];
+	       $clave = $r["clave"];
+	       $codigo = $r["codigo"];
+	    } unset($r);  
+
+	  if($fecha == date("d-m-Y")){
+	  		Alerts::Mensajex("Por motivos de seguridad no se puede mostrar la clave usada en este producto","danger");
+	  } else {
+	  		echo '<div>
+	      			<h2 class="text-center">'.$clave.'</h2>
+					</div>
+					<div >
+	      			<p class="text-center">Codigo </p>
+					</div>
+					<div>
+	      			<h3 class="text-center">'.$codigo.'</h3>
+					</div>';
+	  } 
+  }
 
 
 	public function Insertar($data){
