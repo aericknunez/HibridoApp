@@ -188,7 +188,7 @@ class Correlativo {
 
 	}
 
-	public function ObtenerCodigo($clave, $td){ // (clave sananda)
+	public function ObtenerCodigo($clave, $td){ // (clave sanada)
 		$cod = Encrypt::Encrypt($clave, $td . Fechas::Format(date("d-m-Y")));
 		$codigo = substr($cod,0,4);
 		return strtoupper($codigo);
