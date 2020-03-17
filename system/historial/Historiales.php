@@ -151,6 +151,62 @@ class Historiales{
 
 
 
+
+
+
+
+
+
+   public function TodasLasCitas(){ // historial citas
+   $db = new dbConn();
+
+
+	$a = $db->query("SELECT * FROM visitas order by id desc");
+
+    
+    if($a->num_rows){
+   //   echo '<h3>Citas Registradas</h3>';
+      
+      echo '<div class="table-responsive"><table class="table table-striped table-sm">
+        <thead>
+          <tr>';
+          if($empresa == NULL){ echo '<th scope="col">Empresa</th>'; } else { echo '<th scope="col">#</th>'; }
+            
+        echo '<th scope="col">Detalles</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Estado</th>
+            </tr>
+        </thead>
+        <tbody>';
+        foreach ($a as $b) {
+        	
+        $n = 1;
+        if($empresa == NULL){
+		    if ($r = $db->select("nombre", "empresa", "WHERE id = '". $b["empresa"] ."'")) { 
+		        echo '<td>'. $r["nombre"] .'</td>';
+		    }  
+
+		} else { echo '<td>'. $n++ .'</td>';}
+       
+       echo '<td>'. $b["detalles"] .'</td>
+            <td>'. $b["fecha"] .' | '. $b["hora"] .'</td> 
+            <td><a id="xver" key="'. $b["id"] .'" estado="'. $b["edo"] .'">'. Helpers::EdoCita($b["edo"]) .'</a></td>';   
+      echo '</tr>';
+      	$this->VerDetalles($b["id"]);
+      } echo '</tbody>
+        </table></div>';
+  } else {
+    Alerts::Mensajex("No se han registrado citas","danger");
+  }
+    $a->close();
+ }
+
+
+
+
+
+
+
 } // fin de la clase
 
  ?>

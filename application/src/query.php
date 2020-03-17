@@ -81,6 +81,9 @@ echo '<script type="text/javascript" src="assets/js/query/paginador.js?v='.$nume
 elseif(isset($_GET["historial"])) {
 echo '<script type="text/javascript" src="assets/js/query/historial.js?v='.$numero.'"></script>';
 } 
+elseif(isset($_GET["todaslascitas"])) {
+echo '<script type="text/javascript" src="assets/js/query/historial.js?v='.$numero.'"></script>';
+} 
 
 
 elseif(isset($_GET["download"])) {

@@ -27,6 +27,10 @@ echo '<li><a href="?provendidos" class="waves-effect"><i class="fas fa-plus"></i
 <hr>
 <li><a href="?historial" class="waves-effect"><i class="fas fa-calendar-alt"></i> Citas Programadas </a></li>
 
+<?php if($_SESSION["tipo_cuenta"] == 1){
+echo '<li><a href="?todaslascitas" class="waves-effect"><i class="fas fa-plus"></i> Todas las citas   </a></li>';	
+} ?>
+
 <hr>
 <li><a href="?download" class="waves-effect"><i class="fas fa-download"></i> Descargas </a></li>
 

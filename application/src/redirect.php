@@ -37,6 +37,8 @@ elseif(isset($_GET["download"])) include_once 'system/producto/download.php';
 /// historial
 elseif(isset($_GET["historial"])) include_once 'system/historial/historial.php';
 
+elseif(isset($_GET["todaslascitas"])) include_once 'system/historial/citas.php';
+
 
 
 /// Notificaciones
