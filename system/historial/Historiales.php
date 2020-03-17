@@ -188,7 +188,7 @@ class Historiales{
 		    }  
 
 		    if ($r = $db->select("nombre", "perfil", "WHERE username = '". $b["username"] ."'")) { 
-		        echo '<td>'. $r["nombre"] .'</td>';
+		        echo '<td>'. Encrypt::Decrypt($r["nombre"],$_SESSION['secret_key']) .'</td>';
 		    }  
        
        echo '<td>'. $b["detalles"] .'</td>
