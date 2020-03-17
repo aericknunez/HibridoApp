@@ -170,8 +170,9 @@ class Historiales{
       echo '<div class="table-responsive"><table class="table table-striped table-sm">
         <thead>
           <tr>';
-          if($empresa == NULL){ echo '<th scope="col">Empresa</th>'; } else { echo '<th scope="col">#</th>'; }
-            
+         echo '<th scope="col">Empresa</th>';
+          echo '<th scope="col">Usuario</th>';
+               
         echo '<th scope="col">Detalles</th>
             <th scope="col">Fecha</th>
             <th scope="col">Estado</th>
@@ -181,12 +182,14 @@ class Historiales{
         foreach ($a as $b) {
         	
         $n = 1;
-        if($empresa == NULL){
+
 		    if ($r = $db->select("nombre", "empresa", "WHERE id = '". $b["empresa"] ."'")) { 
 		        echo '<td>'. $r["nombre"] .'</td>';
 		    }  
 
-		} else { echo '<td>'. $n++ .'</td>';}
+		    if ($r = $db->select("nombre", "perfil", "WHERE username = '". $b["username"] ."'")) { 
+		        echo '<td>'. $r["nombre"] .'</td>';
+		    }  
        
        echo '<td>'. $b["detalles"] .'</td>
             <td>'. $b["fecha"] .' | '. $b["hora"] .'</td> 
