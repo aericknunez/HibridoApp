@@ -1,7 +1,6 @@
 <?php 
-header("Content-Type: text/html;charset=utf-8");
-?>
-<!DOCTYPE html>
+header('Content-Type: text/html; charset=utf-8');
+ ?><!DOCTYPE html>
 <html lang="es">
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
