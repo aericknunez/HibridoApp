@@ -1,9 +1,7 @@
-<?php 
-header('Content-Type: text/html; charset=utf-8');
- ?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+     <meta http-equiv=”Content-Type” content=”text/html; charset=ISO-8859-1″ />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Sistema de control de Usuarios</title>
