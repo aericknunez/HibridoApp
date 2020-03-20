@@ -24,7 +24,7 @@ exit();
 if ($seslog->login_check() == TRUE) {
 
 $us = sha1(EMAIL);
-$user=sha1($_SESSION['username']);
+$user=$_SESSION['username'];
 
 	function UserInicio($user){
         $db = new dbConn();
