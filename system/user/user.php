@@ -12,9 +12,9 @@ include_once 'system/user/Usuarios.php';
 <div id="lista_usuarios">
   <?php 
   if($_SESSION['tipo_cuenta'] == 1){
-    Usuarios::VerUsuarios();
+    Usuarios::VerUsuarios($_SESSION["ver_avatar"]);
   } else {
-    Usuarios::VerUser();
+    Usuarios::VerUser($_SESSION["ver_avatar"]);
   }
    
    ?>

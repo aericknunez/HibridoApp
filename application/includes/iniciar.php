@@ -22,6 +22,7 @@ exit();
 }
 
 if ($seslog->login_check() == TRUE) {
+$_SESSION["ver_avatar"] = 1;
 
 $us = sha1(EMAIL);
 $user=$_SESSION['username'];

@@ -96,7 +96,6 @@ echo '<div id="avatar-select">
         $name = $r["nombre"]; $type = $r["tipo"];
     }  unset($r); 
 
-	    if($_SESSION['tipo_cuenta'] == 1 or $_SESSION['tipo_cuenta'] == 2 or $_SESSION["user"]==$usuario){
 
 
 		echo '<label for="nombre" class="grey-text">Nombre</label>
@@ -127,12 +126,11 @@ echo '<label>Tipo de Cuenta</label>
     if($_SESSION['tipo_cuenta'] == 5 or $_SESSION['tipo_cuenta'] != 1) echo 'disabled '; echo 'value="5">';echo Helpers::UserName(5) . '</option>
 
 </select>';
+}else {
+	echo '<input type="hidden" id="tipo" name="tipo" value="'.$type.'">';
 }
 
 
-
-
-	    }
 
 	}
 
@@ -300,7 +298,7 @@ echo '<label>Tipo de Cuenta</label>
 			      <th scope="col">Cuenta</th>
 			      <th scope="col">Eliminar</th>
 			      <th scope="col">Editar</th>';
-			      if($avatar != NULL){
+			      if($avatar == NULL){
 			 echo '<th scope="col">Avatar</th>';     	
 			      }
 			      
@@ -340,7 +338,7 @@ echo '<label>Tipo de Cuenta</label>
 				<a ><i class="fa fa-edit grey-text fa-lg"></i></a></td>';
 			}
 
-		if($avatar != NULL){
+		if($avatar == NULL){
 			
 			if($_SESSION["user"] == $user or $_SESSION["tipo_cuenta"] == 1  or $_SESSION["tipo_cuenta"] == 2){
 				echo '<td><a id="ver_avatar" op="6" username = "'.$b["username"].'"><i class="fa fa-user red-text fa-lg"></i></a></td>';
