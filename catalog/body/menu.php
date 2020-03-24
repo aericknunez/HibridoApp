@@ -32,6 +32,8 @@ echo '<li><a href="?todaslascitas" class="waves-effect"><i class="fas fa-plus"><
 } ?>
 
 <hr>
+<li><a href="?codigodemo" class="waves-effect"><i class="fas fa-download"></i> Codigos demo </a></li>
+
 <li><a href="?download" class="waves-effect"><i class="fas fa-download"></i> Descargas </a></li>
 
 <li><a href="?user" class="waves-effect arrow-r"><i class="fas fa-user"></i> Usuarios </a></li>

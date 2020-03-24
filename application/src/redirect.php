@@ -46,6 +46,11 @@ elseif(isset($_GET["notificaciones"])) include_once 'system/notificaciones/notif
 
 
 
+/// api
+elseif(isset($_GET["codigodemo"])) include_once 'system/api/codigodemo.php';
+
+
+
 else{
 include_once 'system/inicio/index.php';
 }
