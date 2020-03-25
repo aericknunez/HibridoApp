@@ -378,6 +378,40 @@ include_once '../../system/notificaciones/Notifi.php';
 
 
 
+/// Ver Notiicaciones
+if($_REQUEST["op"]=="100"){ // Agrega historial a la empresa
+include_once '../../system/api/Api.php';
+	$api = new ApiRest();	
+	$api->AddBd($_POST);
+}
+
+
+if($_REQUEST["op"]=="101"){ // Agrega historial a la empresa
+include_once '../../system/api/Api.php';
+	$api = new ApiRest();	
+	$api->DelBd($_POST);
+}
+
+if($_REQUEST["op"]=="102"){ // Agrega historial a la empresa
+include_once '../../system/api/Api.php';
+	$api = new ApiRest();	
+	$api->AsisgnarBd($_POST);
+}
+
+
+
+
+if($_REQUEST["op"]=="105"){ // Agrega historial a la empresa
+include_once '../../system/api/Api.php';
+	$api = new ApiRest();	
+	$api->AddImagen($_POST);
+}
+
+
+
+
+
+
 
 /////////
 $db->close();

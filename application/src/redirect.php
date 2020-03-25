@@ -48,6 +48,11 @@ elseif(isset($_GET["notificaciones"])) include_once 'system/notificaciones/notif
 
 /// api
 elseif(isset($_GET["codigodemo"])) include_once 'system/api/codigodemo.php';
+elseif(isset($_GET["addbd"])) include_once 'system/api/subirdb.php';
+elseif(isset($_GET["addcimages"])) include_once 'system/api/cat_imagenes.php';
+elseif(isset($_GET["addtimages"])) include_once 'system/api/todas_imagenes.php';
+
+
 
 
 

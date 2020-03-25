@@ -90,6 +90,19 @@ elseif(isset($_GET["download"])) {
 echo '<script type="text/javascript" src="assets/js/query/download.js?v='.$numero.'"></script>';
 } 
 
+/////////////// api
+elseif(isset($_GET["addbd"])) {
+echo '<script type="text/javascript" src="assets/js/query/api.js?v='.$numero.'"></script>';
+} 
+elseif(isset($_GET["addcimages"])) {
+echo '<script type="text/javascript" src="assets/js/query/api.js?v='.$numero.'"></script>';
+} 
+elseif(isset($_GET["addtimages"])) {
+echo '<script type="text/javascript" src="assets/js/query/api.js?v='.$numero.'"></script>';
+} 
+
+
+
 
 else{
 /// lo que llevara index

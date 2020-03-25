@@ -1,6 +1,25 @@
 <?php 
  if($_SESSION["config_edo"] != NULL){
 ?>
+
+<?php if($_SESSION["tipo_cuenta"] == 1) {  /// planilla?>
+
+<li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-user-alt"></i> Administración Api<i class="fa fa-angle-down rotate-icon"></i></a>
+<div class="collapsible-body">
+<ul class="list-unstyled">
+
+<li><a href="?addbd" class="waves-effect"><i class="fas fa-download"></i> Agregar Base de Datos </a></li>
+<li><a href="?addtimages" class="waves-effect"><i class="fas fa-download"></i> Todas Las Imagemes</a></li>
+<li><a href="?addcimages" class="waves-effect"><i class="fas fa-download"></i> Imagemes sin Categoria</a></li>
+
+
+</ul>
+</div>
+</li>
+
+<?php } ?>
+
+
 <li><a href="?me" class="waves-effect arrow-r"><i class="fas fa-tv"></i> Mi Perfil </a></li>
 
 <?php if($_SESSION["tipo_cuenta"] == 1){
