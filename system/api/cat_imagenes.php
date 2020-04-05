@@ -10,6 +10,6 @@ $api = new ApiRest;
 
 <?php   
 echo '<div id="contenido">';
-$api->Imagenes("../../pizto.com/admin/assets/img/ico/");
+$api->Imagenes("../pizto/assets/img/ico/");
 echo '</div>';
  ?>
