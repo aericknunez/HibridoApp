@@ -10,6 +10,6 @@ $api = new ApiRest;
 
 <?php   
 echo '<div id="contenido">';
-$api->TodasLasImagenes("../assets/img/icox/");
+$api->TodasLasImagenes("assets/img/icox/");
 echo '</div>';
  ?>
