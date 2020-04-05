@@ -1,4 +1,6 @@
 <?
+//  extrae todas las imagenes para ingresarlas al menu de pizto
+//  es necesario tambien categorias_imagenes para complementar el menu
 include_once '../application/common/Helpers.php';
 include_once '../application/includes/variables_db.php';
 include_once '../application/common/Mysqli.php';

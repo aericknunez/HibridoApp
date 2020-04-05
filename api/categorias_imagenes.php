@@ -1,4 +1,7 @@
 <?
+// es para crear las categorias de las imagenes del menu de pizto para restaurante
+// tambien se debe incluir imagnes funcionan en conjunto
+// 
 include_once '../application/common/Helpers.php';
 include_once '../application/includes/variables_db.php';
 include_once '../application/common/Mysqli.php';

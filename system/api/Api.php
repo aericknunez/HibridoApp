@@ -199,6 +199,20 @@ class ApiRest{
 ///   termina subida de base de datos 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ///////////// agregar imagenes a categoria
  public function Imagenes($src){
   echo ' <div class="row text-center portfolio"> 
