@@ -251,7 +251,7 @@ class ApiRest{
 			    if ($db->insert("s1_imagenes", $datos)) {
 			    	Alerts::Alerta("success","Agregado!","Imagen agregada correctamente!"); 
 			    } 
-			$this->Imagenes("../../../pizto/assets/img/ico/");
+			$this->Imagenes("../../assets/img/icox/");
 		
 		} else {
 
@@ -259,7 +259,7 @@ class ApiRest{
 	  		if($db->update("s1_imagenes", $cambio, "WHERE imagen='".$data["img"]."'")){
 			        Alerts::Alerta("success","Eliminado!","Modificado correctamente!");
 			}	
-			$this->TodasLasImagenes("../../../pizto/assets/img/ico/");
+			$this->TodasLasImagenes("../../assets/img/icox/");
 		}
 
 
