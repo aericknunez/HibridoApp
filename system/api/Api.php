@@ -261,6 +261,27 @@ class ApiRest{
 			}	
 			$this->TodasLasImagenes("../../../pizto/assets/img/ico/");
 		}
+
+
+		/// agrego el checker
+		$nuevon = Fechas::Format(date("d-m-Y H:i:s"));
+
+			$as = $db->query("SELECT * FROM s1_img_check");
+				if($as->num_rows > 0){
+
+			    $cambio = array();
+			    $cambio["checker"] = $nuevon;
+			    $db->update("s1_img_check", $cambio, "");
+
+				} else {
+
+			    $datos = array();
+			    $datos["checker"] = $nuevon;
+			    $db->insert("s1_img_check", $datos);
+			     		
+				}
+				
+			$as->close();
     		
 	}
 
