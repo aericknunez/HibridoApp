@@ -669,12 +669,15 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
             <td scope="row">'.$producto.'</td>
             <td class="d-none d-md-block">'. $descripcion .'</td>
             <td>'. Helpers::EdoProAsig($b["edo"]) .'</td>
-            <td><a id="xcambiar" key="'. $b["id"] .'" edo="'. $b["edo"] .'"><i class="fas fa-search fa-lg green-text"></i></a></td>
+            <td><a id="xcambiar" key="'. $b["id"] .'" producto="'. $b["producto"] .'" edo="'. $b["edo"] .'"><i class="fas fa-search fa-lg green-text"></i></a></td>
             </tr>';
       }
   }
     $a->close();
  }
+
+
+
 
    public function CambiarEdo($data){ // cambia el estado del producto asignado
    $db = new dbConn();

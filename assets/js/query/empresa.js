@@ -103,6 +103,7 @@ $(document).ready(function(){
         $('#ModalCambiar').modal('show');
         
         var key = $(this).attr('key');
+        var producto = $(this).attr('producto');
         var edo = $(this).attr('edo');
 
         var dataString = 'op=390&key='+key;
@@ -128,7 +129,7 @@ $(document).ready(function(){
 
 
         $('#producto').attr("value",key);
-        $('#btn-pro').attr("href",'?pro&key='+key);
+        $('#btn-pro').attr("href",'?pro&key='+producto);
         
     });
 
