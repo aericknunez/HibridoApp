@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 include_once 'application/common/Alerts.php';
 include_once 'application/common/Fechas.php';
-include_once 'system/inicio/dashboard.php';
+include_once 'system/inicio/Dashboard.php';
 $dash = new Dashboard();
 
 $pormes = NULL; /// inicio de mes o inicio en quicena
