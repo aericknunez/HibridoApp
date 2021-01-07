@@ -120,7 +120,7 @@ class ApiRest{
 	if($a->num_rows > 0){
 	 echo '<table class="table table-sm table-striped">
 			  <thead>
-			    <tr>
+			    <tr class="orange lighten-3">
 			    <th scope="col">Hash</th>
 			      <th scope="col">Fecha</th>
 			      <th scope="col">Hora</th>
@@ -130,7 +130,7 @@ class ApiRest{
 			  </thead>
 			  <tbody>';
 	    foreach ($a as $b) {  
-		    echo '<tr>
+		    echo '<tr class="light-green lighten-4">
 		    	  <th scope="col">'.$b["hash"].'</th>
 			      <th scope="col">'.$b["fecha"].'</th>
 			      <th scope="col">'.$b["hora"].'</th>			      
@@ -141,7 +141,7 @@ class ApiRest{
 			    <tr>
 		    	  <th class="text-danger" colspan="5">'.$b["comentarios"].'</th>
 			    </tr>';
-			    $this->VerClientesHashes($b["hash"]);
+			    $this->VerClientesHashes($b["hash"], $b["sistema"]);
 	    } 
 	    echo '</tbody>
 		    </table>';
@@ -152,19 +152,19 @@ class ApiRest{
 	}
 
 
-	public function VerClientesHashes($hash){
+	public function VerClientesHashes($hash, $tipo){
 		$db = new dbConn();
 
-	 $ac = $db->query("SELECT * FROM system_sistemasactivos order by id desc");
+	 $ac = $db->query("SELECT * FROM system_sistemasactivos WHERE sistema = '$tipo' order by id desc");
 
 	if($ac->num_rows > 0){
 
 	    foreach ($ac as $bc) {  
 
-	    	$ax = $db->query("SELECT * FROM system_dbuser WHERE hash = '$hash' and td = " . $bc["td"]);
+	    	$ax = $db->query("SELECT * FROM system_dbuser WHERE sistema = '$tipo' and hash = '$hash' and td = " . $bc["td"]);
 	    	if($ax->num_rows > 0){	    		
 	    		
-	    		$as = $db->query("SELECT * FROM system_dbsuccess WHERE hash = '$hash' and td = ".$bc["td"]."");
+	    		$as = $db->query("SELECT * FROM system_dbsuccess WHERE sistema = '$tipo' and hash = '$hash' and td = ".$bc["td"]."");
 	    		if($as->num_rows > 0){
 	    			$edo = "Ejecutado";
 	    			$ico = "fa-ban";

@@ -1,4 +1,7 @@
 <?
+header('Access-Control-Allow-Origin: *');
+
+
 if(is_numeric($_REQUEST["x"]) and is_numeric($_REQUEST["type"])){
 
 /// obtener las basas de datos que se deben sincronizar
@@ -13,6 +16,7 @@ include_once '../application/includes/DataLogin.php';
 
 $seslog = new Login();
 $seslog->sec_session_start();
+
 
     $a = $db->query("SELECT hash FROM system_dbsync");
 		$data = array();
@@ -35,21 +39,17 @@ $seslog->sec_session_start();
  $a->close();
 
 
+if($_REQUEST["validate"] == 1){
 
-
-
-
-if($_POST["validate"] == "1"){
-
-      if(isset($_POST["type"]) and isset($_POST["x"]) and isset($_POST["hash"])){ // para insertar los datos de solicitud a la base de datos
+      if(isset($_REQUEST["type"]) and isset($_REQUEST["x"]) and isset($_REQUEST["hash"])){ // para insertar los datos de solicitud a la base de datos
 
       $datos = array();
-      $datos["hash"] = $_POST["type"];
-      $datos["sistema"] = $_POST["type"];
+      $datos["hash"] = $_REQUEST["hash"];
+      $datos["sistema"] = $_REQUEST["type"];
       $datos["edo"] = 2;
       $datos["fecha"] = date("d-m-Y");
       $datos["hora"] = date("H:i:s");
-      $datos["td"] = $_POST["x"];
+      $datos["td"] = $_REQUEST["x"];
       if($db->insert("system_dbsuccess", $datos)) {
         $data[] = array(
           'success' =>  '1'
@@ -62,8 +62,6 @@ if($_POST["validate"] == "1"){
 
  }
 }
-
-
 
 
 echo json_encode($data);
